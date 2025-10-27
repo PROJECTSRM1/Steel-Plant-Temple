@@ -1,0 +1,167 @@
+/* ============================================================
+   DARSHAN PAGE STYLING (inherits temple theme)
+   ============================================================ */
+
+.content {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  color: #222;
+  line-height: 1.7;
+}
+
+.content h2 {
+  color: #3b0101;
+  font-size: 26px;
+  margin-bottom: 16px;
+  text-align: left;
+  font-family: 'Merriweather', serif;
+}
+
+.content p,
+.content ul,
+.content ol,
+.content table {
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+blockquote {
+  background: #fff7e6;
+  border-left: 5px solid #ce8a23;
+  padding: 16px 20px;
+  margin: 20px 0;
+  font-style: italic;
+  color: #3b0101;
+}
+
+/* TABLE STYLES */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+table th,
+table td {
+  border: 1px solid #ddd;
+  padding: 12px 16px;
+  text-align: left;
+}
+
+table th {
+  background-color: #3b0101;
+  color: #fff;
+  font-weight: 600;
+  font-family: 'Playfair Display', serif;
+}
+
+table tr:nth-child(even) {
+  background-color: #f8f8f8;
+}
+
+table tr:hover {
+  background-color: #fff4da;
+}
+
+/* NOTES, LISTS, AND DETAILS */
+.note {
+  color: #b30000;
+  font-size: 15px;
+  font-style: italic;
+  margin-top: -10px;
+}
+
+ul, ol {
+  margin-left: 20px;
+  padding-left: 20px;
+}
+
+ul li, ol li {
+  margin-bottom: 10px;
+}
+
+/* CONTACT INFO LIST */
+.contact-info {
+  list-style: none;
+  margin-top: 10px;
+}
+
+.contact-info li {
+  margin-bottom: 10px;
+  background: #fff9e6;
+  padding: 10px;
+  border-left: 4px solid #ce8a23;
+}
+
+/* BLESSINGS SECTION */
+.center {
+  text-align: center;
+  margin: 40px 0;
+}
+
+.center blockquote {
+  display: inline-block;
+  text-align: center;
+  background: #fff7e0;
+  border-left: none;
+  border-top: 4px solid #ce8a23;
+  border-bottom: 4px solid #ce8a23;
+  padding: 20px 40px;
+  font-family: 'Merriweather', serif;
+  font-size: 18px;
+  color: #3b0101;
+}
+
+.center blockquote span {
+  display: block;
+  font-size: 15px;
+  color: #555;
+  margin-top: 10px;
+}
+
+/* PAGE FOOTER */
+.page-footer {
+  background: #3b0101;
+  color: wheat;
+  text-align: center;
+  padding: 20px 0;
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  margin-top: 40px;
+}
+
+/* MOBILE ADAPTATION */
+@media (max-width: 768px) {
+  .content {
+    padding: 0 15px;
+  }
+
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+
+  table th {
+    display: none;
+  }
+
+  table tr {
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    background: #fff;
+  }
+
+  table td {
+    border: none;
+    padding: 8px 0;
+  }
+
+  table td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    color: #3b0101;
+    display: block;
+  }
+}

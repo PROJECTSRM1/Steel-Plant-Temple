@@ -74,6 +74,9 @@ a {
 /* -------------------- */
 .navbar {
   background-color: #2a0000;
+  /* position:fixed; */
+  width:100%;
+  top:60px;
 }
 
 .nav-menu {
@@ -135,6 +138,7 @@ a {
 /* -------------------- */
 .hero {
   position: relative;
+  /* margin-top: */
   width: 100%;
   height: 450px;
   overflow: hidden;
