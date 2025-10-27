@@ -1,6 +1,11 @@
-/* -------------------- */
-/* GLOBAL STYLES */
-/* -------------------- */
+html {
+  scroll-behavior: smooth;
+}
+/* Adjust offset for sticky header */
+.section {
+  scroll-margin-top: 100px; /* match your header height */
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -37,6 +42,9 @@ a {
   color: #fff;
   text-align: center;
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+    position: sticky;
+  top: 0;
+  z-index: 10000;
 }
 
 .header-top {
@@ -103,7 +111,8 @@ a {
   padding: 10px 0;
   border-radius: 4px;
   min-width: 200px;
-  z-index: 1000; /* ensure dropdown appears above other elements */
+  z-index: 1000;
+   list-style: none;
 }
 
 .dropdown-content li a {
@@ -175,7 +184,7 @@ a {
 .hero-content h2 {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   font-size: 42px;
-  color: #ffcc33;
+  color: #ce8a23;
   margin-bottom: 20px;
 }
 
@@ -200,7 +209,8 @@ a {
 }
 
 .btn-primary:hover {
-  background-color: #ffd84d;
+  background-color: #2b0000;
+  color: #ce8a23;
 }
 
 .btn-secondary {
@@ -209,7 +219,8 @@ a {
 }
 
 .btn-secondary:hover {
-  background-color: #ffe9b3;
+  background-color: #2b0000;
+  color: #ce8a23;
 }
 
 /* -------------------- */
