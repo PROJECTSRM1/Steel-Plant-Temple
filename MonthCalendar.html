@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ayyappa Swamy Temple - Puja Calendar</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f9f7f3;
+    text-align: center;
+    margin: 40px;
+  }
+
+  h2 {
+    color: #5a2d0c;
+  }
+
+  .calendar {
+    display: inline-grid;
+    grid-template-columns: repeat(7, 60px);
+    gap: 5px;
+    margin-top: 20px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .day {
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .day:hover {
+    background: #f0d8b0;
+  }
+
+  .today {
+    background: #ffce73;
+    font-weight: bold;
+  }
+
+  .selected {
+    border: 2px solid #af3823;
+    background: none !important;
+  }
+
+  .add-event-btn {
+    display: none;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #af3823;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .add-event-btn:hover {
+    background-color: #d14226;
+  }
+
+  /* Popup */
+  .popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    z-index: 10;
+    width: 300px;
+  }
+
+  .popup input, .popup textarea {
+    display: block;
+    margin: 10px auto;
+    padding: 8px;
+    width: 80%;
+  }
+
+  .popup button {
+    background: #af3823;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  .overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 5;
+  }
+
+  /* Events section */
+  #eventsList {
+    margin-top: 40px;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+  }
+
+  .event-card {
+    background: #fff;
+    border-left: 5px solid #af3823;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+
+  .event-card h4 {
+    color: #af3823;
+    margin: 0;
+  }
+
+  .event-card p {
+    margin: 5px 0;
+    color: #333;
+  }
+</style>
+</head>
+<body>
+  <h2>🪔 Ayyappa Swamy Temple Puja Calendar</h2>
+
+  <div class="calendar" id="calendar"></div>
+
+<!-- Add Event button -->
+<div style="margin-top: 20px; text-align: center;">
+  <button class="add-event-btn" id="addEventBtn">Add Event (Temple Staff)</button>
+</div>
+
+
+  <!-- Popup for Login + Event -->
+  <div class="overlay" id="overlay"></div>
+  <div class="popup" id="popup">
+    <h3 id="popupTitle">Temple Staff Login</h3>
+    <div id="loginSection">
+      <input type="password" id="staffPass" placeholder="Enter password" />
+      <button onclick="login()">Login</button>
+      <p id="loginMsg" style="color: red;"></p>
+    </div>
+
+    <div id="eventSection" style="display:none;">
+      <input type="text" id="eventTitle" placeholder="Event Name" />
+      <textarea id="eventDesc" placeholder="Event Description"></textarea>
+      <button onclick="saveEvent()">Save Event</button>
+    </div>
+  </div>
+
+  <div id="eventsList"></div>
+
+  <script>
+    const calendar = document.getElementById("calendar");
+    const today = new Date();
+    const currentMonth = today.getMonth();
+    const currentYear = today.getFullYear();
+    const addEventBtn = document.getElementById("addEventBtn");
+    const popup = document.getElementById("popup");
+    const overlay = document.getElementById("overlay");
+    const eventsList = document.getElementById("eventsList");
+
+    let selectedDate = null;
+    let isStaff = false;
+    let events = JSON.parse(localStorage.getItem("templeEvents")) || {};
+
+    // Generate calendar
+    const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+    for (let d = 1; d <= daysInMonth; d++) {
+      const dayDiv = document.createElement("div");
+      dayDiv.classList.add("day");
+      dayDiv.textContent = d;
+
+      if (d === today.getDate()) {
+        dayDiv.classList.add("today");
+      }
+
+      dayDiv.addEventListener("click", () => {
+        document.querySelectorAll(".day").forEach(el => el.classList.remove("selected"));
+        dayDiv.classList.add("selected");
+        selectedDate = `${d}-${currentMonth + 1}-${currentYear}`;
+        addEventBtn.style.display = "inline-block";
+      });
+
+      calendar.appendChild(dayDiv);
+    }
+
+    addEventBtn.addEventListener("click", () => {
+      popup.style.display = "block";
+      overlay.style.display = "block";
+      document.getElementById("loginSection").style.display = isStaff ? "none" : "block";
+      document.getElementById("eventSection").style.display = isStaff ? "block" : "none";
+      document.getElementById("popupTitle").textContent = isStaff ? `Add Event for ${selectedDate}` : "Temple Staff Login";
+    });
+
+    overlay.addEventListener("click", closePopup);
+    function closePopup() {
+      popup.style.display = "none";
+      overlay.style.display = "none";
+    }
+
+    function login() {
+      const pass = document.getElementById("staffPass").value;
+      if (pass === "ayyappa123") {
+        isStaff = true;
+        document.getElementById("loginSection").style.display = "none";
+        document.getElementById("eventSection").style.display = "block";
+        document.getElementById("popupTitle").textContent = `Add Event for ${selectedDate}`;
+      } else {
+        document.getElementById("loginMsg").textContent = "Invalid password!";
+      }
+    }
+
+    function saveEvent() {
+      const title = document.getElementById("eventTitle").value.trim();
+      const desc = document.getElementById("eventDesc").value.trim();
+      if (!title) return alert("Please enter event name!");
+      events[selectedDate] = { title, desc };
+      localStorage.setItem("templeEvents", JSON.stringify(events));
+      document.getElementById("eventTitle").value = "";
+      document.getElementById("eventDesc").value = "";
+      closePopup();
+      renderEvents();
+    }
+
+    function renderEvents() {
+      eventsList.innerHTML = "";
+      const keys = Object.keys(events);
+      if (keys.length === 0) {
+        eventsList.innerHTML = "<p style='color:#777;'>No events added yet.</p>";
+        return;
+      }
+      const sorted = keys.sort((a,b) => {
+        const [da, ma, ya] = a.split("-").map(Number);
+        const [db, mb, yb] = b.split("-").map(Number);
+        return new Date(ya, ma-1, da) - new Date(yb, mb-1, db);
+      });
+
+      sorted.forEach(date => {
+        const ev = events[date];
+        const div = document.createElement("div");
+        div.classList.add("event-card");
+        div.innerHTML = `<h4>${ev.title}</h4>
+          <p><strong>Date:</strong> ${date}</p>
+          <p>${ev.desc}</p>`;
+        eventsList.appendChild(div);
+      });
+    }
+
+    renderEvents();
+  </script>
+</body>
+</html>
+

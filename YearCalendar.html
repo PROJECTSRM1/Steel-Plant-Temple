@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive Calendar with Events</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+
+  .calendar-container {
+    max-width: 400px;
+    margin-bottom: 30px;
+  }
+
+  .calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .calendar-header button {
+    cursor: pointer;
+  }
+
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+  }
+
+  .day {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+  }
+
+  .day:hover {
+    background-color: #f0f0f0;
+  }
+
+  .selected-day {
+    background-color: #87ceeb;
+    color: white;
+  }
+
+  .events-list {
+    margin-top: 20px;
+  }
+
+  .month-events {
+    margin-bottom: 15px;
+  }
+
+  .month-events h4 {
+    margin-bottom: 5px;
+  }
+
+  .add-event-btn {
+    margin-top: 10px;
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+<div class="calendar-container">
+  <div class="calendar-header">
+    <button id="prevMonth">&lt;</button>
+    <h3 id="monthYear"></h3>
+    <button id="nextMonth">&gt;</button>
+  </div>
+  <div class="calendar-grid" id="calendarGrid"></div>
+</div>
+
+<button class="add-event-btn" id="addEventBtn">Add Event</button>
+
+<h2>Events</h2>
+<div class="events-list" id="eventsList"></div>
+
+<script>
+  const monthNames = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+
+  let currentDate = new Date();
+  let selectedDate = null;
+  const events = [];
+
+  const calendarGrid = document.getElementById("calendarGrid");
+  const monthYear = document.getElementById("monthYear");
+  const prevMonthBtn = document.getElementById("prevMonth");
+  const nextMonthBtn = document.getElementById("nextMonth");
+  const addEventBtn = document.getElementById("addEventBtn");
+  const eventsListDiv = document.getElementById("eventsList");
+
+  function renderCalendar() {
+    calendarGrid.innerHTML = "";
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth();
+    monthYear.textContent = `${monthNames[month]} ${year}`;
+
+    // First day of the month
+    const firstDay = new Date(year, month, 1).getDay();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+    // Empty slots for previous month's last days
+    for (let i = 0; i < firstDay; i++) {
+      const emptyDiv = document.createElement("div");
+      calendarGrid.appendChild(emptyDiv);
+    }
+
+    // Days of current month
+    for (let d = 1; d <= daysInMonth; d++) {
+      const dayDiv = document.createElement("div");
+      dayDiv.classList.add("day");
+      dayDiv.textContent = d;
+      dayDiv.addEventListener("click", () => selectDay(d));
+      if (selectedDate &&
+          selectedDate.getDate() === d &&
+          selectedDate.getMonth() === month &&
+          selectedDate.getFullYear() === year) {
+        dayDiv.classList.add("selected-day");
+      }
+      calendarGrid.appendChild(dayDiv);
+    }
+  }
+
+  function selectDay(day) {
+    selectedDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
+    addEventBtn.style.display = "inline-block";
+    renderCalendar();
+  }
+
+  prevMonthBtn.addEventListener("click", () => {
+    currentDate.setMonth(currentDate.getMonth() - 1);
+    selectedDate = null;
+    addEventBtn.style.display = "none";
+    renderCalendar();
+  });
+
+  nextMonthBtn.addEventListener("click", () => {
+    currentDate.setMonth(currentDate.getMonth() + 1);
+    selectedDate = null;
+    addEventBtn.style.display = "none";
+    renderCalendar();
+  });
+
+  addEventBtn.addEventListener("click", () => {
+    const title = prompt("Enter Event Title:");
+    if (title && selectedDate) {
+      events.push({ date: selectedDate.toISOString().split('T')[0], title });
+      renderEvents();
+    }
+  });
+
+  function renderEvents() {
+    eventsListDiv.innerHTML = "";
+    const monthEventsMap = {};
+
+    events.forEach(ev => {
+      const month = new Date(ev.date).getMonth();
+      if (!monthEventsMap[month]) monthEventsMap[month] = [];
+      monthEventsMap[month].push(ev);
+    });
+
+    Object.keys(monthEventsMap).forEach(monthIdx => {
+      const monthDiv = document.createElement("div");
+      monthDiv.classList.add("month-events");
+
+      const monthTitle = document.createElement("h4");
+      monthTitle.textContent = monthNames[monthIdx];
+      monthDiv.appendChild(monthTitle);
+
+      const ul = document.createElement("ul");
+      monthEventsMap[monthIdx].forEach(ev => {
+        const li = document.createElement("li");
+        li.textContent = `${ev.date} - ${ev.title}`;
+        ul.appendChild(li);
+      });
+
+      monthDiv.appendChild(ul);
+      eventsListDiv.appendChild(monthDiv);
+    });
+  }
+
+  // Initial render
+  renderCalendar();
+</script>
+
+</body>
+</html>
