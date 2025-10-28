@@ -229,6 +229,7 @@ a {
 
 .slideshow {
   position: relative;
+  /* margin-top:5 */
   width: 100%;
   height: 100%;
 }
@@ -251,6 +252,7 @@ a {
 
 .hero-overlay {
   position: absolute;
+  /* margin-top:100px; */
   top: 0;
   left: 0;
   right: 0;
@@ -263,6 +265,7 @@ a {
 }
 
 .hero-content {
+  /* margin-top:100px; */
   text-align: center;
   color: #fff;
   z-index: 2;

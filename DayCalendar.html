@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Temple Day Calendar</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f9f7f3;
+  text-align: center;
+  margin: 40px;
+}
+
+h2 {
+  color: #5a2d0c;
+}
+
+.day-calendar {
+  display: inline-block;
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  margin-top: 20px;
+  width: 500px;
+}
+
+.hour-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 8px;
+  border-bottom: 1px solid #eee;
+  transition: 0.3s;
+  position: relative;
+  cursor: pointer;
+}
+
+.hour-block:hover {
+  background: #f0d8b0;
+}
+
+.hour-label {
+  flex: 0 0 80px;
+  font-weight: bold;
+}
+
+.hour-events {
+  flex: 1;
+  text-align: left;
+  margin-left: 10px;
+}
+
+.event-card {
+  background: #ffecd1;
+  border-left: 3px solid #af3823;
+  padding: 5px 8px;
+  border-radius: 6px;
+  margin-bottom: 4px;
+  font-size: 0.9em;
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  z-index: 10;
+  width: 300px;
+}
+
+.popup input, .popup textarea {
+  display: block;
+  margin: 10px auto;
+  padding: 8px;
+  width: 80%;
+}
+
+.popup button {
+  background: #af3823;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background: rgba(0,0,0,0.4);
+  z-index: 5;
+}
+</style>
+</head>
+<body>
+<h2>🪔 Ayyappa Swamy Temple Day Calendar</h2>
+
+<div class="day-calendar" id="dayCalendar"></div>
+
+<div class="overlay" id="overlay"></div>
+<div class="popup" id="popup">
+  <h3 id="popupTitle">Add Event</h3>
+  <input type="text" id="eventTitle" placeholder="Event Name">
+  <textarea id="eventDesc" placeholder="Event Description"></textarea>
+  <button onclick="saveEvent()">Save Event</button>
+</div>
+
+<script>
+const dayCalendar = document.getElementById("dayCalendar");
+const popup = document.getElementById("popup");
+const overlay = document.getElementById("overlay");
+
+let selectedHour = null;
+let selectedDate = new Date().toLocaleDateString();
+let events = JSON.parse(localStorage.getItem("dayEvents")) || {};
+let selectedHourBlock = null;
+
+// Create hour blocks
+for (let h = 6; h <= 21; h++) {
+  const hourBlock = document.createElement("div");
+  hourBlock.classList.add("hour-block");
+
+  const hourLabel = document.createElement("div");
+  hourLabel.classList.add("hour-label");
+  hourLabel.textContent = (h > 12 ? h-12 : h) + (h >= 12 ? " PM" : " AM");
+
+  const hourEvents = document.createElement("div");
+  hourEvents.classList.add("hour-events");
+  hourEvents.id = `events-${h}`;
+
+  hourBlock.appendChild(hourLabel);
+  hourBlock.appendChild(hourEvents);
+
+  // Click on the whole block to add event
+  hourBlock.addEventListener("click", () => {
+    selectedHour = h;
+    selectedHourBlock = hourEvents;
+    popup.style.display = "block";
+    overlay.style.display = "block";
+    document.getElementById("popupTitle").textContent = `Add Event at ${hourLabel.textContent}`;
+  });
+
+  dayCalendar.appendChild(hourBlock);
+}
+
+// Close popup
+overlay.addEventListener("click", () => {
+  popup.style.display = "none";
+  overlay.style.display = "none";
+});
+
+function saveEvent() {
+  const title = document.getElementById("eventTitle").value.trim();
+  const desc = document.getElementById("eventDesc").value.trim();
+  if (!title) return alert("Enter event title");
+
+  const key = `${selectedDate}-${selectedHour}`;
+  if (!events[key]) events[key] = [];
+  events[key].push({ title, desc });
+  localStorage.setItem("dayEvents", JSON.stringify(events));
+
+  document.getElementById("eventTitle").value = "";
+  document.getElementById("eventDesc").value = "";
+  popup.style.display = "none";
+  overlay.style.display = "none";
+  renderEvents();
+}
+
+function renderEvents() {
+  for (let h = 6; h <= 21; h++) {
+    const hourEventsDiv = document.getElementById(`events-${h}`);
+    hourEventsDiv.innerHTML = "";
+    const key = `${selectedDate}-${h}`;
+    if (events[key]) {
+      events[key].forEach(ev => {
+        const div = document.createElement("div");
+        div.classList.add("event-card");
+        div.innerHTML = `<strong>${ev.title}</strong><br>${ev.desc}`;
+        hourEventsDiv.appendChild(div);
+      });
+    }
+  }
+}
+
+// Initial render
+renderEvents();
+</script>
+</body>
+</html>

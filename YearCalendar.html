@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Temple Year Schedule</title>
+<link rel="stylesheet" href="YearCalendar.css" />
+</head>
+<body>
+
+<h2>🪔 Temple Year Schedule</h2>li
+
+<div class="year-schedule" id="yearSchedule"></div>
+
+<button id="updateBtn">Update Schedule</button>
+
+<!-- Login Popup -->
+<div class="overlay" id="overlay"></div>
+<div class="popup" id="loginPopup">
+  <h3>Temple Staff Login</h3>
+  <input type="password" id="staffPass" placeholder="Enter password">
+  <div class="error-msg" id="loginError"></div>
+  <button onclick="login()">Login</button>
+</div>
+
+<script>
+const monthNames = [
+  "January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
+
+let schedule = JSON.parse(localStorage.getItem("yearSchedule")) || {};
+let isStaff = false;
+
+function renderSchedule() {
+  const container = document.getElementById("yearSchedule");
+  container.innerHTML = "";
+
+  monthNames.forEach((month, index) => {
+    const monthDiv = document.createElement("div");
+    monthDiv.className = "month-block";
+
+    const title = document.createElement("h3");
+    title.textContent = month;
+    monthDiv.appendChild(title);
+
+    const ul = document.createElement("ul");
+    ul.className = "events-list";
+
+    const monthKey = index + 1;
+    if (schedule[monthKey]) {
+      schedule[monthKey].forEach(ev => {
+        const li = document.createElement("li");
+        li.textContent = `${ev.date}: ${ev.title}`;
+        ul.appendChild(li);
+      });
+    } else {
+      const li = document.createElement("li");
+      li.textContent = "No events scheduled.";
+      ul.appendChild(li);
+    }
+
+    monthDiv.appendChild(ul);
+    container.appendChild(monthDiv);
+  });
+}
+
+// Show login popup
+document.getElementById("updateBtn").addEventListener("click", () => {
+  if (!isStaff) {
+    document.getElementById("overlay").style.display = "block";
+    document.getElementById("loginPopup").style.display = "block";
+    document.getElementById("loginError").textContent = "";
+  } else {
+    addEvent();
+  }
+});
+
+function login() {
+  const pass = document.getElementById("staffPass").value;
+  if (pass === "ayyappa123") { // staff password
+    isStaff = true;
+    closeLoginPopup();
+    addEvent();
+  } else {
+    document.getElementById("loginError").textContent = "Invalid password!";
+  }
+}
+
+function closeLoginPopup() {
+  document.getElementById("overlay").style.display = "none";
+  document.getElementById("loginPopup").style.display = "none";
+}
+
+// Add event function
+function addEvent() {
+  const monthNum = parseInt(prompt("Enter month number (1-12) to add event:"));
+  if (!monthNum || monthNum < 1 || monthNum > 12) return alert("Invalid month!");
+  const date = prompt("Enter date (e.g., 15):");
+  const title = prompt("Enter event title:");
+  if (!date || !title) return;
+
+  if (!schedule[monthNum]) schedule[monthNum] = [];
+  schedule[monthNum].push({ date, title });
+
+  localStorage.setItem("yearSchedule", JSON.stringify(schedule));
+  renderSchedule();
+}
+
+// Close popup on overlay click
+document.getElementById("overlay").addEventListener("click", closeLoginPopup);
+
+// Initial render
+renderSchedule();
+</script>
+
+</body>
+</html>
