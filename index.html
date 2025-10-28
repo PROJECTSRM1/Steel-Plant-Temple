@@ -5,8 +5,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sri Ayyappa Swamy Temple</title>
+
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+
   <!-- Google Fonts -->
   <link
     href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Playfair+Display:wght@600;700&display=swap"
@@ -17,7 +20,9 @@
 </head>
 
 <body>
-  <!-- HEADER -->
+  <!-- ===========================
+       HEADER SECTION
+  ============================ -->
   <header class="main-header">
     <div class="header-top">
       <span class="om-symbol">ॐ</span>
@@ -25,64 +30,65 @@
     </div>
 
     <nav class="navbar">
-         <div class="nav-container">
-      <!-- Logo (optional small one on mobile) -->
-      <a href="#" class="nav-logo">Ayyappa</a>
+      <div class="navbar-container">
+        <ul class="nav-menu">
+          <li><a href="#">Home</a></li>
 
-      <!-- Hamburger Button -->
-      <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-      </button>
-      <ul class="nav-menu">
-        <li><a href="#">Home</a></li>
+          <li class="dropdown">
+            <a href="#">Seva Services</a>
+            <ul class="dropdown-content">
+              <li><a href="Pooja Services.html">Pooja Services</a></li>
+              <li><a href="#">Special Services</a></li>
+              <li><a href="#">Yaghas</a></li>
+              <li><a href="Dharshan.html">Dharshan</a></li>
+            </ul>
+          </li>
 
-        <li class="dropdown">
-          <a href="#">Seva Services</a>
-          <ul class="dropdown-content">
-            <li><a href="Pooja Services.html">Pooja Services</a></li>
-            <li><a href="#">Special Services</a></li>
-            <li><a href="#">Yaghas</a></li>
-            <li><a href="Dharshan.html">Dharshan</a></li>
-          </ul>
-        </li>
+          <li class="dropdown">
+            <a href="#">Events</a>
+            <ul class="dropdown-content">
+              <li><a href="#">Day Calendar</a></li>
+              <li><a href="#">Week</a></li>
+              <li><a href="#">Month</a></li>
+              <li><a href="#">Year</a></li>
+            </ul>
+          </li>
 
-        <li class="dropdown">
-          <a href="#">Events</a>
-          <ul class="dropdown-content">
-            <li><a href="#">Day Calendar</a></li>
-            <li><a href="#">Week</a></li>
-            <li><a href="#">Month</a></li>
-            <li><a href="#">Year</a></li>
-          </ul>
-        </li>
+          <li class="dropdown">
+            <a href="#">Live Darshan</a>
+            <ul class="dropdown-content">
+              <li><a href="#">Live Telecast</a></li>
+              <li><a href="#">Telecast Old</a></li>
+            </ul>
+          </li>
 
-        <li class="dropdown">
-          <a href="#">Live Darshan</a>
-          <ul class="dropdown-content">
-            <li><a href="#">Live Telecast</a></li>
-            <li><a href="#">Telecast Old</a></li>
-          </ul>
-        </li>
+          <li class="dropdown">
+            <a href="#">Donation</a>
+            <ul class="dropdown-content">
+              <li><a href="#">Online Donations</a></li>
+              <li><a href="#">Offline Donations</a></li>
+              <li><a href="#">Special Donations</a></li>
+              <li><a href="#">Event Donations</a></li>
+            </ul>
+          </li>
 
-        <li class="dropdown">
-          <a href="#">Donation</a>
-          <ul class="dropdown-content">
-            <li><a href="#">Online Donations</a></li>
-            <li><a href="#">Offline Donations</a></li>
-            <li><a href="#">Special Donations</a></li>
-            <li><a href="#">Event Donations</a></li>
-          </ul>
-        </li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+        </ul>
 
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#contact">Contact Us</a></li>
-      </ul>
+        <!-- Mobile Menu -->
+        <div class="hamburger">
+          <span>Home</span>
+          <span>Gallery</span>
+          <span>Contact</span>
+        </div>
+      </div>
     </nav>
   </header>
 
-  <!-- HERO -->
+  <!-- ===========================
+       HERO SECTION
+  ============================ -->
   <section id="hero" class="hero">
     <div class="slideshow">
       <img src="head3.jpg" class="slide active" alt="Temple 1" />
@@ -101,15 +107,18 @@
       </div>
     </div>
   </section>
-  <div class="floating-social d-none d-md-flex">
+
+  <!-- Floating Social Icons -->
+  <div class="floating-social">
     <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
     <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
     <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
     <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
   </div>
 
-
-  <!-- ABOUT -->
+  <!-- ===========================
+       ABOUT SECTION
+  ============================ -->
   <section id="about" class="section about-section">
     <div class="container">
       <h3 class="section-title fade-in">🌿 Welcome to Lord Ayyappa Swamy Temple 🌿</h3>
@@ -117,16 +126,14 @@
       <div class="fade-in">
         <p class="intro-text">
           Welcome to the sacred abode of <strong>Lord Ayyappa</strong>, the divine symbol of Dharma, purity, and
-          devotion.
-          The Ayyappa Swamy Temple stands as a sanctuary for all devotees seeking inner peace, divine blessings, and the
-          strength to follow a righteous life.
+          devotion. The Ayyappa Swamy Temple stands as a sanctuary for all devotees seeking inner peace and divine
+          blessings.
         </p>
 
         <p>
           As the sacred chant <em>“Swamiye Saranam Ayyappa”</em> echoes through the air, the temple becomes a space of
-          tranquility and surrender. Every corner reflects the spiritual energy of faith and the message of Lord Ayyappa
-          —
-          to live with discipline, humility, and equality.
+          tranquility and surrender. Every corner reflects the message of Lord Ayyappa — to live with discipline,
+          humility, and equality.
         </p>
       </div>
 
@@ -140,10 +147,7 @@
           <h4 class="subheading">🏛️ Divine Ambiance & Architecture</h4>
           <p>
             Built in the <strong>traditional Kerala architectural style</strong>, the temple features beautifully carved
-            pillars, a golden <em>dhwajasthambam</em> (flagpole), and a serene idol of Lord Ayyappa in yogic posture
-            symbolizing balance, meditation, and peace. Shrines of Lord Ganapathi, Goddess Malikapurathamma, and
-            Nagaraja
-            grace the premises, offering devotees the blessings of the entire Ayyappa tradition.
+            pillars, a golden <em>dhwajasthambam</em> (flagpole), and a serene idol of Lord Ayyappa in yogic posture.
           </p>
         </div>
       </div>
@@ -159,58 +163,17 @@
           <ul class="service-list">
             <li><strong>Annadanam</strong> – Free meal service for devotees and the needy.</li>
             <li><strong>Health Camps</strong> – Regular medical check-ups and awareness programs.</li>
-            <li><strong>Educational Assistance</strong> – Scholarships and support for underprivileged students.</li>
+            <li><strong>Educational Assistance</strong> – Scholarships for underprivileged students.</li>
             <li><strong>Cultural Activities</strong> – Bhajans, music, and youth participation in temple events.</li>
           </ul>
         </div>
       </div>
-
-      <hr class="decor-divider fade-in" />
-
-      <div class="fade-in">
-        <h4 class="subheading">🕉️ About the Temple</h4>
-        <p>
-          The Ayyappa Swamy Temple was founded with the divine inspiration to create a local center for Lord Ayyappa’s
-          worship, following the sacred customs of Sabarimala. Lord Ayyappa — son of Lord Shiva and Mohini — represents
-          the
-          union of strength and compassion, a reminder that all paths lead to the same truth.
-        </p>
-        <p>
-          Established by devoted followers, the temple has grown into a <strong>beacon of spirituality and
-            harmony</strong>,
-          upholding ancient values of devotion and equality through rituals, community service, and cultural activities.
-        </p>
-      </div>
-
-      <hr class="decor-divider fade-in" />
-
-      <div class="fade-in">
-        <h4 class="subheading">🪔 Spiritual Significance</h4>
-        <p>
-          The temple follows traditional <em>Ayyappa Vratham</em> rituals, encouraging devotees to observe 41 days of
-          austerity, celibacy, and meditation before darshan — symbolizing the soul’s journey toward enlightenment.
-          Major
-          events such as <strong>Mandala Pooja, Makara Jyothi,</strong> and <strong>Padi Pooja</strong> are performed
-          with
-          grandeur, devotion, and adherence to Vedic traditions.
-        </p>
-      </div>
-
-      <hr class="decor-divider fade-in" />
-
-      <div class="fade-in">
-        <h4 class="subheading">🤝 Community & Service</h4>
-        <ul class="service-list">
-          <li><strong>Annadanam</strong> – Free meal service for devotees and the needy.</li>
-          <li><strong>Health Camps</strong> – Regular medical check-ups and awareness programs.</li>
-          <li><strong>Educational Assistance</strong> – Scholarships and support for underprivileged students.</li>
-          <li><strong>Cultural Activities</strong> – Bhajans, music, and youth participation in temple events.</li>
-        </ul>
-      </div>
     </div>
   </section>
 
-  <!-- EVENTS -->
+  <!-- ===========================
+       EVENTS SECTION
+  ============================ -->
   <section id="events" class="section container">
     <h3>Upcoming Events & Pujas</h3>
     <div class="events-grid">
@@ -238,7 +201,9 @@
     </div>
   </section>
 
-  <!-- LIVE DARSHAN -->
+  <!-- ===========================
+       LIVE DARSHAN SECTION
+  ============================ -->
   <section id="live" class="section container live">
     <h3>Live Darshan</h3>
     <div class="video-container" id="videoPreview" onclick="playVideo()">
@@ -247,22 +212,9 @@
     </div>
   </section>
 
-  <script>
-    function playVideo() {
-      const container = document.getElementById("videoPreview");
-      container.innerHTML = `
-      <iframe width="600" height="340"
-        src="https://www.youtube.com/embed/BOjJGALm2kQ?autoplay=1"
-        title="Live Darshan"
-        frameborder="0"
-        allow="autoplay; encrypted-media"
-        allowfullscreen>
-      </iframe>`;
-    }
-  </script>
-
-
-  <!-- GALLERY -->
+  <!-- ===========================
+       GALLERY SECTION
+  ============================ -->
   <section id="gallery" class="section container">
     <h3>Temple Gallery</h3>
     <div class="gallery-grid">
@@ -275,13 +227,15 @@
     </div>
   </section>
 
-  <!-- CONTACT -->
+  <!-- ===========================
+       CONTACT SECTION
+  ============================ -->
   <section id="contact" class="section container">
     <h3>Contact & Visit</h3>
     <div class="contact-grid">
       <div>
         <h4>Address</h4>
-        <p>Vizag Steel Plant,Visakhapatnam City, India</p>
+        <p>Vizag Steel Plant, Visakhapatnam City, India</p>
       </div>
       <div>
         <h4>Temple Hours</h4>
@@ -289,26 +243,28 @@
       </div>
       <div>
         <h4>Contact</h4>
-        <p>Phone: +91 98xxxxxx00<br />Email: info@ayyappatemple.com</p>
+        <p>Phone: +91 98xxxxxx00<br>Email: info@ayyappatemple.com</p>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- ===========================
+       FOOTER SECTION
+  ============================ -->
   <footer class="footer">
     <p>© <span id="cyear"></span> Sri Ayyappa Swamy Temple. All Rights Reserved.</p>
   </footer>
 
-  <!-- JS -->
+  <!-- ===========================
+       JAVASCRIPT
+  ============================ -->
   <script>
-    // auto slideshow
-    let slides = document.querySelectorAll(".slide");
+    // Auto slideshow
+    const slides = document.querySelectorAll(".slide");
     let current = 0;
 
     function showSlide(index) {
-      slides.forEach((slide, i) => {
-        slide.classList.toggle("active", i === index);
-      });
+      slides.forEach((slide, i) => slide.classList.toggle("active", i === index));
     }
 
     function nextSlide() {
@@ -319,35 +275,21 @@
     showSlide(current);
     setInterval(nextSlide, 3000);
 
-    // live video click
-    document.getElementById("videoPreview").addEventListener("click", function () {
-      this.innerHTML = `
-        <iframe 
-          width="100%" 
-          height="315" 
-          src="https://www.youtube.com/embed/BOjJGALm2kQ?autoplay=1" 
-          title="Ayyappa Harivarasanam"
+    // Live Darshan video
+    function playVideo() {
+      const container = document.getElementById("videoPreview");
+      container.innerHTML = `
+        <iframe width="600" height="340"
+          src="https://www.youtube.com/embed/BOjJGALm2kQ?autoplay=1"
+          title="Live Darshan"
           frameborder="0"
-          allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allow="autoplay; encrypted-media"
           allowfullscreen>
         </iframe>`;
-    });
+    }
 
-    document.getElementById("cyear").textContent = new Date().getFullYear();
-  </script>
-  <script>
-    const hamburger = document.querySelector('.hamburger');
-    const navMenu = document.querySelector('.nav-menu');
-
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('active');
-      navMenu.classList.toggle('active');
-    });
-  </script>
-  <script>
     // Fade-in animation on scroll
     const fadeEls = document.querySelectorAll(".fade-in");
-
     function handleScroll() {
       fadeEls.forEach(el => {
         const rect = el.getBoundingClientRect();
@@ -356,29 +298,31 @@
         }
       });
     }
-
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("load", handleScroll);
-  </script>
-  <script>
-  const toggle = document.getElementById("nav-toggle");
-  const menu = document.getElementById("nav-menu");
 
-  toggle.addEventListener("click", () => {
-    toggle.classList.toggle("active");
-    menu.classList.toggle("show");
-  });
+    // Hamburger & dropdowns
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    const dropdowns = document.querySelectorAll('.dropdown > a');
 
-  // Close menu when a link is clicked
-  document.querySelectorAll(".nav-menu a").forEach(link => {
-    link.addEventListener("click", () => {
-      toggle.classList.remove("active");
-      menu.classList.remove("show");
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+      hamburger.classList.toggle('open');
     });
-  });
-</script>
 
+    dropdowns.forEach(link => {
+      link.addEventListener('click', (e) => {
+        if (window.innerWidth <= 768) {
+          e.preventDefault();
+          link.parentElement.classList.toggle('active');
+        }
+      });
+    });
 
+    // Current Year
+    document.getElementById("cyear").textContent = new Date().getFullYear();
+  </script>
 </body>
 
 </html>
