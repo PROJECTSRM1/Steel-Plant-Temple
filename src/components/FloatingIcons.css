@@ -9,7 +9,8 @@
   z-index: 1000;
 }
 
-.floating-social a {
+/* Style the buttons like the old links */
+.floating-social button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17,22 +18,43 @@
   height: 45px;
   background-color: #b03822;
   color: #fff;
+  border: none;
   border-radius: 10px;
-  text-decoration: none;
+  cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.floating-social i { font-size: 20px; }
+.floating-social i {
+  font-size: 20px;
+}
 
-.floating-social a:hover { transform: scale(1.1); box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25); }
-.floating-social a:nth-child(1):hover { background-color: #1877f2; }
-.floating-social a:nth-child(2):hover {
+/* Hover effects */
+.floating-social button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+}
+
+/* Individual hover colors */
+.floating-social button:nth-child(1):hover {
+  background-color: #1877f2; /* Facebook */
+}
+
+.floating-social button:nth-child(2):hover {
   background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
 }
-.floating-social a:nth-child(3):hover { background-color: #0077b5; }
-.floating-social a:nth-child(4):hover { background-color: #ff0000; }
 
+.floating-social button:nth-child(3):hover {
+  background-color: #0077b5; /* LinkedIn */
+}
+
+.floating-social button:nth-child(4):hover {
+  background-color: #ff0000; /* YouTube */
+}
+
+/* Hide on mobile */
 @media (max-width: 768px) {
-  .floating-social { display: none; }
+  .floating-social {
+    display: none;
+  }
 }

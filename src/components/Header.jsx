@@ -34,13 +34,13 @@ const Header = () => {
       <nav className="navbar">
         <div className="navbar-container container">
           <ul className={`nav-menu ${mobileOpen ? 'active' : ''}`}>
-            <li><Link to="#">Home</Link></li>
+            <li><Link to="/">Home</Link></li>
 
             <li className="dropdown" onClick={toggleDropdown}>
               <a href="#!">Seva Services</a>
               <ul className="dropdown-content">
-                <li><Link to="/pooja-services">Pooja Services</Link></li>
-                <li><Link to="/special-services">Special Services</Link></li>
+                <li><Link to="/pooja">Pooja Services</Link></li>
+                <li><Link to="/Special">Special Services</Link></li>
                 <li><Link to="/yagnas">Yaghas</Link></li>
                 <li><Link to="/dharshan">Dharshan</Link></li>
               </ul>
@@ -49,10 +49,10 @@ const Header = () => {
             <li className="dropdown" onClick={toggleDropdown}>
               <a href="#!">Events</a>
               <ul className="dropdown-content">
-                <li><a href="#events">Day Calendar</a></li>
-                <li><a href="#events">Week</a></li>
-                <li><a href="#events">Month</a></li>
-                <li><a href="#events">Year</a></li>
+                <li><a href="/events/day">Day Calendar</a></li>
+                <li><a href="/events/week">Week</a></li>
+                <li><a href="/events/month">Month</a></li>
+                <li><a href="/events/year">Year</a></li>
               </ul>
             </li>
 
@@ -67,8 +67,8 @@ const Header = () => {
             <li className="dropdown" onClick={toggleDropdown}>
               <a href="#!">Donation</a>
               <ul className="dropdown-content">
-                <li><a href="#donation">Online Donations</a></li>
-                <li><a href="#donation">Offline Donations</a></li>
+                <li><a href="/donations/online">Online Donations</a></li>
+                <li><a href="/donations/offline">Offline Donations</a></li>
                 <li><a href="#donation">Special Donations</a></li>
                 <li><a href="#donation">Event Donations</a></li>
               </ul>

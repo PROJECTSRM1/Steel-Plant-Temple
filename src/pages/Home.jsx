@@ -193,7 +193,7 @@ The serene surroundings, fragrance of incense, and soothing chants create an atm
             <h4>Contact</h4>
             <p>
               Phone: +91 98xxxxxx00
-              <br />
+              <br  />
               Email: info@ayyappatemple.com
             </p>
           </div>

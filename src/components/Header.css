@@ -6,20 +6,20 @@
   top: 0;
   z-index: 10000;
 }
-
+/* 
 .header-top {
   display: flex;
   justify-content: center;
   align-items: center;
   background: linear-gradient(180deg, #4a0000, #300000);
   padding: 12px 0;
-}
+} */
 
-.om-symbol {
+/* .om-symbol {
   color: #ffcc33;
   font-size: 26px;
   margin-right: 10px;
-}
+} */
 
 .site-title {
   font-size: 24px;

@@ -1,0 +1,106 @@
+.calendar-container {
+  background: #f7f6f3;
+  padding: 20px;
+  text-align: center;
+  
+}
+
+h2 {
+  color: #6a3d2e;
+}
+
+.year-schedule {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.month-block {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  padding: 15px;
+}
+
+.month-block h3 {
+  color: #a3572a;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 5px;
+}
+
+.events-list {
+  
+  list-style: none;
+  padding: 0;
+}
+
+.events-list li {
+  background: #faf7f2;
+  margin: 5px 0;
+  padding: 8px;
+  border-radius: 6px;
+}
+
+.update-btn {
+  margin: 30px auto;
+  padding: 10px 25px;
+  background: #a3572a;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.update-btn:hover {
+  background: #8b4622;
+}
+
+.overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+}
+
+.popup {
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  width: 320px;
+  z-index: 1000;
+}
+
+.popup input, .popup select {
+  width: 100%;
+  margin: 10px 0;
+  padding: 8px;
+}
+
+.popup-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.popup button {
+  background: #a3572a;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.popup button:hover {
+  background: #8b4622;
+}
+
+.error-msg {
+  color: red;
+  font-size: 13px;
+}

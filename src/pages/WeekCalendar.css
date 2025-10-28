@@ -1,0 +1,147 @@
+.week-calendar-container {
+  font-family: Arial, sans-serif;
+  background: #f8f7f3;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* Header */
+.temple-header {
+  text-align: center;
+  background: linear-gradient(180deg, #5a0000, #3a0000);
+  color: white;
+  padding: 15px 0;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.temple-header h1 {
+  margin: 0;
+  font-size: 26px;
+}
+.temple-header h2 {
+  margin: 5px 0 0;
+  font-size: 18px;
+  color: #ffcc66;
+}
+
+/* Calendar Grid */
+.week-calendar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+.day-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+.day-card:hover {
+  transform: translateY(-4px);
+}
+.day-card h3 {
+  color: #a3572a;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+.day-card ul {
+  list-style: none;
+  padding: 0;
+}
+.day-card li {
+  background: #faf7f2;
+  border-radius: 6px;
+  padding: 6px;
+  margin: 4px 0;
+}
+
+/* Buttons */
+.update-section {
+  text-align: center;
+  margin-top: 30px;
+}
+.update-section button {
+  padding: 10px 25px;
+  background: #a3572a;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+}
+.update-section button:hover {
+  background: #8b4622;
+}
+
+.staff-actions {
+  margin-top: 15px;
+}
+.staff-actions button {
+  margin: 5px;
+  padding: 8px 16px;
+  background: #4a0000;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.staff-actions button:hover {
+  background: #5c0a0a;
+}
+
+/* Popup */
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+  width: 300px;
+  z-index: 1000;
+}
+.popup input,
+.popup select {
+  width: 100%;
+  padding: 8px;
+  margin: 10px 0;
+}
+.popup-buttons {
+  text-align: center;
+}
+.popup-buttons button {
+  background: #a3572a;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  margin: 5px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.popup-buttons button:hover {
+  background: #8b4622;
+}
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 900;
+}
+
+/* Error Message */
+.error-msg {
+  color: red;
+  font-size: 13px;
+  text-align: center;
+}
