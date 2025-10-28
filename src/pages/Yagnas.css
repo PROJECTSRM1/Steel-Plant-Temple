@@ -1,0 +1,86 @@
+.yagnas-section {
+  background: #fdf7ec;
+  border-top: 3px solid #d4a017;
+  border-bottom: 3px solid #d4a017;
+  padding: 60px 20px;
+}
+
+.section-title {
+  color: #3b0101;
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 25px;
+  letter-spacing: 1px;
+}
+
+.intro-text {
+  color: #2e1b18;
+  line-height: 1.8;
+  margin-bottom: 18px;
+  font-size: 17px;
+}
+
+.yagna-list {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.yagna-card {
+  background: #fffaf2;
+  border-left: 6px solid #ce8a23;
+  border-radius: 10px;
+  padding: 20px 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.yagna-card h3 {
+  color: #3b0101;
+  margin-bottom: 10px;
+  font-size: 22px;
+}
+
+.yagna-card p {
+  color: #2e1b18;
+  line-height: 1.8;
+}
+
+.outro-text {
+  text-align: center;
+  font-style: italic;
+  color: #3b0101;
+  margin-top: 30px;
+  line-height: 1.8;
+}
+
+.decor-divider {
+  border: 0;
+  border-top: 2px dashed #ce8a23;
+  width: 80px;
+  margin: 35px auto;
+}
+
+/* Fade-in animations reused */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1.2s ease, transform 1.2s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .yagnas-section {
+    padding: 40px 15px;
+  }
+  .section-title {
+    font-size: 26px;
+  }
+  .yagna-card {
+    padding: 18px;
+  }
+}

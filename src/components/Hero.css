@@ -1,0 +1,13 @@
+.hero { position: relative; width: 100%; height: 450px; overflow: hidden; margin-bottom: 20px; }
+.slideshow { position: relative; width: 100%; height: 100%; }
+.slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1s ease-in-out; background-color: #000; }
+.slide.active { opacity: 1; }
+
+.hero-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.45); display:flex; align-items:center; justify-content:center; flex-direction:column; }
+.hero-content { text-align:center; color:#fff; z-index:2; }
+.hero-content h2 { font-size: 42px; color: #ce8a23; margin-bottom: 20px; }
+.hero-buttons { display:flex; justify-content:center; gap:20px; margin-bottom: 12px; }
+
+.video-container { position: relative; display: inline-block; cursor: pointer; margin: 12px auto; }
+.video-container img { width: 100%; max-width: 600px; border-radius: 10px; }
+.play-button { position:absolute; top:50%; left:50%; transform: translate(-50%,-50%); width:60px; height:60px; background: url('https://upload.wikimedia.org/wikipedia/commons/7/75/YouTube_social_white_squircle_%282017%29.svg') no-repeat center / contain; }

@@ -1,0 +1,38 @@
+.floating-social {
+  position: fixed;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 1000;
+}
+
+.floating-social a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  background-color: #b03822;
+  color: #fff;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.floating-social i { font-size: 20px; }
+
+.floating-social a:hover { transform: scale(1.1); box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25); }
+.floating-social a:nth-child(1):hover { background-color: #1877f2; }
+.floating-social a:nth-child(2):hover {
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
+}
+.floating-social a:nth-child(3):hover { background-color: #0077b5; }
+.floating-social a:nth-child(4):hover { background-color: #ff0000; }
+
+@media (max-width: 768px) {
+  .floating-social { display: none; }
+}

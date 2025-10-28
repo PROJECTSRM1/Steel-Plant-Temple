@@ -1,0 +1,180 @@
+/* ========== ABOUT SECTION ========== */
+.about-section {
+  background: #fdf7ec;
+  border-top: 3px solid #d4a017;
+  border-bottom: 3px solid #d4a017;
+  padding: 50px 0;
+}
+
+.section-title {
+  color: #3b0101;
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 25px;
+  letter-spacing: 1px;
+}
+
+.intro-text {
+  color: #2e1b18;
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+.decor-divider {
+  border: 0;
+  border-top: 2px dashed #ce8a23;
+  width: 80px;
+  margin: 30px auto;
+}
+
+.service-list {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 10px;
+}
+
+.service-list li {
+  background: rgba(255, 204, 51, 0.15);
+  margin: 8px 0;
+  padding: 10px 15px;
+  border-left: 4px solid #ce8a23;
+  border-radius: 6px;
+}
+
+/* ========== ABOUT FLEX ========== */
+.about-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.about-flex.reverse {
+  flex-direction: row-reverse;
+}
+
+.about-img {
+  flex: 1 1 45%;
+  text-align: center;
+}
+
+.about-img img {
+  width: 100%;
+  max-width: 450px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  border: 3px solid #ce8a23;
+}
+
+.about-text {
+  flex: 1 1 50%;
+}
+
+/* ========== EVENTS, GALLERY, CONTACT ========== */
+.events-grid,
+.gallery-grid,
+.contact-grid {
+  display: grid;
+  gap: 20px;
+}
+
+.events-grid {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.event-card {
+  background: wheat;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ev-date {
+  background: #3b0101;
+  color: #fff;
+  padding: 10px;
+  border-radius: 6px;
+  text-align: center;
+}
+
+/* ========== GALLERY ========== */
+.gallery-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.gallery-grid img {
+  width: 100%;
+  border-radius: 10px;
+  height: 240px;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.03);
+}
+
+/* ========== CONTACT ========== */
+.contact-grid {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+/* ========== ANIMATIONS ========== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1.2s ease, transform 1.2s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ========== LIVE DARSHAN ========== */
+.video-container {
+  position: relative;
+  display: block;
+  cursor: pointer;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.video-container img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  background: url("https://upload.wikimedia.org/wikipedia/commons/7/75/YouTube_social_white_squircle_%282017%29.svg")
+    no-repeat center / contain;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  .about-flex,
+  .about-flex.reverse {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about-img img {
+    max-width: 100%;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
