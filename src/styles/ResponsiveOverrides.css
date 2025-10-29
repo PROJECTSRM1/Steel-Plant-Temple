@@ -1,0 +1,135 @@
+/* ----------------------------------------------------
+   RESPONSIVENESS-ONLY OVERRIDES
+   For Sri Ayyappa Swamy Temple Website
+   Keeps original CSS intact
+   ---------------------------------------------------- */
+
+/* Make sure all sections and containers scale well */
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Universal container adjustment */
+.container, .content, .section {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  box-sizing: border-box;
+}
+
+/* Text responsiveness */
+h1, h2, h3, h4, h5, p {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Table responsiveness */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td, th {
+  word-break: break-word;
+  padding: 8px;
+}
+
+/* Form responsiveness */
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Responsive grids / flex containers */
+.row, .grid, .flex {
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.column {
+  flex: 1 1 100%;
+  max-width: 100%;
+}
+
+/* ---------- BREAKPOINTS ---------- */
+
+/* Tablets (max 992px) */
+@media (max-width: 992px) {
+  .container, .content {
+    width: 94%;
+  }
+
+  header nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Mobiles (max 768px) */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.6rem;
+    text-align: center;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  p {
+    font-size: 0.95rem;
+  }
+
+  header nav ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .grid-2, .grid-3 {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .column, .half, .third {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+/* Small Mobiles (max 480px) */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.4rem;
+  }
+
+  .container {
+    width: 96%;
+    padding: 0 10px;
+  }
+
+  button, .btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 0.95rem;
+  }
+
+  footer {
+    text-align: center;
+    font-size: 0.85rem;
+  }
+}
