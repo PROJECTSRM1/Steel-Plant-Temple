@@ -1,11 +1,25 @@
 import React, { useEffect, useRef } from "react";
 import Hero from "../components/Hero";
 import "./Home.css";
+import { useLocation } from "react-router-dom";
 
 const Home = () => {
   const videoRef = useRef(null);
+  const location = useLocation();
 
-  // Fade-in scroll animation
+  // ✅ SCROLL to section when navigated from header
+  useEffect(() => {
+    if (location.state?.scrollTo) {
+      const section = document.getElementById(location.state.scrollTo);
+      if (section) {
+        setTimeout(() => {
+          section.scrollIntoView({ behavior: "smooth" });
+        }, 300); // delay ensures Home page loads fully
+      }
+    }
+  }, [location]);
+
+  // ✅ Fade-in scroll animation
   useEffect(() => {
     const elements = document.querySelectorAll(".fade-in");
     const observer = new IntersectionObserver(
@@ -19,11 +33,12 @@ const Home = () => {
       },
       { threshold: 0.1 }
     );
+
     elements.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, []);
 
-  // YouTube auto-play & auto-pause setup
+  // ✅ YouTube auto-play & auto-pause setup
   useEffect(() => {
     const iframe = videoRef.current;
     if (!iframe) return;
@@ -34,7 +49,6 @@ const Home = () => {
     firstScript.parentNode.insertBefore(tag, firstScript);
 
     let player;
-
     window.onYouTubeIframeAPIReady = () => {
       player = new window.YT.Player(iframe, {
         events: {
@@ -58,7 +72,6 @@ const Home = () => {
     observer.observe(iframe);
     return () => observer.disconnect();
   }, []);
-
   return (
     <>
       <Hero />
@@ -83,7 +96,7 @@ const Home = () => {
               Every corner reflects the spiritual energy of faith and the
               message of Lord Ayyappa — to live with discipline, humility, and
               equality.
-            
+
               This temple is more than a place of worship; it is a spiritual
               home for the community, nurturing both the soul and society.
               Devotees gather here to offer prayers, participate in poojas,

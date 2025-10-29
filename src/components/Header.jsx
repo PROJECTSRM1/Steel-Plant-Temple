@@ -74,8 +74,17 @@ const Header = () => {
               </ul>
             </li>
 
-            <li><a href="#gallery">Gallery</a></li>
-            <li><a href="#contact">Contact Us</a></li>
+            <li>
+              <Link to="/" state={{ scrollTo: "gallery" }}>
+                Gallery
+              </Link>
+            </li>
+            <li>
+              <Link to="/" state={{ scrollTo: "contact" }}>
+                Contact Us
+              </Link>
+            </li>
+
           </ul>
 
           <div
