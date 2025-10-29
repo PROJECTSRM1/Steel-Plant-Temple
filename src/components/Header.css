@@ -1,7 +1,7 @@
 .main-header {
-  background-color: #3b0101;
+background-color: transparent;
   color: #fff;
-  text-align: center;
+  text-align: left;
   position: sticky;
   top: 0;
   z-index: 10000;

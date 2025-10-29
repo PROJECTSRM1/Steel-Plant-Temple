@@ -1,0 +1,285 @@
+.donation-category-card {
+    /* Background and border matching the Online Donation structure */
+    background-color: #ffffff; /* White background */
+    border: 1px solid #e0d8e8; /* Light gray/purple border */
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.donation-category-card h3 {
+    color: #8e24aa; /* Medium Purple for section headers */
+    border-bottom: 2px solid #8e24aa;
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+    text-align: left; /* Override global h3 center alignment for card headers */
+}
+
+/* Side-by-Side Layout for Cash/In-Person Info */
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.info-grid .grid-item h4 {
+    color: #4a148c; /* Deep Purple for sub-headers */
+    margin-bottom: 5px;
+    text-align: left; /* Ensure alignment inside the grid */
+}
+
+.info-grid .grid-item p {
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+/* Table Styling for Electronic Transfers */
+.donation-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    font-size: 0.9rem;
+}
+
+.donation-table th, .donation-table td {
+    padding: 10px 15px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.donation-table thead th {
+    background-color: #4a148c; /* Deep Purple Header */
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.donation-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.donation-table code {
+    background-color: #eee;
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-weight: bold;
+    color: #8e24aa;
+    white-space: nowrap; /* Prevent UPI ID from breaking */
+}
+
+/* ======================================= */
+/* MANDATORY INSTRUCTIONS BOX (Alert) */
+/* ======================================= */
+
+.instruction-box {
+    background-color: #fffde7; /* Light creamy yellow/gold background */
+    border: 2px solid #ffb300; /* Amber border */
+    border-radius: 8px;
+    padding: 25px;
+    margin-top: 30px;
+}
+
+.instruction-box h3 {
+    color: #d84315; /* Deep Orange for warning */
+    border-bottom: 2px solid #ffb300; 
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+}
+
+.alert-text {
+    color: #d84315; /* Deep Orange for warning */
+    font-weight: 600;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #fff8e1; /* Subtle background for the warning text */
+    border-radius: 4px;
+}
+
+.email-instructions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive steps */
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.instruction-step {
+    background-color: #ffeeaa; /* Slightly darker yellow background */
+    padding: 12px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.required-list {
+    list-style-type: none; /* Remove default bullets */
+    padding-left: 0;
+    margin-top: 10px;
+}
+
+.required-list li {
+    /* Custom bullet style */
+    position: relative;
+    padding-left: 25px; 
+    margin-bottom: 8px;
+    line-height: 1.4;
+    font-size: 0.95rem;
+}
+
+.required-list li::before {
+    content: '•'; /* Use a simple bullet or a checkmark */
+    color: #8e24aa; /* Accent color */
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
+/* ======================================= */
+/* MEDIA QUERIES (Responsiveness) */
+/* ======================================= */
+
+@media (max-width: 600px) {
+    /* This applies to the Offline Donation grid */
+    .info-grid {
+        grid-template-columns: 1fr; /* Stack columns on small screens */
+    }
+    .email-instructions {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* Add these styles to your existing CSS file (e.g., src/App.css) */
+
+.method-selection-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.btn-method {
+    flex-grow: 1;
+    padding: 10px 15px;
+    background-color: #f0f0f0;
+    color: #3b0101;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    text-align: center;
+}
+
+.btn-method .icon {
+    margin-right: 5px;
+}
+
+.btn-method.active {
+    background-color: #ffe6c7; /* Light accent background */
+    border-color: #ce8a23; /* Darker accent border */
+    font-weight: 700;
+}
+
+.btn-method:hover {
+    background-color: #eee;
+}
+
+.transfer-details-display {
+    padding: 15px;
+    background-color: #f7f7f7;
+    border-left: 5px solid #ce8a23;
+    border-radius: 4px;
+}
+
+.transfer-details-display h4 {
+    margin-top: 0;
+    color: #3b0101;
+    font-size: 1.1rem;
+}
+
+.transfer-details-display .note-text {
+    font-size: 0.9rem;
+    color: #555;
+    margin-top: 10px;
+}
+
+/* Specific table adjustments inside the instruction box */
+.transfer-details-display .donation-table {
+    width: 100%;
+    margin: 10px 0;
+}
+
+.transfer-details-display .donation-table td {
+    padding: 5px 0;
+    border: none;
+    vertical-align: top;
+    font-size: 0.95rem;
+}
+
+.transfer-details-display .donation-table td:first-child {
+    font-weight: 600;
+    width: 35%;
+}
+
+/* Style for the proof confirmation checkbox group */
+.proof-checkbox-group {
+    display: flex;
+    align-items: center;
+    margin-top: 25px;
+}
+
+.proof-checkbox-group .form-checkbox {
+    width: auto;
+    margin-right: 10px;
+}
+
+.proof-checkbox-group .checkbox-label {
+    font-weight: normal;
+    font-size: 1rem;
+    margin-bottom: 0;
+    display: inline;
+}
+
+@media (max-width: 600px) {
+    .method-selection-group {
+        flex-direction: column;
+    }
+}
+
+
+/* Add these styles to your existing CSS file (e.g., src/App.css) */
+
+/* Smaller form group for transfer details (Section 1) */
+.form-group-small {
+    margin-bottom: 15px;
+}
+
+.transfer-details-display .form-group-small label {
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: #444;
+}
+
+.transfer-details-display .form-input {
+    padding: 8px; /* Slightly smaller padding */
+    font-size: 0.95rem;
+}
+
+/* Style for static temple details within the transfer display */
+.transfer-details-display .temple-detail-label {
+    font-size: 0.95rem;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.transfer-details-display .highlight-code {
+    font-weight: bold;
+    color: #3b0101; /* Your temple primary color */
+    background-color: #fcebeb;
+    padding: 2px 4px;
+    border-radius: 3px;
+}

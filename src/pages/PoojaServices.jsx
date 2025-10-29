@@ -1,4 +1,5 @@
 import React from 'react';
+import './PoojaServices.css';
 
 // Accept onBookPooja as a prop
 function PoojaServices({ onBookPooja }) {

@@ -1,0 +1,117 @@
+/* Pooja Services Page Styles */ 
+.pooja-page-content h2 {
+color: #3b0101;
+text-align: center;
+font-size: 2em;
+margin-bottom: 30px;
+position: relative;
+}
+.pooja-page-content h2::after {
+content: '';
+display: block;
+width: 80px;
+height: 3px;
+background: var(--secondary-color);
+margin: 10px auto 0;
+border-radius: 50%;
+}
+.intro-text {
+text-align: center; 
+font-size: 1.1em; 
+color: #555;
+margin-bottom: 40px;
+}
+.pooja-grid {
+display: flex;
+flex-wrap: wrap;
+gap: 25px;
+justify-content: center;
+margin-bottom: 50px;
+}
+.pooja-card {
+background: var(--card-bg);
+border: 1px solid #e0e0e0;
+border-top: 6px solid #3b0101;
+border-radius: 8px;
+/* Removed padding for better image integration, will add padding back inside the card for content */
+width: 100%;
+max-width: 280px;
+box-shadow: var(--shadow);
+transition: transform 0.3s ease-in-out;
+text-align: center;
+overflow: hidden; /* Ensures the image respects the card's border radius */
+}
+
+
+/* NEW STYLES for the image */
+.pooja-image {
+width: 100%; /* Image takes full width of the card */
+height: 300px; /* Fixed height for uniformity */
+object-fit: cover; /* Ensures image covers the area without distortion */
+margin-bottom: 15px;
+border-top-left-radius: 8px;
+border-top-right-radius: 8px;
+display: block;
+}
+
+
+/* Add padding back to the content part of the card */
+.pooja-card > h3,
+.pooja-card > p,
+.pooja-card > .timing,
+.pooja-card > .cost,
+.pooja-card > button {
+padding: 0 20px;
+}
+
+
+/* Adjust timing/cost padding as needed */
+.pooja-card h3 {
+color:#3b0101 ;
+margin: 5px 0 10px 0;
+font-size: 1.5em;
+}
+.pooja-card p {
+font-size: 0.95em;
+min-height: 60px; 
+margin-bottom: 15px;
+}
+.timing {
+display: block;
+font-size: 0.9em;
+color: #3b0101;
+margin-bottom: 30px;
+}
+.cost {
+display: block;
+font-size: 1.6em;
+font-weight: bold;
+color: var(--price-color);
+margin: 15px 0;
+}
+.pooja-card button {
+background-color: #ce8a23;
+color: #2b0000;
+border: none;
+padding: 10px 20px;
+border-radius: 5px;
+cursor: pointer;
+font-weight: bold;
+text-transform: uppercase;
+transition: background-color 0.3s;
+margin-bottom: 20px; /* Added margin for button spacing */
+}
+
+
+/* Existing Hover styles */
+.pooja-card:hover {
+transform: translateY(-8px) scale(1.03);
+box-shadow: 0 8px 20px rgba(0, 77, 64, 0.2); 
+background-color: wheat;
+}
+
+
+.pooja-card button:hover {
+background-color: #2b0000;
+color: #ce8a23;
+}

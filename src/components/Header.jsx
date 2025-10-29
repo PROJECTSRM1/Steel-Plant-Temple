@@ -69,7 +69,7 @@ const Header = () => {
               <ul className="dropdown-content">
                 <li><a href="/donations/online">Online Donations</a></li>
                 <li><a href="/donations/offline">Offline Donations</a></li>
-                <li><a href="#donation">Special Donations</a></li>
+                <li><a href="/special-donations">Special Donations</a></li>
                 <li><a href="#donation">Event Donations</a></li>
               </ul>
             </li>
