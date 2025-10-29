@@ -7,7 +7,7 @@ import Home from "./pages/Home";
 import Dharshan from "./pages/Dharshan";
 import Yagnas from "./pages/Yagnas";
 import PoojaServices from "./pages/PoojaServices.jsx";
-import SpecialServices from "./pages/SpecialServices.jsx"; // ✅ Special Services Page
+import SpecialServices from "./pages/SpecialServices.jsx";
 import BookingForm from "./pages/BookingForm.jsx";
 import DonationsPage from "./pages/DonationPage.jsx";
 import DonationSuccess from "./pages/DonationSuccess.jsx";
@@ -18,9 +18,8 @@ import MonthCalendar from "./pages/MonthCalendar.jsx";
 import WeekCalendar from "./pages/WeekCalendar.jsx";
 import YearCalendar from "./pages/YearCalendar.jsx";
 import StaffLogin from "./pages/StaffLogin.jsx";
-import SpecialDonations from "./pages/SpecialDonations.jsx"; // ✅ Firebase donation page
+import Gallery from "./components/Gallery.jsx"; // ✅ Add this import
 import "./App.css";
-
 
 function App() {
   const navigate = useNavigate();
@@ -63,8 +62,6 @@ function App() {
     window.scrollTo(0, 0);
   };
 
-  // -----------------------
-
   return (
     <>
       <Header />
@@ -94,14 +91,14 @@ function App() {
         {/* 🔹 Special Services */}
         <Route path="/special" element={<SpecialServices />} />
 
-        {/* 🔹 Special Donations (Firebase-integrated) */}
-        <Route path="/special-donations" element={<SpecialDonations />} />  {/* ✅ NEW */}
-
         {/* 🔹 Event Calendars */}
         <Route path="/events/day" element={<DayCalendar />} />
         <Route path="/events/week" element={<WeekCalendar />} />
         <Route path="/events/month" element={<MonthCalendar />} />
         <Route path="/events/year" element={<YearCalendar />} />
+
+        {/* 🔹 Gallery Page */}
+        <Route path="/gallery" element={<Gallery />} /> {/* ✅ Added properly */}
 
         {/* 🔹 Staff Login */}
         <Route path="/staff-login" element={<StaffLogin />} />
@@ -110,7 +107,7 @@ function App() {
         <Route
           path="/donations/online"
           element={
-            <DonationsPage
+            <DonationsPage.apply
               selectedScheme={selectedScheme}
               setSelectedScheme={setSelectedScheme}
               amount={donationAmount}

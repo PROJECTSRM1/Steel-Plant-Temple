@@ -1,7 +1,6 @@
 // src/pages/DonationSuccess.js
 import React from 'react';
 
-
 const DonationSuccess = ({ amount, onNewDonation }) => {
     return (
         <section id="donation-success" className="section container success-page">

@@ -87,8 +87,9 @@ const MonthCalendar = () => {
 
   return (
     <div className="puja-calendar-container">
-      <h2>🪔 Ayyappa Swamy Temple Month Calendar</h2>
-
+     <header className="temple-header">
+      <h2>🪔 Ayyappa Swamy Temple Puja Calendar</h2>
+</header>
       <div className="main-container">
         {/* Left side */}
         <div className="calendar-container">

@@ -4,12 +4,21 @@
   padding: 20px;
   text-align: center;
 }
-
- /* .calendar-container h2 {
+.temple-header {
+  text-align: center;
+  background: linear-gradient(180deg, #5a0000, #3a0000);
+  color: white;
+  width:100%;
+  padding: 15px 0;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.temple-header {
   color: #6a3d2e;
   text-align: center;
-  /* background-color: green; */
-/* }  */
+  background-color:  linear-gradient(180deg, #5a0000, #3a0000);
+  /* width: */
+}
 
 .year-schedule {
   display: flex;
@@ -25,7 +34,7 @@
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   padding: 15px;
   /* margin-right:100px; */
-  width:400%;
+  width:600%;
 }
 
 .month-block h3 {

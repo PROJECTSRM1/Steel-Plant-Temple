@@ -145,8 +145,9 @@ const YearCalendar = () => {
 
   return (
     <div className="calendar-container">
+       <header className="temple-header">
       <h2>🪔 Temple Year Schedule</h2>
-
+</header>
       <div className="year-schedule">{renderEvents()}</div>
 
       <button className="update-btn" onClick={handleUpdateClick}>

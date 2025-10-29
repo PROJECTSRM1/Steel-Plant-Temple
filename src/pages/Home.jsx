@@ -1,25 +1,11 @@
 import React, { useEffect, useRef } from "react";
 import Hero from "../components/Hero";
 import "./Home.css";
-import { useLocation } from "react-router-dom";
 
 const Home = () => {
   const videoRef = useRef(null);
-  const location = useLocation();
 
-  // ✅ SCROLL to section when navigated from header
-  useEffect(() => {
-    if (location.state?.scrollTo) {
-      const section = document.getElementById(location.state.scrollTo);
-      if (section) {
-        setTimeout(() => {
-          section.scrollIntoView({ behavior: "smooth" });
-        }, 300); // delay ensures Home page loads fully
-      }
-    }
-  }, [location]);
-
-  // ✅ Fade-in scroll animation
+  // Fade-in scroll animation
   useEffect(() => {
     const elements = document.querySelectorAll(".fade-in");
     const observer = new IntersectionObserver(
@@ -33,12 +19,11 @@ const Home = () => {
       },
       { threshold: 0.1 }
     );
-
     elements.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, []);
 
-  // ✅ YouTube auto-play & auto-pause setup
+  // YouTube auto-play & auto-pause setup
   useEffect(() => {
     const iframe = videoRef.current;
     if (!iframe) return;
@@ -49,6 +34,7 @@ const Home = () => {
     firstScript.parentNode.insertBefore(tag, firstScript);
 
     let player;
+
     window.onYouTubeIframeAPIReady = () => {
       player = new window.YT.Player(iframe, {
         events: {
@@ -72,6 +58,7 @@ const Home = () => {
     observer.observe(iframe);
     return () => observer.disconnect();
   }, []);
+
   return (
     <>
       <Hero />
@@ -86,17 +73,18 @@ const Home = () => {
           <div className="fade-in">
             <p className="intro-text">
               Welcome to the sacred abode of Lord Ayyappa, the divine symbol of
-              Dharma, purity, and devotion. The <strong>Ayyappa Swamy Temple</strong> stands as a
+              Dharma, purity, and devotion. The Ayyappa Swamy Temple stands as a
               sanctuary for all devotees seeking inner peace, divine blessings,
               and the strength to follow a righteous life.
             </p>
-            <p>
-              As the sacred chant <strong>“Swamiye Saranam Ayyappa”</strong> echoes through the
+            <p className="intro-text">
+              As the sacred chant “Swamiye Saranam Ayyappa” echoes through the
               air, the temple becomes a space of tranquility and surrender.
               Every corner reflects the spiritual energy of faith and the
               message of Lord Ayyappa — to live with discipline, humility, and
               equality.
-
+            </p>
+            <p>
               This temple is more than a place of worship; it is a spiritual
               home for the community, nurturing both the soul and society.
               Devotees gather here to offer prayers, participate in poojas,

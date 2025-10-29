@@ -4,7 +4,14 @@
   text-align: center;
   padding: 30px 10px;
 }
-
+.temple-header {
+  text-align: center;
+  background: linear-gradient(180deg, #5a0000, #3a0000);
+  color: white;
+  padding: 15px 0;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
 h2 {
   color: #5a2d0c;
   margin-bottom: 20px;
