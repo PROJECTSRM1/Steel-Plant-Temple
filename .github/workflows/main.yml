@@ -1,4 +1,4 @@
-name: Deploy React App to Azure Web App
+name: Deploy React (Vite) App to Azure Web App
 
 on:
   push:
@@ -18,24 +18,18 @@ jobs:
         with:
           node-version: 22
 
-      - name: Clean node_modules
-        run: rm -rf node_modules package-lock.json
-
       - name: Install dependencies
-        run: npm install
+        run: npm ci  
 
-      - name: Build React (Vite) app
+      - name: Build Vite app
         run: npm run build
 
-      - name: Upload build artifact (optional)
-        uses: actions/upload-artifact@v4
-        with:
-          name: react-build
-          path: dist
+      - name: Verify build output
+        run: ls -R
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'STEEL-PLANT-TEMPLE'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
-          package: dist
+          package: dist  
