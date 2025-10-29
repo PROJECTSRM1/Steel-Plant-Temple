@@ -1,5 +1,6 @@
 // src/pages/OfflineDonations.jsx
 import React, { useState } from 'react';
+import './OfflineDonations.css';
 
 // Define the static list of donation schemes (useful for a dropdown in the form)
 const donationSchemes = [

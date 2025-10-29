@@ -69,13 +69,22 @@ const Header = () => {
               <ul className="dropdown-content">
                 <li><a href="/donations/online">Online Donations</a></li>
                 <li><a href="/donations/offline">Offline Donations</a></li>
-                <li><a href="#donation">Special Donations</a></li>
+                <li><a href="/special-donations">Special Donations</a></li>
                 <li><a href="#donation">Event Donations</a></li>
               </ul>
             </li>
 
-            <li><a href="#gallery">Gallery</a></li>
-            <li><a href="#contact">Contact Us</a></li>
+            <li>
+              <Link to="/" state={{ scrollTo: "gallery" }}>
+                Gallery
+              </Link>
+            </li>
+            <li>
+              <Link to="/" state={{ scrollTo: "contact" }}>
+                Contact Us
+              </Link>
+            </li>
+
           </ul>
 
           <div

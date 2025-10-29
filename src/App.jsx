@@ -7,7 +7,7 @@ import Home from "./pages/Home";
 import Dharshan from "./pages/Dharshan";
 import Yagnas from "./pages/Yagnas";
 import PoojaServices from "./pages/PoojaServices.jsx";
-import SpecialServices from "./pages/SpecialServices.jsx";
+import SpecialServices from "./pages/SpecialServices.jsx"; // ✅ Special Services Page
 import BookingForm from "./pages/BookingForm.jsx";
 import DonationsPage from "./pages/DonationPage.jsx";
 import DonationSuccess from "./pages/DonationSuccess.jsx";
@@ -18,10 +18,8 @@ import MonthCalendar from "./pages/MonthCalendar.jsx";
 import WeekCalendar from "./pages/WeekCalendar.jsx";
 import YearCalendar from "./pages/YearCalendar.jsx";
 import StaffLogin from "./pages/StaffLogin.jsx";
+import SpecialDonations from "./pages/SpecialDonations.jsx"; // ✅ Firebase donation page
 import "./App.css";
-// import "./styles/ResponsiveTemplate.css";
-// import "./styles/ResponsiveOverrides.css";
-
 
 
 function App() {
@@ -95,6 +93,9 @@ function App() {
 
         {/* 🔹 Special Services */}
         <Route path="/special" element={<SpecialServices />} />
+
+        {/* 🔹 Special Donations (Firebase-integrated) */}
+        <Route path="/special-donations" element={<SpecialDonations />} />  {/* ✅ NEW */}
 
         {/* 🔹 Event Calendars */}
         <Route path="/events/day" element={<DayCalendar />} />

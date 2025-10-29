@@ -57,10 +57,10 @@ const WeekCalendar = () => {
 
   return (
     <div className="week-calendar-container">
-      <header className="temple-header">
+      {/* <header className="temple-header"> */}
         
-        <h2>Weekly Pooja Schedule</h2>
-      </header>
+        <h2>🪔 Ayyappa Swamy Temple Week Calendar</h2>
+      {/* </header> */}
 
       <div className="week-calendar">
         {weekDays.map((day) => (
