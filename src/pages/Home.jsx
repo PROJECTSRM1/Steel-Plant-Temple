@@ -73,18 +73,17 @@ const Home = () => {
           <div className="fade-in">
             <p className="intro-text">
               Welcome to the sacred abode of Lord Ayyappa, the divine symbol of
-              Dharma, purity, and devotion. The Ayyappa Swamy Temple stands as a
+              Dharma, purity, and devotion. The <strong>Ayyappa Swamy Temple</strong> stands as a
               sanctuary for all devotees seeking inner peace, divine blessings,
               and the strength to follow a righteous life.
             </p>
-            <p className="intro-text">
-              As the sacred chant “Swamiye Saranam Ayyappa” echoes through the
+            <p>
+              As the sacred chant <strong>“Swamiye Saranam Ayyappa”</strong> echoes through the
               air, the temple becomes a space of tranquility and surrender.
               Every corner reflects the spiritual energy of faith and the
               message of Lord Ayyappa — to live with discipline, humility, and
               equality.
-            </p>
-            <p>
+            
               This temple is more than a place of worship; it is a spiritual
               home for the community, nurturing both the soul and society.
               Devotees gather here to offer prayers, participate in poojas,
