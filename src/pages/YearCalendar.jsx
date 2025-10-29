@@ -12,10 +12,18 @@ const YearCalendar = () => {
   );
   const [isStaff, setIsStaff] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
-  const [showForm, setShowForm] = useState(false);
+  const [showManager, setShowManager] = useState(false);
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [formData, setFormData] = useState({ month: "", date: "", title: "" });
+  const [formData, setFormData] = useState({
+    month: "",
+    date: "",
+    day: "",
+    time: "",
+    title: "",
+  });
+  const [editIndex, setEditIndex] = useState(null);
+  const [popupMsg, setPopupMsg] = useState("");
 
   useEffect(() => {
     localStorage.setItem("yearSchedule", JSON.stringify(schedule));
@@ -23,14 +31,14 @@ const YearCalendar = () => {
 
   const handleUpdateClick = () => {
     if (!isStaff) setShowLogin(true);
-    else setShowForm(true);
+    else setShowManager(true);
   };
 
   const handleLogin = () => {
     if (password === "ayyappa123") {
       setIsStaff(true);
       setShowLogin(false);
-      setShowForm(true);
+      setShowManager(true);
       setError("");
       setPassword("");
     } else {
@@ -38,36 +46,102 @@ const YearCalendar = () => {
     }
   };
 
-  const handleEventAdd = (e) => {
+  const handleSaveEvent = (e) => {
     e.preventDefault();
-    const { month, date, title } = formData;
-    if (!month || !date || !title) return alert("All fields required");
+    const { month, date, day, time, title } = formData;
+
+    if (!month || !date || !day || !time || !title)
+      return alert("All fields are required");
 
     const updated = { ...schedule };
     if (!updated[month]) updated[month] = [];
-    updated[month].push({ date, title });
+
+    // 🔎 Duplicate check (same day & time in same month)
+  const duplicate = updated[month].some((ev, idx) => {
+  const existingDay = ev?.day?.toLowerCase?.() || "";
+  const existingTime = ev?.time?.trim?.() || "";
+  return (
+    idx !== editIndex &&
+    existingDay === day.toLowerCase() &&
+    existingTime === time.trim()
+  );
+});
+
+
+    if (duplicate) {
+      setPopupMsg("⚠️ Event already scheduled at that particular time!");
+      setTimeout(() => setPopupMsg(""), 3000);
+      return;
+    }
+
+    if (editIndex !== null) {
+      updated[month][editIndex] = { date, day, time, title };
+    } else {
+      updated[month].push({ date, day, time, title });
+    }
+
     setSchedule(updated);
-    setShowForm(false);
-    setFormData({ month: "", date: "", title: "" });
+    setFormData({ month: "", date: "", day: "", time: "", title: "" });
+    setEditIndex(null);
+    setPopupMsg("✅ Event saved successfully!");
+    setTimeout(() => setPopupMsg(""), 2000);
   };
 
-  const renderEvents = () =>
-    monthNames.map((m, i) => (
-      <div key={i} className="month-block">
-        <h3>{m}</h3>
-        <ul className="events-list">
-          {schedule[i + 1] && schedule[i + 1].length > 0 ? (
-            schedule[i + 1].map((ev, j) => (
-              <li key={j}>
-                {ev.date}: {ev.title}
-              </li>
-            ))
-          ) : (
-            <li>No events scheduled.</li>
-          )}
-        </ul>
-      </div>
-    ));
+  const handleEditEvent = (month, index) => {
+    const event = schedule[month][index];
+    setFormData({ month, ...event });
+    setEditIndex(index);
+    setShowManager(true);
+  };
+
+  const handleDeleteEvent = (month, index) => {
+    if (window.confirm("Are you sure you want to delete this event?")) {
+      const updated = { ...schedule };
+      updated[month].splice(index, 1);
+      setSchedule(updated);
+    }
+  };
+
+ const renderEvents = () =>
+  monthNames.map((m, i) => (
+    <div key={i} className="month-block">
+      <h3>{m}</h3>
+      <ul className="events-list">
+        {schedule[i + 1] && schedule[i + 1].length > 0 ? (
+          schedule[i + 1].map((ev, j) => (
+            <li key={j} className="event-item">
+              <div className="event-info">
+                <strong>{ev.date}</strong> ({ev.day}) — {ev.title}
+                <br />
+                <span className="event-time">🕒 {ev.time}</span>
+              </div>
+
+              {/* Show edit + delete only for staff */}
+              {isStaff && (
+                <div className="event-actions">
+                  <button
+                    className="edit-btn"
+                    onClick={() => handleEditEvent(i + 1, j)}
+                  >
+                    ✏️ Edit
+                  </button>
+                  <button
+                    className="delete-btn"
+                    onClick={() => handleDeleteEvent(i + 1, j)}
+                  >
+                    🗑️ Delete
+                  </button>
+                </div>
+              )}
+            </li>
+          ))
+        ) : (
+          <li>No events scheduled.</li>
+        )}
+      </ul>
+    </div>
+  ));
+
 
   return (
     <div className="calendar-container">
@@ -100,13 +174,16 @@ const YearCalendar = () => {
         </>
       )}
 
-      {/* Add Event Form */}
-      {showForm && (
+      {/* Manage Events Popup */}
+      {showManager && (
         <>
-          <div className="overlay" onClick={() => setShowForm(false)}></div>
-          <div className="popup">
-            <h3>Add New Event</h3>
-            <form onSubmit={handleEventAdd}>
+          <div className="overlay" onClick={() => setShowManager(false)}></div>
+          <div className="popup wide-popup">
+            <h3>{editIndex !== null ? "Edit Event" : "Add New Event"}</h3>
+
+            {popupMsg && <p className="info-msg">{popupMsg}</p>}
+
+            <form onSubmit={handleSaveEvent}>
               <label>Month:</label>
               <select
                 value={formData.month}
@@ -133,6 +210,26 @@ const YearCalendar = () => {
                 }
               />
 
+              <label>Day:</label>
+              <input
+                type="text"
+                placeholder="e.g., Monday"
+                value={formData.day}
+                onChange={(e) =>
+                  setFormData({ ...formData, day: e.target.value })
+                }
+              />
+
+              <label>Timing:</label>
+              <input
+                type="text"
+                placeholder="e.g., 6:00 AM - 8:00 AM"
+                value={formData.time}
+                onChange={(e) =>
+                  setFormData({ ...formData, time: e.target.value })
+                }
+              />
+
               <label>Event Title:</label>
               <input
                 type="text"
@@ -144,9 +241,24 @@ const YearCalendar = () => {
               />
 
               <div className="popup-buttons">
-                <button type="submit">Save</button>
-                <button type="button" onClick={() => setShowForm(false)}>
-                  Cancel
+                <button type="submit">
+                  {editIndex !== null ? "Update" : "Add"}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setFormData({
+                      month: "",
+                      date: "",
+                      day: "",
+                      time: "",
+                      title: "",
+                    });
+                    setEditIndex(null);
+                    setShowManager(false);
+                  }}
+                >
+                  Close
                 </button>
               </div>
             </form>
