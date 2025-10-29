@@ -1,0 +1,245 @@
+/* ----------------------------------------------------
+   GLOBAL RESPONSIVE TEMPLATE
+   Author: ChatGPT | For Sri Ayyappa Swamy Temple Website
+   ---------------------------------------------------- */
+
+/* ---------- RESET & BASE ---------- */
+/* * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+} */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "SYSTEM-ui", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f6efe9;
+  color: #2e1b18;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+} */
+
+/* .container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px 0;
+} */
+
+/* ---------- HEADINGS ---------- */
+h1, h2, h3, h4, h5 {
+  color: #3b0101;
+  font-family: "SYSTEM-ui", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 1.6rem;
+  margin: 1.2rem 0;
+}
+
+p {
+  font-size: 1rem;
+  color: #333;
+}
+
+/* ---------- BUTTONS ----------
+button,
+.btn {
+  background-color: #7b0000;
+  color: #fff9e6;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+button:hover,
+.btn:hover {
+  background-color: #a00000;
+} */
+
+/* ---------- SECTIONS ---------- */
+section {
+  padding: 40px 0;
+}
+
+.section-title {
+  font-size: 1.8rem;
+  text-align: center;
+  color: #3b0101;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.section-title::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: #ffcc33;
+  margin: 8px auto 0;
+  border-radius: 2px;
+}
+
+/* ---------- FLEX / GRID HELPERS ---------- */
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* ---------- CARD STYLES ---------- */
+.card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.card h3 {
+  color: #2a0000;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.card p {
+  color: #555;
+  font-size: 0.95rem;
+}
+
+/* ---------- FORMS ---------- */
+form {
+  max-width: 600px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #7b0000;
+  outline: none;
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+  background-color: #2a0000;
+  color: #fff9e6;
+  text-align: center;
+  padding: 20px;
+}
+
+footer p {
+  font-size: 0.9rem;
+}
+
+/* ---------- RESPONSIVE QUERIES ---------- */
+@media (max-width: 992px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  .container {
+    width: 92%;
+  }
+
+  .grid-2,
+  .grid-3 {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  p {
+    font-size: 0.95rem;
+  }
+
+  button,
+  .btn {
+    width: 100%;
+    padding: 12px;
+  }
+
+  .grid-2,
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  footer {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.4rem;
+  }
+
+  .container {
+    width: 95%;
+  }
+}

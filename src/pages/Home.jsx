@@ -1,15 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Hero from "../components/Hero";
 import "./Home.css";
 
 const Home = () => {
-  const [isPlaying, setIsPlaying] = useState(false);
+  const videoRef = useRef(null);
 
-  const playVideo = () => {
-    setIsPlaying(true);
-  };
-
-  // Fade-in animation for scroll
+  // Fade-in scroll animation
   useEffect(() => {
     const elements = document.querySelectorAll(".fade-in");
     const observer = new IntersectionObserver(
@@ -27,11 +23,47 @@ const Home = () => {
     return () => observer.disconnect();
   }, []);
 
+  // YouTube auto-play & auto-pause setup
+  useEffect(() => {
+    const iframe = videoRef.current;
+    if (!iframe) return;
+
+    const tag = document.createElement("script");
+    tag.src = "https://www.youtube.com/iframe_api";
+    const firstScript = document.getElementsByTagName("script")[0];
+    firstScript.parentNode.insertBefore(tag, firstScript);
+
+    let player;
+
+    window.onYouTubeIframeAPIReady = () => {
+      player = new window.YT.Player(iframe, {
+        events: {
+          onReady: (event) => event.target.playVideo(),
+        },
+      });
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (player && player.playVideo && player.pauseVideo) {
+            if (entry.isIntersecting) player.playVideo();
+            else player.pauseVideo();
+          }
+        });
+      },
+      { threshold: 0.25 }
+    );
+
+    observer.observe(iframe);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <>
       <Hero />
 
-      {/* ====== ABOUT SECTION ====== */}
+      {/* ===== ABOUT SECTION ===== */}
       <section id="about" className="section about-section">
         <div className="container">
           <h3 className="section-title fade-in">
@@ -40,13 +72,24 @@ const Home = () => {
 
           <div className="fade-in">
             <p className="intro-text">
-              Welcome to the sacred abode of Lord Ayyappa, the divine symbol of Dharma, purity, and devotion. The Ayyappa Swamy Temple stands as a sanctuary for all devotees seeking inner peace, divine blessings, and the strength to follow a righteous life.
+              Welcome to the sacred abode of Lord Ayyappa, the divine symbol of
+              Dharma, purity, and devotion. The Ayyappa Swamy Temple stands as a
+              sanctuary for all devotees seeking inner peace, divine blessings,
+              and the strength to follow a righteous life.
             </p>
-             <p className="intro-text">
-              As the sacred chant “Swamiye Saranam Ayyappa” echoes through the air, the temple becomes a space of tranquility and surrender. Every corner reflects the spiritual energy of faith and the message of Lord Ayyappa — to live with discipline, humility, and equality.            </p>
-
+            <p className="intro-text">
+              As the sacred chant “Swamiye Saranam Ayyappa” echoes through the
+              air, the temple becomes a space of tranquility and surrender.
+              Every corner reflects the spiritual energy of faith and the
+              message of Lord Ayyappa — to live with discipline, humility, and
+              equality.
+            </p>
             <p>
-              This temple is more than a place of worship; it is a spiritual home for the community, nurturing both the soul and society. Devotees gather here to offer prayers, participate in poojas, perform seva (service), and engage in charitable activities that uphold the essence of Sanatana Dharma.
+              This temple is more than a place of worship; it is a spiritual
+              home for the community, nurturing both the soul and society.
+              Devotees gather here to offer prayers, participate in poojas,
+              perform seva (service), and engage in charitable activities that
+              uphold the essence of Sanatana Dharma.
             </p>
           </div>
 
@@ -59,10 +102,14 @@ const Home = () => {
             <div className="about-text">
               <h4 className="subheading">🏛️ Divine Ambiance & Architecture</h4>
               <p>
-The temple is built in traditional Kerala architectural style, featuring beautifully carved pillars, a golden dhwajasthambam (flagpole), and a serene idol of Lord Ayyappa in yogic posture symbolizing balance, meditation, and peace.
-The premises also include shrines dedicated to Lord Ganapathi, Goddess Malikapurathamma, and Nagaraja, allowing devotees to offer prayers to all deities associated with the Ayyappa tradition.
-The serene surroundings, fragrance of incense, and soothing chants create an atmosphere that rejuvenates every heart that steps into this sacred space.
-
+                The temple is built in traditional Kerala architectural style,
+                featuring beautifully carved pillars, a golden dhwajasthambam
+                (flagpole), and a serene idol of Lord Ayyappa in yogic posture
+                symbolizing balance, meditation, and peace. The premises also
+                include shrines dedicated to Lord Ganapathi, Goddess
+                Malikapurathamma, and Nagaraja. The serene surroundings,
+                fragrance of incense, and soothing chants create an atmosphere
+                that rejuvenates every heart that steps into this sacred space.
               </p>
             </div>
           </div>
@@ -77,8 +124,8 @@ The serene surroundings, fragrance of incense, and soothing chants create an atm
               <h4 className="subheading">🤝 Community & Service</h4>
               <ul className="service-list">
                 <li>
-                  <strong>Annadanam</strong> – Free meal service for devotees and
-                  the needy.
+                  <strong>Annadanam</strong> – Free meal service for devotees
+                  and the needy.
                 </li>
                 <li>
                   <strong>Health Camps</strong> – Regular medical check-ups and
@@ -98,33 +145,24 @@ The serene surroundings, fragrance of incense, and soothing chants create an atm
         </div>
       </section>
 
-      {/* ====== LIVE DARSHAN SECTION ====== */}
+      {/* ===== LIVE DARSHAN SECTION ===== */}
       <section id="live" className="section container live">
         <h3>Live Darshan</h3>
-        <div className="video-container" onClick={playVideo}>
-          {!isPlaying ? (
-            <>
-              <img
-                src="https://img.youtube.com/vi/BOjJGALm2kQ/maxresdefault.jpg"
-                alt="Live Darshan Preview"
-              />
-              <div className="play-button"></div>
-            </>
-          ) : (
-            <iframe
-              width="100%"
-              height="400"
-              src="https://www.youtube.com/embed/BOjJGALm2kQ?autoplay=1"
-              title="Live Darshan"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
-          )}
+        <div className="video-container">
+          <iframe
+            ref={videoRef}
+            width="100%"
+            height="400"
+            src="https://www.youtube.com/embed/BOjJGALm2kQ?enablejsapi=1&autoplay=1&mute=1&rel=0&modestbranding=1&showinfo=0"
+            title="Live Darshan"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
         </div>
       </section>
 
-      {/* ====== EVENTS SECTION ====== */}
+      {/* ===== EVENTS SECTION ===== */}
       <section id="events" className="section container">
         <h3>Upcoming Events & Pujas</h3>
         <div className="events-grid">
@@ -161,7 +199,7 @@ The serene surroundings, fragrance of incense, and soothing chants create an atm
         </div>
       </section>
 
-      {/* ====== GALLERY SECTION ====== */}
+      {/* ===== GALLERY SECTION ===== */}
       <section id="gallery" className="section container">
         <h3>Temple Gallery</h3>
         <div className="gallery-grid">
@@ -177,7 +215,7 @@ The serene surroundings, fragrance of incense, and soothing chants create an atm
         </div>
       </section>
 
-      {/* ====== CONTACT SECTION ====== */}
+      {/* ===== CONTACT SECTION ===== */}
       <section id="contact" className="section container">
         <h3>Contact & Visit</h3>
         <div className="contact-grid">
@@ -193,7 +231,7 @@ The serene surroundings, fragrance of incense, and soothing chants create an atm
             <h4>Contact</h4>
             <p>
               Phone: +91 98xxxxxx00
-              <br  />
+              <br />
               Email: info@ayyappatemple.com
             </p>
           </div>
