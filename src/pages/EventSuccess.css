@@ -1,0 +1,29 @@
+.event-success {
+  text-align: center;
+  padding: 60px 20px;
+  background: linear-gradient(to bottom, #fffaf0, #fff5e1);
+  color: #3b2f2f;
+}
+
+.event-success h2 {
+  color: #8b4513;
+  margin-bottom: 15px;
+}
+
+.event-success p {
+  font-size: 1.1rem;
+  margin-bottom: 25px;
+}
+
+.event-success a {
+  background: #8b4513;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.event-success a:hover {
+  background: #a0522d;
+}
