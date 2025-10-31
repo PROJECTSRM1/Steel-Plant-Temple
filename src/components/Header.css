@@ -3,7 +3,7 @@
 /* ------------------------ */
 
 :root {
-  --header-height: 60px; /* adjust if header is taller */
+  --header-height: 55px; /* adjust if header is taller */
 }
 
 .main-header {
@@ -160,19 +160,18 @@
     z-index: 11000;
   }
 
-.login-btn {
-  background: #b8860b;
-  color: white;
-  padding: 6px 14px;
-  border-radius: 6px;
-  font-weight: 600;
-  transition: background 0.3s;
-}
+  .login-btn {
+    background: #b8860b;
+    color: white;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: background 0.3s;
+  }
 
-.login-btn:hover {
-  background: #8b6914;
-}
-
+  .login-btn:hover {
+    background: #8b6914;
+  }
 
   /* Mobile menu styling */
   .nav-menu {
@@ -218,6 +217,11 @@
   body {
     padding-top: 55px;
   }
+
+  /* Prevent mobile content from going behind fixed header */
+  main, .page-content, .content-wrapper, #root > div {
+    margin-top: var(--header-height);
+  }
 }
 
 /* ------------------------ */
@@ -225,4 +229,9 @@
 /* ------------------------ */
 body {
   padding-top: 0; /* Removes unwanted top gap */
+}
+
+/* Prevent content hiding behind sticky header globally */
+main, .page-content, .content-wrapper, #root > div {
+  padding-top: var(--header-height);
 }

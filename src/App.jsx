@@ -4,6 +4,7 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
+  Navigate,
   useNavigate,
 } from "react-router-dom";
 
@@ -16,6 +17,9 @@ import Footer from "./components/Footer";
 import Login from "./components/login.jsx";
 import Signup from "./components/Signup";
 import RecoverPassword from "./components/RecoverPassword.jsx";
+
+/* ---------------- Dashboard ---------------- */
+import Dashboard from "./pages/Dashboard";
 
 /* -------------------- Pages ---------------------- */
 import Home from "./pages/Home";
@@ -46,6 +50,13 @@ import DonationSchemes from "./data/DonationSchemes.jsx";
 
 import "./App.css";
 
+/* ------------------ Protected Route Wrapper ------------------ */
+function ProtectedRoute({ children }) {
+  const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
+  return isAuthenticated ? children : <Navigate to="/login" replace />;
+}
+
+/* ---------------------- Main App ---------------------- */
 function App() {
   const navigate = useNavigate();
 
@@ -89,16 +100,28 @@ function App() {
 
   return (
     <>
+      {/* Header and Floating icons visible on all public pages */}
       <Header />
       <FloatingIcons />
 
       <Routes>
-        {/* Main Pages */}
+        {/* ---------------- Public Routes ---------------- */}
         <Route path="/" element={<Home />} />
         <Route path="/dharshan" element={<Dharshan />} />
         <Route path="/yagnas" element={<Yagnas />} />
+        <Route path="/special" element={<SpecialServices />} />
+        <Route path="/special-donations" element={<SpecialDonations />} />
+        <Route path="/gallery" element={<Gallery />} />
 
-        {/* Pooja Services */}
+        {/* Auth Pages */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/recover" element={<RecoverPassword />} />
+
+        {/* Staff Login */}
+        <Route path="/staff-login" element={<StaffLogin />} />
+
+        {/* Pooja Booking */}
         <Route
           path="/pooja"
           element={<PoojaServices onBookPooja={handlePoojaBooking} />}
@@ -114,13 +137,7 @@ function App() {
         />
         <Route path="/booking-form1" element={<BookingForm1 />} />
 
-        {/* Special Services */}
-        <Route path="/special" element={<SpecialServices />} />
-
-        {/* Special Donations */}
-        <Route path="/special-donations" element={<SpecialDonations />} />
-
-        {/* Online Donations */}
+        {/* Donation Pages */}
         <Route
           path="/donations/online"
           element={
@@ -134,11 +151,7 @@ function App() {
             />
           }
         />
-
-        {/* Offline Donations */}
         <Route path="/donations/offline" element={<OfflineDonations />} />
-
-        {/* Donation Success */}
         <Route
           path="/donations/success"
           element={
@@ -149,7 +162,7 @@ function App() {
           }
         />
 
-        {/* Event Donations */}
+        {/* Event Donation Pages */}
         <Route path="/events" element={<EventDonationPage />} />
         <Route
           path="/events/register/:id"
@@ -163,18 +176,33 @@ function App() {
         <Route path="/events/month" element={<MonthCalendar />} />
         <Route path="/events/year" element={<YearCalendar />} />
 
-        {/* Staff Login */}
-        <Route path="/staff-login" element={<StaffLogin />} />
+        {/* ---------------- Protected Dashboard ---------------- */}
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
 
-        {/* Authentication */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/recover" element={<RecoverPassword />} />
+        {/* Redirect if authenticated */}
+        <Route
+          path="/home"
+          element={
+            localStorage.getItem("isAuthenticated") === "true" ? (
+              <Navigate to="/dashboard" replace />
+            ) : (
+              <Navigate to="/" replace />
+            )
+          }
+        />
 
-        {/* Gallery */}
-        <Route path="/gallery" element={<Gallery />} />
+        {/* Catch-all route */}
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
 
+      {/* Footer visible on all public pages */}
       <Footer />
     </>
   );
