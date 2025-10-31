@@ -1,6 +1,7 @@
 import React from 'react';
 import './FloatingIcons.css';
 
+
 const FloatingIcons = () => {
   return (
     <div className="floating-social">

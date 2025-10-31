@@ -1,6 +1,7 @@
 import React from 'react';
 
-// Accept onBookPooja as a prop
+
+// ✅ Pooja Services Component
 function PoojaServices({ onBookPooja }) {
   const poojas = [
     { name: "Neyyabhishekam", desc: "The principal offering of <b>pure ghee</b>, symbolizing the union of the devotee's soul with the Supreme Lord.", timing: "Morning: 4:00 AM - 11:30 AM", cost: "₹ 251" },

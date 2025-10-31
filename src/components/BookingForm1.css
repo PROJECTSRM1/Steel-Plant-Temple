@@ -1,0 +1,104 @@
+/* --- 1. Container and Layout --- */
+.booking-form-container {
+    max-width: 600px; /* Limits the form width on larger screens */
+    margin: 50px auto; /* Centers the container horizontally and adds top/bottom margin */
+    padding: 30px;
+    background-color: #ffffff; /* White background for the form area */
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    font-family: Arial, sans-serif;
+}
+
+.booking-form-container h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 2em;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 10px;
+}
+
+.sub-header {
+    text-align: center;
+    color: #666;
+    margin-bottom: 25px;
+    font-size: 1.1em;
+}
+
+/* --- 2. Form Groups and Inputs --- */
+.booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between form fields */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #444;
+    font-size: 0.95em;
+}
+
+.form-group input {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1em;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus {
+    border-color: #d4202d; /* Highlight focus with a primary color (red/maroon theme) */
+    box-shadow: 0 0 5px rgba(212, 32, 45, 0.3);
+    outline: none;
+}
+
+/* Style for the read-only service name field */
+.read-only-field {
+    background-color: #f7f7f7;
+    font-weight: bold;
+    color: #d4202d; /* Highlight the selected service name */
+    cursor: default;
+    border: 1px dashed #d0d0d0;
+}
+
+
+/* --- 3. Submit Button --- */
+.submit-button {
+    background-color: #d4202d; /* Primary action color */
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 6px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    margin-top: 10px;
+}
+
+.submit-button:hover {
+    background-color: #a31823; /* Darker shade on hover */
+}
+
+.submit-button:active {
+    transform: translateY(1px); /* Simple press effect */
+}
+
+
+/* --- 4. Responsive Adjustments --- */
+@media (max-width: 650px) {
+    .booking-form-container {
+        margin: 20px;
+        padding: 20px;
+    }
+
+    .booking-form-container h1 {
+        font-size: 1.5em;
+    }
+}

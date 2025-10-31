@@ -1,6 +1,7 @@
 // src/components/ThankYouMessage.js
 import React from 'react';
 
+
 const ThankYouMessage = () => {
   return (
     <div className="thank-you-container">

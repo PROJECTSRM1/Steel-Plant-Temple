@@ -69,14 +69,26 @@ const Header = () => {
               <ul className="dropdown-content">
                 <li><a href="/donations/online">Online Donations</a></li>
                 <li><a href="/donations/offline">Offline Donations</a></li>
-                <li><a href="#donation">Special Donations</a></li>
-                <li><a href="#donation">Event Donations</a></li>
+                <li><a href="/special-donations">Special Donations</a></li>
+                <li><Link to="/events">Events & Donations</Link></li>
               </ul>
             </li>
 
             <li><a href="/gallery">Gallery</a></li>
-            <li><a href="#contact">Contact Us</a></li>
+            <li>
+              <Link
+                to="/"
+                state={{ scrollTo: "contact" }}
+                onClick={() => setMobileOpen(true)}
+              >
+                Contact Us
+              </Link>
+            </li>
+
+            <li><Link to="/login" className="login-btn">Login</Link></li>
           </ul>
+
+
 
           <div
             className={`hamburger ${mobileOpen ? 'open' : ''}`}

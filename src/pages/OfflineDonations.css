@@ -1,285 +1,250 @@
-.donation-category-card {
-    /* Background and border matching the Online Donation structure */
-    background-color: #ffffff; /* White background */
-    border: 1px solid #e0d8e8; /* Light gray/purple border */
-    border-radius: 8px;
-    padding: 25px;
-    margin-bottom: 25px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+/* ----------------------------- */
+/* OFFLINE DONATIONS PAGE STYLES */
+/* ----------------------------- */
+
+.section.container {
+  padding: 20px 20px;
+  background: #faf6f1;
+  color: #2e1b18;
+  font-family: "Segoe UI", Tahoma, Geneva, sans-serif;
 }
 
-.donation-category-card h3 {
-    color: #8e24aa; /* Medium Purple for section headers */
-    border-bottom: 2px solid #8e24aa;
-    padding-bottom: 8px;
-    margin-bottom: 15px;
-    font-size: 1.4rem;
-    text-align: left; /* Override global h3 center alignment for card headers */
+.title-seva {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #3c1a05;
+  font-weight: 700;
 }
 
-/* Side-by-Side Layout for Cash/In-Person Info */
-.info-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+.description-text {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #5a4030;
+  margin-bottom: 40px;
 }
 
-.info-grid .grid-item h4 {
-    color: #4a148c; /* Deep Purple for sub-headers */
-    margin-bottom: 5px;
-    text-align: left; /* Ensure alignment inside the grid */
+.donation-grid-offline {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 40px;
 }
 
-.info-grid .grid-item p {
-    font-size: 0.95rem;
-    line-height: 1.4;
+.instruction-box,
+.donation-form-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  padding: 30px;
 }
 
-/* Table Styling for Electronic Transfers */
-.donation-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 15px;
-    font-size: 0.9rem;
+.instruction-box h3,
+.donation-form-card h3 {
+  color: #3c1a05;
+  margin-bottom: 20px;
 }
 
-.donation-table th, .donation-table td {
-    padding: 10px 15px;
-    text-align: left;
-    border: 1px solid #ddd;
+h4 {
+  color: #4b2e10;
+  margin: 15px 0 10px;
+  font-weight: 600;
 }
 
-.donation-table thead th {
-    background-color: #4a148c; /* Deep Purple Header */
-    color: white;
-    font-weight: 600;
-    text-transform: uppercase;
-}
-
-.donation-table tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-.donation-table code {
-    background-color: #eee;
-    padding: 2px 4px;
-    border-radius: 4px;
-    font-weight: bold;
-    color: #8e24aa;
-    white-space: nowrap; /* Prevent UPI ID from breaking */
-}
-
-/* ======================================= */
-/* MANDATORY INSTRUCTIONS BOX (Alert) */
-/* ======================================= */
-
-.instruction-box {
-    background-color: #fffde7; /* Light creamy yellow/gold background */
-    border: 2px solid #ffb300; /* Amber border */
-    border-radius: 8px;
-    padding: 25px;
-    margin-top: 30px;
-}
-
-.instruction-box h3 {
-    color: #d84315; /* Deep Orange for warning */
-    border-bottom: 2px solid #ffb300; 
-    padding-bottom: 8px;
-    margin-bottom: 15px;
-}
-
-.alert-text {
-    color: #d84315; /* Deep Orange for warning */
-    font-weight: 600;
-    margin-top: 15px;
-    margin-bottom: 20px;
-    padding: 10px;
-    background-color: #fff8e1; /* Subtle background for the warning text */
-    border-radius: 4px;
-}
-
-.email-instructions {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive steps */
-    gap: 15px;
-    margin-bottom: 20px;
-}
-
-.instruction-step {
-    background-color: #ffeeaa; /* Slightly darker yellow background */
-    padding: 12px;
-    border-radius: 5px;
-    font-size: 0.9rem;
-    line-height: 1.4;
-}
-
-.required-list {
-    list-style-type: none; /* Remove default bullets */
-    padding-left: 0;
-    margin-top: 10px;
-}
-
-.required-list li {
-    /* Custom bullet style */
-    position: relative;
-    padding-left: 25px; 
-    margin-bottom: 8px;
-    line-height: 1.4;
-    font-size: 0.95rem;
-}
-
-.required-list li::before {
-    content: '•'; /* Use a simple bullet or a checkmark */
-    color: #8e24aa; /* Accent color */
-    font-weight: bold;
-    display: inline-block;
-    width: 1em;
-    margin-left: -1em;
-}
-
-/* ======================================= */
-/* MEDIA QUERIES (Responsiveness) */
-/* ======================================= */
-
-@media (max-width: 600px) {
-    /* This applies to the Offline Donation grid */
-    .info-grid {
-        grid-template-columns: 1fr; /* Stack columns on small screens */
-    }
-    .email-instructions {
-        grid-template-columns: 1fr;
-    }
-}
-
-
-/* Add these styles to your existing CSS file (e.g., src/App.css) */
-
+/* Payment Method Buttons */
 .method-selection-group {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .btn-method {
-    flex-grow: 1;
-    padding: 10px 15px;
-    background-color: #f0f0f0;
-    color: #3b0101;
-    border: 2px solid transparent;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: all 0.2s ease;
-    text-align: center;
+  flex: 1 1 30%;
+  background: #f1e6d6;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #3c1a05;
 }
 
 .btn-method .icon {
-    margin-right: 5px;
-}
-
-.btn-method.active {
-    background-color: #ffe6c7; /* Light accent background */
-    border-color: #ce8a23; /* Darker accent border */
-    font-weight: 700;
+  margin-right: 6px;
 }
 
 .btn-method:hover {
-    background-color: #eee;
+  background: #f9efe1;
+  border-color: #d2a25c;
 }
 
+.btn-method.active {
+  background: #e2c48d;
+  border-color: #b68c3b;
+  font-weight: 600;
+}
+
+/* Transfer Details */
 .transfer-details-display {
-    padding: 15px;
-    background-color: #f7f7f7;
-    border-left: 5px solid #ce8a23;
-    border-radius: 4px;
+  background: #fff9f2;
+  border: 1px solid #eddcb8;
+  border-radius: 12px;
+  padding: 15px 20px;
 }
 
-.transfer-details-display h4 {
-    margin-top: 0;
-    color: #3b0101;
-    font-size: 1.1rem;
+.temple-detail-label {
+  font-size: 0.95rem;
+  background: #fef6e7;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #f0d9a5;
+  margin-bottom: 10px;
 }
 
-.transfer-details-display .note-text {
-    font-size: 0.9rem;
-    color: #555;
-    margin-top: 10px;
+.highlight-code {
+  background: #fff1cf;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
 }
 
-/* Specific table adjustments inside the instruction box */
-.transfer-details-display .donation-table {
-    width: 100%;
-    margin: 10px 0;
+.note-text {
+  font-size: 0.9rem;
+  color: #5a4030;
+  margin-top: 8px;
 }
 
-.transfer-details-display .donation-table td {
-    padding: 5px 0;
-    border: none;
-    vertical-align: top;
-    font-size: 0.95rem;
+.mt-3 {
+  margin-top: 1rem;
 }
 
-.transfer-details-display .donation-table td:first-child {
-    font-weight: 600;
-    width: 35%;
+/* Form Layout */
+.offline-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-/* Style for the proof confirmation checkbox group */
-.proof-checkbox-group {
-    display: flex;
-    align-items: center;
-    margin-top: 25px;
+.form-row {
+  display: flex;
+  gap: 16px;
 }
 
-.proof-checkbox-group .form-checkbox {
-    width: auto;
-    margin-right: 10px;
-}
-
-.proof-checkbox-group .checkbox-label {
-    font-weight: normal;
-    font-size: 1rem;
-    margin-bottom: 0;
-    display: inline;
-}
-
-@media (max-width: 600px) {
-    .method-selection-group {
-        flex-direction: column;
-    }
-}
-
-
-/* Add these styles to your existing CSS file (e.g., src/App.css) */
-
-/* Smaller form group for transfer details (Section 1) */
+.form-group,
 .form-group-small {
-    margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
-.transfer-details-display .form-group-small label {
-    font-weight: 500;
-    font-size: 0.9rem;
-    color: #444;
+label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #3c1a05;
 }
 
-.transfer-details-display .form-input {
-    padding: 8px; /* Slightly smaller padding */
-    font-size: 0.95rem;
+.required-star {
+  color: red;
+  margin-left: 3px;
 }
 
-/* Style for static temple details within the transfer display */
-.transfer-details-display .temple-detail-label {
-    font-size: 0.95rem;
-    margin-bottom: 5px;
-    color: #555;
+.form-input,
+.form-select,
+.form-textarea {
+  padding: 10px 12px;
+  border: 1px solid #c9bba7;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  background: #fff;
 }
 
-.transfer-details-display .highlight-code {
-    font-weight: bold;
-    color: #3b0101; /* Your temple primary color */
-    background-color: #fcebeb;
-    padding: 2px 4px;
-    border-radius: 3px;
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  border-color: #b68c3b;
+  outline: none;
+}
+
+.form-textarea {
+  resize: vertical;
+}
+
+/* Proof Checkbox */
+.proof-checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.form-checkbox {
+  width: 18px;
+  height: 18px;
+  accent-color: #b68c3b;
+}
+
+.checkbox-label {
+  font-size: 0.95rem;
+}
+
+/* Buttons */
+.btn-submit {
+  background: linear-gradient(135deg, #d4a94f, #b68c3b);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-submit:hover:not(:disabled) {
+  background: linear-gradient(135deg, #c69d48, #a07d31);
+}
+
+.btn-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Alerts */
+.alert-success,
+.alert-error {
+  padding: 10px 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+.alert-success {
+  background: #e8f7e8;
+  color: #216b2f;
+  border: 1px solid #b4e0b6;
+}
+
+.alert-error {
+  background: #fdeaea;
+  color: #a33a3a;
+  border: 1px solid #f2b4b4;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .donation-grid-offline {
+    grid-template-columns: 1fr;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+
+  .method-selection-group {
+    flex-direction: column;
+  }
+
+  .btn-method {
+    width: 100%;
+  }
 }

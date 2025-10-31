@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './Hero.css';
 
+
 const slidesList = [
   '/assets/head3.jpg',
   '/assets/head2.jpg',

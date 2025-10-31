@@ -1,70 +1,43 @@
+/* ============================================
+   SRI AYYAPPA SWAMY TEMPLE — UNIFIED STYLE
+   Consistent color, layout & responsive design
+   ============================================ */
 
+/* ---------- COLOR VARIABLES ---------- */
 :root {
-  --primary-color: #004d40; 
-  --secondary-color: #ffb300; 
-  --accent-color: #d4af37; 
-  --annadanam-color: #d4af37; 
-  --background-color: #f8fcfb; 
-  --text-color: #2c2c2c;
-  --card-bg: rgba(255, 255, 255, 0.9);
-  --shadow-light: 0 6px 25px rgba(0, 0, 0, 0.08);
-  --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.2);
-  --temple-gradient: linear-gradient(135deg, #004d40, #146b54);
-  --gold-gradient: linear-gradient(45deg, #ffcc33, #ffb300);
-  --halo-gradient: radial-gradient(circle, #fff7d1 0%, transparent 70%);
+  --primary-color: #3b0101; /* Temple maroon */
+  --secondary-color: #ce8a23; /* Golden orange */
+  --accent-color: #d4a017; /* Bright gold */
+  --background-color: #fff8e1; /* Light golden background */
+  --text-color: #2e1b18;
+  --card-bg: rgba(255, 255, 255, 0.96);
+  --shadow-light: 0 4px 18px rgba(0, 0, 0, 0.08);
+  --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.18);
+  --gold-gradient: linear-gradient(45deg, #d4a017, #ce8a23);
 }
 
-
+/* ---------- GLOBAL STYLES ---------- */
 body {
-  /* Using system fonts as 'Merriweather' may require linking */
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  background: linear-gradient(180deg, #f8fcfb 0%, #f1f8f5 100%);
+  font-family: "Merriweather", Georgia, serif;
+  background: linear-gradient(180deg, #fffdf5 0%, #fff8e1 100%);
   color: var(--text-color);
-  scroll-behavior: smooth;
   line-height: 1.6;
+  scroll-behavior: smooth;
   overflow-x: hidden;
 }
 
-/* General Layout & Typography */
 a {
-    text-decoration: none;
-    color: inherit;
+  text-decoration: none;
+  color: inherit;
 }
 
-.section {
-    padding: 60px 0;
+img {
+  max-width: 100%;
+  display: block;
+  border-radius: 10px;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.section-title {
-    
-     font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-    font-size: 2.5em;
-    color: var(--primary-color);
-    text-align: center;
-    margin-bottom: 10px;
-}
-
-.subtitle {
-    text-align: center;
-    color: #666;
-    margin-bottom: 40px;
-    font-size: 1.1em;
-}
-
-.card {
-    background: var(--card-bg);
-    border-radius: 12px;
-    box-shadow: var(--shadow-light);
-    padding: 30px;
-}
-
-
+/* ---------- SCROLLBAR ---------- */
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -73,554 +46,263 @@ a {
   border-radius: 8px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #00796b;
+  background: var(--secondary-color);
 }
 
+/* ---------- SECTION & CONTAINERS ---------- */
+.section {
+  padding: 60px 20px;
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
 
+.section-title {
+  color: var(--primary-color);
+  font-size: 2.2em;
+  font-weight: 700;
+  margin-bottom: 12px;
+  position: relative;
+}
+.section-title::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: var(--accent-color);
+  margin: 10px auto 25px;
+  border-radius: 2px;
+}
 
+.subtitle {
+  color: #5a3b2e;
+  margin-bottom: 40px;
+  font-size: 1.1em;
+}
 
-/* ====== SEVA DETAIL ROW (Used in PoojaServices.js, SpecialServices.js) ====== */
+/* ---------- CARD BASE ---------- */
+.card {
+  background: var(--card-bg);
+  border: 2px solid var(--secondary-color);
+  border-radius: 12px;
+  box-shadow: var(--shadow-light);
+  padding: 30px;
+  transition: all 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* ---------- SEVA DETAIL SECTION ---------- */
 .seva-detail-row {
   display: flex;
   align-items: flex-start;
   background: var(--card-bg);
-  border-radius: 18px;
+  border: 2px solid var(--secondary-color);
+  border-radius: 14px;
   box-shadow: var(--shadow-light);
-  backdrop-filter: blur(8px);
   max-width: 1200px;
-  margin: 60px auto;
-  padding: 35px;
-  overflow: hidden;
+  margin: 50px auto;
+  padding: 30px;
+  gap: 30px;
   transition: all 0.4s ease;
-  position: relative;
 }
 
 .seva-detail-row.reverse-layout {
-    flex-direction: row-reverse; /* Added for the reverse example */
+  flex-direction: row-reverse;
 }
 
-.seva-detail-row.reverse-layout .seva-media {
-    padding-left: 30px;
-    padding-right: 0;
-}
-
-
-.seva-detail-row::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: var(--halo-gradient);
-  opacity: 0.3;
-  transform: rotate(45deg);
-  animation: haloSpin 15s linear infinite;
-}
-
-@keyframes haloSpin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-.seva-detail-row:hover {
-  box-shadow: var(--shadow-hover);
-  transform: translateY(-8px);
-}
-
-/* Type Borders */
-.seva-detail-row.premium-seva { border-left: 10px solid gold; }
-.seva-detail-row.grand { border-left: 10px solid var(--primary-color); }
-.seva-detail-row.annadanam-seva { border-left: 10px solid var(--annadanam-color); }
-
-/* ====== IMAGE SECTION ====== */
+/* ---------- IMAGE ---------- */
 .seva-media {
-  flex: 0 0 48%;
-  padding-right: 30px;
+  flex: 0 0 45%;
   position: relative;
 }
-
 .detail-image {
   width: 100%;
   height: auto;
-  min-height: 200px;
-  border-radius: 14px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  border: 3px solid var(--secondary-color);
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
   object-fit: cover;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
-
 .detail-image:hover {
-  transform: scale(1.05) rotate(-1deg);
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+  transform: scale(1.03);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
 }
 
-/* ====== CONTENT SECTION ====== */
+/* ---------- CONTENT ---------- */
 .seva-content {
   flex: 1;
-  position: relative;
-  z-index: 1;
-}
-
-.content-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 3px solid var(--secondary-color);
-  padding-bottom: 12px;
-  margin-bottom: 20px;
+  text-align: left;
 }
 
 .seva-content h2 {
+  font-size: 1.9em;
   color: var(--primary-color);
- font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 2.4em;
-  background: linear-gradient(45deg, #004d40, #0f766e);
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.highlight {
-  font-size: 0.9em;
   font-weight: 700;
-  color: var(--primary-color);
-  background: var(--gold-gradient);
-  padding: 6px 16px;
-  border-radius: 20px;
-  box-shadow: 0 0 10px rgba(255, 179, 0, 0.5);
-  text-transform: uppercase;
+  margin-bottom: 12px;
+  position: relative;
+}
+.seva-content h2::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: var(--accent-color);
+  margin-top: 8px;
+  border-radius: 2px;
 }
 
 .purpose {
-  font-size: 1.15em;
+  font-size: 1.1em;
   color: var(--primary-color);
   font-weight: 600;
-  margin-bottom: 25px;
+  margin-bottom: 15px;
 }
 
-/* ====== CONTENT FEATURE ====== */
 .content-feature {
-  background: rgba(255, 250, 235, 0.8);
-  border-radius: 12px;
-  border-left: 5px solid var(--secondary-color);
-  padding: 25px;
-  transition: all 0.3s ease;
-  box-shadow: inset 0 0 10px rgba(255, 179, 0, 0.1);
+  background: rgba(255, 250, 235, 0.9);
+  border-left: 4px solid var(--secondary-color);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: inset 0 0 10px rgba(212, 160, 23, 0.08);
 }
-
-.content-feature:hover {
-  background: rgba(255, 248, 220, 0.95);
-  transform: scale(1.02);
-}
-
 .content-feature ul {
-    list-style: disc;
-    margin-left: 20px;
-    color: var(--text-color);
+  margin: 10px 0 0 20px;
+  list-style: disc;
 }
 
-.content-feature p {
-    margin: 0;
-}
-
-
-.action-button {
-  padding: 14px 26px;
-  border: none;
-  border-radius: 30px;
+/* =======================================================
+   BUTTONS — Unified Temple Gold (Padipooja Style)
+======================================================= */
+button,
+.btn,
+.action-button,
+input[type="submit"],
+a.button-link {
+  display: inline-block;
+  background: var(--gold-gradient);
+  color: var(--primary-color);
+  font-family: "Merriweather", Georgia, serif;
   font-weight: 700;
+  font-size: 1em;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 12px 28px;
+  border-radius: 10px;
+  border: 2px solid var(--secondary-color);
   cursor: pointer;
   transition: all 0.3s ease;
-  font-size: 1.05em;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-top: 18px;
-  display: block; 
-  width: auto;
+  box-shadow: 0 4px 12px rgba(212, 160, 23, 0.4);
+  text-align: center;
+  text-decoration: none;
 }
 
-/* Primary */
-.action-button.primary {
-  background: var(--temple-gradient);
-  color: white;
-  box-shadow: 0 4px 15px rgba(0, 77, 64, 0.5);
-}
-
-.action-button.primary:hover {
-  transform: translateY(-4px);
-  background: linear-gradient(135deg, #00695c, #004d40);
-}
-
-/* Secondary */
-.action-button.secondary {
-  background: transparent;
+button:hover,
+.btn:hover,
+.action-button:hover,
+input[type="submit"]:hover,
+a.button-link:hover {
+  background: linear-gradient(45deg, #ffd54f, #ce8a23);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(212, 160, 23, 0.55);
   color: var(--primary-color);
-  border: 2px solid var(--primary-color);
 }
 
-.action-button.secondary:hover {
-  background: var(--primary-color);
-  color: white;
+button:active,
+.btn:active,
+.action-button:active,
+input[type="submit"]:active,
+a.button-link:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(212, 160, 23, 0.3);
 }
 
-/* Tertiary (Used for most Seva bookings) */
-.action-button.tertiary {
-  background: var(--gold-gradient);
-  color: #3a2f00;
-  box-shadow: 0 4px 15px rgba(255, 179, 0, 0.5);
+button:disabled,
+.btn:disabled,
+.action-button:disabled {
+  background: #e5d7a1;
+  color: #6b5a40;
+  cursor: not-allowed;
 }
 
-.action-button.tertiary:hover {
-  background: linear-gradient(45deg, #ffe066, #ffb300);
-  transform: scale(1.02);
-}
-
-/* Annadanam */
-.action-button.annadanam-button {
-  background: var(--annadanam-color);
-  color: white;
-  animation: pulse 2.5s infinite;
-  box-shadow: 0 6px 15px rgba(46, 139, 87, 0.5);
-}
-
-.action-button.annadanam-button:hover {
-    transform: translateY(-2px) scale(1.02);
-}
-
-@keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(46, 139, 87, 0.4); }
-  70% { box-shadow: 0 0 0 12px rgba(46, 139, 87, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(46, 139, 87, 0); }
-}
-
-
-
-.donation-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-    margin-top: 30px;
-}
-
-.scheme-selection-card {
-    padding: 30px;
-    border-radius: 12px;
-}
-
-.scheme-selection-card h3 {
-    color: var(--primary-color);
-    margin-bottom: 20px;
-    border-bottom: 2px solid #eee;
-    padding-bottom: 10px;
-}
-
-.scheme-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.scheme-item {
-    cursor: pointer;
-    padding: 15px;
-    border: 2px solid #eee;
-    border-radius: 8px;
-    transition: all 0.2s ease;
-    background-color: #fafafa;
-}
-
-.scheme-item:hover {
-    border-color: var(--secondary-color);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-}
-
-.scheme-item.active {
-    border-color: var(--primary-color);
-    background-color: var(--background-color);
-    box-shadow: 0 4px 10px rgba(0, 77, 64, 0.15);
-}
-
-.scheme-item h4 {
-    color: var(--primary-color);
-    margin-bottom: 5px;
-}
-
-.scheme-description {
-    font-size: 0.9em;
-    color: #666;
-}
-
-.donation-form-container {
-    padding: 0;
-}
-
-.donation-form {
-    padding: 30px;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 8px;
-    color: var(--primary-color);
-}
-
-.form-group input {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    font-size: 1em;
-    transition: border-color 0.3s;
-}
-
-.form-group input:focus {
-    outline: none;
-    border-color: var(--secondary-color);
-    box-shadow: 0 0 5px rgba(255, 179, 0, 0.5);
-}
-
-.preset-amounts {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 15px;
-}
-
-.amount-btn {
-    padding: 8px 15px;
-    border: 2px solid var(--primary-color);
-    background: transparent;
-    color: var(--primary-color);
-    font-weight: 700;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-.amount-btn:hover:not(.active) {
-    background-color: rgba(0, 77, 64, 0.1);
-}
-
-.amount-btn.active {
-    background: var(--temple-gradient);
-    color: white;
-    border-color: var(--temple-gradient);
-}
-
-.btn-submit {
-    width: 100%;
-    /* Reuses primary button styles */
-    background: var(--temple-gradient); 
-    color: white;
-    padding: 15px 0;
-    margin-top: 15px;
-    border: none;
-    border-radius: 8px;
-    font-size: 1.1em;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0, 77, 64, 0.5);
-}
-
-.btn-submit:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-    transform: none;
-}
-
-.loading-text {
-    text-align: center;
-    color: var(--annadanam-color);
-    font-weight: 500;
-    margin-top: 10px;
-}
-
-fieldset {
-    border: 1px solid #ddd;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-}
-
-legend {
-    color: var(--primary-color);
-    font-weight: 700;
-    padding: 0 10px;
-}
-
-/* ====== DONATION SUCCESS STYLES (Used in DonationSuccess.js) ====== */
-
+/* ---------- SUCCESS PAGE ---------- */
 .success-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  text-align: center;
 }
-
 .success-card {
-    max-width: 600px;
-    text-align: center;
-    padding: 40px;
-    border: 5px solid var(--annadanam-color);
-    animation: fadeIn 0.5s ease-out;
+  background: var(--card-bg);
+  border: 3px solid var(--accent-color);
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: var(--shadow-light);
+  animation: fadeIn 0.5s ease-out;
 }
-
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-
 .success-icon {
-    font-size: 5rem;
-    display: block;
-    margin-bottom: 20px;
+  font-size: 4rem;
+  color: var(--accent-color);
+  margin-bottom: 20px;
 }
-
 .success-title {
-    color: var(--annadanam-color);
-    font-size: 2em;
-   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-    margin-bottom: 10px;
+  color: var(--primary-color);
+  font-size: 1.8em;
+  margin-bottom: 10px;
 }
-
 .success-message {
-    font-size: 1.2em;
-    color: var(--text-color);
-    margin-bottom: 15px;
+  color: var(--text-color);
+  margin-bottom: 20px;
 }
 
-.success-thankyou {
-    color: #555;
-    margin-bottom: 30px;
-}
-
-.button-group {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-}
-
-.btn {
-    padding: 12px 25px;
-    border: none;
-    border-radius: 6px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.btn-primary {
-    background: var(--primary-color);
-    color: white;
-}
-
-.btn-primary:hover {
-    background: #00695c;
-    transform: translateY(-2px);
-}
-
-.btn-secondary {
-    background: #fff;
-    color: var(--primary-color);
-    border: 2px solid var(--primary-color);
-}
-
-.btn-secondary:hover {
-    background: var(--background-color);
-}
-
-/* Footer & Contact Styles */
+/* ---------- FOOTER ---------- */
 .footer {
+  background-color: var(--primary-color);
+  color: #f8f3e7;
+  padding: 25px;
+  text-align: center;
+  border-top: 3px solid var(--secondary-color);
+  font-size: 0.9em;
+}
+
+/* ---------- RESPONSIVE DESIGN ---------- */
+@media (max-width: 992px) {
+  .seva-detail-row {
+    flex-direction: column;
     text-align: center;
-    padding: 20px;
-    background-color: #2a0000;
-    color: #ddd;
-    font-size: 0.9em;
-    border-top: 1px solid #4a0000;
-}
-
-.contact-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    margin-top: 40px;
+    padding: 25px;
+  }
+  .seva-media {
+    flex: 1 1 100%;
+    margin-bottom: 20px;
+  }
+  .seva-content {
     text-align: center;
+  }
 }
 
-.contact-grid h4 {
-    color: var(--primary-color);
-    border-bottom: 2px solid var(--secondary-color);
-    padding-bottom: 5px;
-    margin-bottom: 10px;
-    display: inline-block;
-}
-
-/* ====== RESPONSIVE ====== */
-@media (max-width: 1000px) {
-    /* Donation Grid Stack */
-    .donation-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 850px) {
-   
-
-    /* Seva Row Stack */
-    .seva-detail-row {
-        flex-direction: column;
-        padding: 20px;
-        margin: 40px auto;
-    }
-    .seva-detail-row.reverse-layout {
-        flex-direction: column; /* Stays column on small screen */
-    }
-    .seva-media {
-        padding-right: 0;
-        padding-left: 0;
-        margin-bottom: 20px;
-        flex: 1 1 100%;
-    }
-    .seva-detail-row.reverse-layout .seva-media {
-        padding-left: 0;
-    }
-    .seva-content h2 {
-        font-size: 1.8em;
-    }
-    .seva-detail-row .action-button {
-        width: 100%; /* Full width buttons on mobile */
-    }
-    .content-feature {
-        padding: 15px;
-    }
-    .content-feature ul {
-        margin-left: 15px;
-    }
-    .contact-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-}
-
-@media (max-width: 500px) {
-    .site-title {
-        font-size: 22px;
-        letter-spacing: 1px;
-    }
-    .om-symbol {
-        font-size: 28px;
-    }
-    .header-top {
-        padding: 10px 70px 10px 0;
-    }
-    .preset-amounts {
-        flex-wrap: wrap;
-    }
-    .button-group {
-        flex-direction: column;
-    }
+@media (max-width: 600px) {
+  .section {
+    padding: 40px 15px;
+  }
+  .seva-content h2 {
+    font-size: 1.5em;
+  }
+  button,
+  .btn,
+  .action-button {
+    width: 100%;
+    font-size: 0.95em;
+  }
+  .success-card {
+    padding: 25px;
+  }
 }
