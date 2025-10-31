@@ -4,7 +4,6 @@ import EventCard from "../components/EventCard";
 import { useNavigate } from "react-router-dom";
 import "./EventDonationPage.css";
 
-
 const EventDonationPage = () => {
   const navigate = useNavigate();
 
@@ -14,10 +13,14 @@ const EventDonationPage = () => {
 
   return (
     <div className="event-donation-page">
-      <h2>Temple Event Donations</h2>
-      <div className="event-grid">
+      <h2 className="event-donation-title">Temple Event Donations</h2>
+      <div className="event-donation-grid">
         {eventDonations.map((event) => (
-          <EventCard key={event.id} event={event} onDonate={handleDonate} />
+          <EventCard
+            key={event.id}
+            event={event}
+            onDonate={() => handleDonate(event)}
+          />
         ))}
       </div>
     </div>
