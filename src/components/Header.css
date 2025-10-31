@@ -163,7 +163,7 @@
     position: absolute;
     top: 100%;
     left: 0;
-    background: #fff;
+    background: #3b0101;
     width: 100%;
     flex-direction: column;
     align-items: flex-start;
@@ -177,11 +177,24 @@
   }
 
   .nav-menu.active {
-    max-height: 600px;
-    opacity: 1;
-    visibility: visible;
-    padding: 10px 0;
-  }
+  max-height: 80vh; /* Let menu fill 80% of screen height */
+  opacity: 1;
+  visibility: visible;
+  padding: 10px 0;
+  overflow-y: auto; /* Enable vertical scroll */
+  scrollbar-width: thin; /* For Firefox */
+  scrollbar-color: var(--accent-color) #3b0101; /* For Firefox */
+}
+
+/* Optional: Chrome scrollbar style */
+.nav-menu.active::-webkit-scrollbar {
+  width: 6px;
+}
+.nav-menu.active::-webkit-scrollbar-thumb {
+  background-color: var(--accent-color);
+  border-radius: 4px;
+}
+
 
   .nav-menu li {
     width: 100%;
@@ -255,3 +268,20 @@
     padding: 10px 15px;
   }
 }
+/* Prevent flicker when closing dropdown on mobile */
+@media (max-width: 992px) {
+  .nav-menu .dropdown-content {
+    transition: none !important;
+  }
+}
+/* Prevent dropdown flash when closing on mobile */
+@media (max-width: 992px) {
+  .nav-menu .dropdown-content {
+    display: none !important;
+  }
+
+  .nav-menu .dropdown.active > .dropdown-content {
+    display: block !important;
+  }
+}
+
