@@ -75,16 +75,16 @@ const Header = () => {
             </li>
 
             <li><a href="/gallery">Gallery</a></li>
-            <li>
-              <Link
-                to="/"
-                state={{ scrollTo: "contact" }}
+            {/* <li> */}
+              {/* <Link
+                to="/contactus"
+                state={{ scrollTo: "contactus" }}
                 onClick={() => setMobileOpen(true)}
               >
                 Contact Us
-              </Link>
-            </li>
-
+              </Link> */}
+            {/* </li> */}
+<li><a href="/contactus">Contact Us</a></li>
             <li><Link to="/login" className="login-btn">Login</Link></li>
           </ul>
 

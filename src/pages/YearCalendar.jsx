@@ -24,7 +24,7 @@ const YearCalendar = () => {
   const [editEventId, setEditEventId] = useState(null);
   const [popupMsg, setPopupMsg] = useState("");
 
-  // ✅ Load all events from backend on page load
+  // ✅ Load all events from backend
   useEffect(() => {
     fetchEvents();
   }, []);
@@ -63,7 +63,7 @@ const YearCalendar = () => {
     }
   };
 
-  // ✅ Save or Update event to backend
+  // ✅ Add or Update event in backend
   const handleSaveEvent = async (e) => {
     e.preventDefault();
     const { month, date, day, time, title } = formData;
@@ -73,7 +73,6 @@ const YearCalendar = () => {
 
     try {
       if (editEventId) {
-        // Update existing event
         await axios.put(`https://localhost:5038/api/YearCalendar/${editEventId}`, {
           id: editEventId,
           month,
@@ -84,7 +83,6 @@ const YearCalendar = () => {
         });
         setPopupMsg("✅ Event updated successfully!");
       } else {
-        // Add new event
         await axios.post("https://localhost:5038/api/YearCalendar", {
           month,
           date,
@@ -92,35 +90,37 @@ const YearCalendar = () => {
           time,
           title,
         });
-        setPopupMsg("✅ Event saved successfully!");
+        setPopupMsg("✅ Event added successfully!");
       }
 
       setTimeout(() => setPopupMsg(""), 2000);
       setFormData({ month: "", date: "", day: "", time: "", title: "" });
       setEditEventId(null);
-      fetchEvents(); // Refresh events from backend
+      fetchEvents(); // Refresh after update/add
     } catch (err) {
       console.error("Error saving event:", err);
-      alert("Error saving event. Please check the backend connection.");
+      alert("Error saving event. Check backend connection.");
     }
   };
 
-  const handleEditEvent = (month, event) => {
+  // ✅ Edit event
+  const handleEditEvent = (month, ev) => {
     setFormData({
       month,
-      date: event.date,
-      day: event.day,
-      time: event.time,
-      title: event.title,
+      date: ev.date,
+      day: ev.day,
+      time: ev.time,
+      title: ev.title,
     });
-    setEditEventId(event.id);
+    setEditEventId(ev.id);
     setShowManager(true);
   };
 
+  // ✅ Delete event from backend
   const handleDeleteEvent = async (id) => {
     if (window.confirm("Are you sure you want to delete this event?")) {
       try {
-        await axios.delete(`https://localhost:5038/api/YearCalendar/${id}`);
+        await axios.delete(`https://localhost:7029/api/YearCalendar`);
         fetchEvents();
       } catch (err) {
         console.error("Error deleting event:", err);
@@ -173,14 +173,13 @@ const YearCalendar = () => {
         <h2>🪔 Temple Year Schedule</h2>
       </header>
 
-      {/* Scrollable events container */}
-      <div className="year-schedule scrollable">{renderEvents()}</div>
+      <div className="year-schedule">{renderEvents()}</div>
 
       <button className="update-btn" onClick={handleUpdateClick}>
         Update Schedule
       </button>
 
-      {/* Login Popup */}
+      {/* 🔐 Login Popup */}
       {showLogin && (
         <>
           <div className="overlay" onClick={() => setShowLogin(false)}></div>
@@ -201,7 +200,7 @@ const YearCalendar = () => {
         </>
       )}
 
-      {/* Manage Events Popup */}
+      {/* ⚙️ Manage Events Popup */}
       {showManager && (
         <>
           <div className="overlay" onClick={() => setShowManager(false)}></div>

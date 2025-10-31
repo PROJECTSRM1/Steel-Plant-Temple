@@ -17,7 +17,7 @@ body {
   min-height: 100vh;
   background-image: 
     linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-    url("C:\Users\Gunashekar Reddy\Desktop\RM1\ayyappa-temple\public\assets\bg.jpg"); /* 👈 Replace with your actual image path */
+    url("../../public/assets/bg.jpg"); /* 👈 Replace with your actual image path */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

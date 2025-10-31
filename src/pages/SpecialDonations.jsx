@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./SpecialDonations.css";
 
 const SpecialDonations = () => {
@@ -20,14 +21,30 @@ const SpecialDonations = () => {
     setFormData({ name: "", amount: "" });
   };
 
-  const handleSubmit = (e) => {
+  // ✅ UPDATED: Sends data to .NET backend
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert(
-      `🙏 Thank you, ${formData.name}! You pledged ₹${formData.amount} towards ${selectedDonation}.`
-    );
-    closeForm();
+
+    const donationData = {
+      donorName: formData.name,
+      amount: parseFloat(formData.amount),
+      scheme: selectedDonation,
+      date: new Date().toISOString(),
+    };
+
+    try {
+      await axios.post("https://localhost:7029/api/SpecialDonations", donationData);
+      alert(
+        `🙏 Thank you, ${formData.name}! You pledged ₹${formData.amount} towards ${selectedDonation}.`
+      );
+      closeForm();
+    } catch (error) {
+      console.error("Error saving donation:", error);
+      alert("⚠️ Failed to record donation. Please check backend connection.");
+    }
   };
 
+  
   return (
     <section className="section donations-section">
       <div className="container">

@@ -4,7 +4,6 @@ import EventCard from "../components/EventCard";
 import { useNavigate } from "react-router-dom";
 import "./EventDonationPage.css";
 
-
 const EventDonationPage = () => {
   const navigate = useNavigate();
 
