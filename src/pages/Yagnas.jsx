@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import "./Yagnas.css";
 
+
 const Yagnas = () => {
   useEffect(() => {
     const elements = document.querySelectorAll(".fade-in");

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import './Dharshan.css';
 
+
 const Dharshan = () => {
   useEffect(() => {
     // set year in footer (footer component already sets this) — any other dynamic logic can go here

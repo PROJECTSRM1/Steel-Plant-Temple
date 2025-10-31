@@ -1,111 +1,170 @@
+/* ================================================
+   POOJA SERVICES PAGE - Fully Responsive Layout
+   ================================================ */
+
+.pooja-page-content {
+  background: #fdf7ec;
+  padding: 60px 0;
+  text-align: center;
+}
+
+/* SECTION TITLE */
 .pooja-page-content h2 {
-    color: #3b0101;
-    text-align: center;
-    font-size: 2em;
-    margin-bottom: 30px;
-    position: relative;
+  color: #3b0101;
+  font-size: 2.2em;
+  margin-bottom: 25px;
+  font-weight: 700;
+  position: relative;
+  letter-spacing: 0.5px;
 }
+
 .pooja-page-content h2::after {
-    content: '';
-    display: block;
-    width: 80px;
-    height: 3px;
-    background: var(--secondary-color);
-    margin: 10px auto 0;
-    border-radius: 50%;
+  content: "";
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: #ce8a23;
+  margin: 12px auto 0;
+  border-radius: 2px;
 }
+
+/* INTRO TEXT */
 .intro-text {
-    text-align: center; 
-    font-size: 1.1em; 
-    color: #555;
-    margin-bottom: 40px;
+  font-size: 1.1em;
+  color: #2e1b18;
+  margin: 0 auto 40px;
+  line-height: 1.8;
+  max-width: 850px;
 }
+
+/* GRID */
 .pooja-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 25px;
-    justify-content: center;
-    margin-bottom: 50px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  justify-items: center;
+  align-items: stretch;
+  padding: 0 20px;
 }
+
+/* CARD */
 .pooja-card {
-    background: var(--card-bg);
-    border: 1px solid #e0e0e0;
-    border-top: 6px solid #3b0101;
-    border-radius: 8px;
-    /* Removed padding for better image integration, will add padding back inside the card for content */
-    width: 100%;
-    max-width: 280px;
-    box-shadow: var(--shadow);
-    transition: transform 0.3s ease-in-out;
-    text-align: center;
-    overflow: hidden; /* Ensures the image respects the card's border radius */
+  background: #fff9ed;
+  border: 1px solid #e0e0e0;
+  border-top: 6px solid #3b0101;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  overflow: hidden;
 }
 
-/* NEW STYLES for the image */
-.pooja-image {
-    width: 100%; /* Image takes full width of the card */
-    height: 300px; /* Fixed height for uniformity */
-    object-fit: cover; /* Ensures image covers the area without distortion */
-    margin-bottom: 15px;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    display: block;
-}
-
-/* Add padding back to the content part of the card */
-.pooja-card > h3,
-.pooja-card > p,
-.pooja-card > .timing,
-.pooja-card > .cost,
-.pooja-card > button {
-    padding: 0 20px;
-}
-
-/* Adjust timing/cost padding as needed */
-.pooja-card h3 {
-    color:#3b0101 ;
-    margin: 5px 0 10px 0;
-    font-size: 1.5em;
-}
-.pooja-card p {
-    font-size: 0.95em;
-    min-height: 60px; 
-    margin-bottom: 15px;
-}
-.timing {
-    display: block;
-    font-size: 0.9em;
-    color: #3b0101;
-    margin-bottom: 30px;
-}
-.cost {
-    display: block;
-    font-size: 1.6em;
-    font-weight: bold;
-    color: var(--price-color);
-    margin: 15px 0;
-}
-.pooja-card button {
-    background-color: #ce8a23;
-    color: #2b0000;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    text-transform: uppercase;
-    transition: background-color 0.3s;
-    margin-bottom: 20px; /* Added margin for button spacing */
-}
-
-/* Existing Hover styles */
 .pooja-card:hover {
-    transform: translateY(-8px) scale(1.03);
-    box-shadow: 0 8px 20px rgba(0, 77, 64, 0.2); 
-    background-color: wheat;
+  transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  background-color: #f9edd2;
+}
+
+/* IMAGE */
+.pooja-image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+/* TEXT CONTENT */
+.pooja-card h3 {
+  color: #3b0101;
+  font-size: 1.4em;
+  margin: 10px 0 6px;
+  font-weight: 600;
+}
+
+.pooja-card p {
+  font-size: 0.95em;
+  color: #444;
+  flex-grow: 1;
+  padding: 0 15px;
+  margin-bottom: 12px;
+  min-height: 70px; /* ✅ Keeps text area equal */
+  line-height: 1.6;
+}
+
+.timing {
+  display: block;
+  font-size: 0.9em;
+  color: #3b0101;
+  margin-bottom: 6px;
+}
+
+.cost {
+  display: block;
+  font-size: 1.3em;
+  font-weight: bold;
+  color: #ce8a23;
+  margin-bottom: 10px;
+}
+
+/* BUTTON */
+.pooja-card button {
+  background-color: #ce8a23;
+  color: #2b0000;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  margin: 0 auto 18px;
+  width: 80%;
 }
 
 .pooja-card button:hover {
-    background-color: #2b0000;
-    color: #ce8a23;
+  background-color: #2b0000;
+  color: #ce8a23;
+}
+
+/* RESPONSIVE TWEAKS */
+@media (max-width: 992px) {
+  .pooja-page-content {
+    padding: 40px 0;
+  }
+
+  .pooja-image {
+    height: 200px;
+  }
+
+  .pooja-card {
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 576px) {
+  .pooja-grid {
+    gap: 20px;
+  }
+
+  .pooja-card {
+    max-width: 95%;
+  }
+
+  .pooja-card h3 {
+    font-size: 1.2em;
+  }
+
+  .pooja-card p {
+    font-size: 0.9em;
+  }
+
+  .pooja-card button {
+    padding: 8px 16px;
+  }
 }

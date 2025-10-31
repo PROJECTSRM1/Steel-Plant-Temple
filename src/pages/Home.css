@@ -1,166 +1,271 @@
-/* =========================================================
-   HOME PAGE STYLES (Responsive + Polished)
-   For: Sri Ayyappa Swamy Temple Website
-   ========================================================= */
+/* =================================================================== */
+/*  SRI AYYAPPA SWAMY TEMPLE - CLEAN & ISOLATED STYLESHEET             */
+/* =================================================================== */
 
-/* ========== ABOUT SECTION ========== */
+:root {
+  --primary-color: #3b0101;
+  --secondary-color: #ce8a23;
+  --accent-color: #d4a017;
+  --text-color: #2e1b18;
+  --background-color: #fffdf5;
+  --card-bg: #ffffff;
+  --shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
+  --gold-gradient: linear-gradient(135deg, #ce8a23, #d4a017);
+}
+
+/* -------------------- */
+/* BASE SECTION STYLES */
+/* -------------------- */
+.section {
+  padding: 70px 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+  color: var(--text-color);
+}
+
+.section h3 {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 25px;
+  text-transform: capitalize;
+  letter-spacing: 0.5px;
+  position: relative;
+}
+
+.section h3::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: var(--accent-color);
+  margin: 12px auto 25px;
+  border-radius: 3px;
+}
+
+.section p {
+  font-size: 17px;
+  line-height: 1.8;
+  margin-bottom: 18px;
+  text-align: justify;
+}
+
+/* -------------------- */
+/* ABOUT SECTION */
+/* -------------------- */
 .about-section {
   background: #fdf7ec;
-  border-top: 3px solid #d4a017;
-  border-bottom: 3px solid #d4a017;
-  padding: 50px 0;
+  border-top: 2px solid var(--accent-color);
+  border-bottom: 2px solid var(--accent-color);
 }
 
-.section-title {
-  color: #3b0101;
-  text-align: center;
-  font-size: 30px;
-  margin-bottom: 25px;
-  letter-spacing: 1px;
-}
-
-.intro-text {
-  color: #2e1b18;
-  line-height: 1.8;
-  margin-bottom: 16px;
-  text-align: center;
-}
-
-.decor-divider {
-  border: 0;
-  border-top: 2px dashed #ce8a23;
-  width: 80px;
-  margin: 30px auto;
-}
-
-.service-list {
-  list-style: none;
-  padding-left: 0;
-  margin-top: 10px;
-}
-
-.service-list li {
-  background: rgba(255, 204, 51, 0.15);
-  margin: 8px 0;
-  padding: 10px 15px;
-  border-left: 4px solid #ce8a23;
-  border-radius: 6px;
-}
-
-/* ========== ABOUT FLEX ========== */
 .about-flex {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 30px;
   flex-wrap: wrap;
-  margin-top: 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  margin-top: 40px;
 }
 
 .about-flex.reverse {
   flex-direction: row-reverse;
 }
 
-.about-img {
-  flex: 1 1 45%;
-  text-align: center;
-}
-
 .about-img img {
   width: 100%;
-  max-width: 450px;
+  max-width: 420px;
+  border: 3px solid var(--secondary-color);
   border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  border: 3px solid #ce8a23;
+  box-shadow: var(--shadow);
 }
 
 .about-text {
-  flex: 1 1 50%;
+  max-width: 520px;
+  text-align: justify;
 }
 
-/* ========== EVENTS, GALLERY, CONTACT ========== */
-.events-grid,
-.gallery-grid,
-.contact-grid {
-  display: grid;
-  gap: 20px;
+.about-text h4 {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 12px;
 }
 
-.events-grid {
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+/* -------------------- */
+/* SERVICE LIST */
+/* -------------------- */
+.service-list {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 15px;
 }
 
-.event-card {
-  background: wheat;
-  padding: 20px;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.event-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
-}
-
-.ev-date {
-  background: #3b0101;
-  color: #fff;
-  padding: 10px;
+.service-list li {
+  background: rgba(206, 138, 35, 0.12);
+  margin: 8px 0;
+  padding: 12px 16px;
+  text-align: left;
+  border-left: 4px solid var(--secondary-color);
   border-radius: 6px;
-  text-align: center;
-  min-width: 60px;
+  transition: var(--transition);
 }
 
-/* ========== GALLERY ========== */
-.gallery-grid {
-  grid-template-columns: repeat(3, 1fr);
+.service-list li:hover {
+  background: #fff5e0;
+  border-left-color: var(--accent-color);
 }
 
-.gallery-grid img {
-  width: 100%;
-  border-radius: 10px;
-  height: 240px;
-  object-fit: cover;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.gallery-grid img:hover {
-  transform: scale(1.03);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-}
-
-/* ========== CONTACT ========== */
-.contact-grid {
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-}
-
-/* ========== LIVE DARSHAN ========== */
+/* -------------------- */
+/* VIDEO / LIVE DARSHAN */
+/* -------------------- */
 .video-container {
   position: relative;
-  display: block;
   width: 100%;
   max-width: 950px;
-  margin: 0 auto;
-  border-radius: 10px;
+  margin: 35px auto 0;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
 }
 
 .video-container iframe {
   width: 100%;
-  height: 400px;
+  height: 420px;
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
 }
 
-/* ========== ANIMATIONS ========== */
+/* -------------------- */
+/* EVENT SECTION */
+/* -------------------- */
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  justify-items: center;
+}
+
+.event-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+  max-width: 340px;
+  padding: 22px;
+  border: 2px solid var(--secondary-color);
+  border-radius: 12px;
+  background: var(--card-bg);
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+.event-card:hover {
+  background: #fff5e0;
+  border-color: var(--accent-color);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.ev-date {
+  background: var(--primary-color);
+  color: #fff;
+  padding: 10px 12px;
+  border-radius: 8px;
+  text-align: center;
+  min-width: 65px;
+}
+
+.ev-date span {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.ev-date strong {
+  display: block;
+  font-size: 22px;
+}
+
+/* -------------------- */
+/* GALLERY SECTION */
+/* -------------------- */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  justify-items: center;
+  margin-top: 10px;
+}
+
+.gallery-grid img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border: 3px solid transparent;
+  border-radius: 12px;
+  transition: var(--transition);
+  
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.03);
+  border-color: var(--secondary-color);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* -------------------- */
+/* CONTACT SECTION */
+/* -------------------- */
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 25px;
+  justify-items: center;
+  margin-top: 20px;
+}
+
+.contact-grid div {
+  width: 100%;
+  max-width: 340px;
+  padding: 25px;
+  border: 2px solid var(--secondary-color);
+  border-radius: 12px;
+  background: var(--card-bg);
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+.contact-grid div:hover {
+  background: #fff5e0;
+  border-color: var(--accent-color);
+}
+
+.contact-grid h4 {
+  color: var(--primary-color);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+/* -------------------- */
+/* GLOBAL HOVER EFFECTS */
+/* -------------------- */
+.event-card:hover,
+.contact-grid div:hover,
+.service-list li:hover,
+.gallery-grid img:hover {
+  border-color: var(--secondary-color);
+  background: #fff5e0;
+}
+
+/* -------------------- */
+/* ANIMATIONS */
+/* -------------------- */
 .fade-in {
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 1.2s ease, transform 1.2s ease;
+  transition: opacity 1s ease, transform 1s ease;
 }
 
 .fade-in.visible {
@@ -168,12 +273,11 @@
   transform: translateY(0);
 }
 
-/* ========== RESPONSIVE DESIGN ========== */
-
-/* Tablets & Below */
+/* -------------------- */
+/* RESPONSIVE DESIGN */
+/* -------------------- */
 @media (max-width: 992px) {
-  .about-flex,
-  .about-flex.reverse {
+  .about-flex {
     flex-direction: column;
     text-align: center;
   }
@@ -182,31 +286,26 @@
     text-align: center;
   }
 
-  .about-img img {
-    max-width: 90%;
-  }
-
-  .gallery-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   .video-container iframe {
     height: 320px;
   }
+
+  .gallery-grid img {
+    height: 200px;
+  }
 }
 
-/* Phones & Below */
 @media (max-width: 600px) {
-  .section-title {
-    font-size: 24px;
+  .section {
+    padding: 50px 15px;
   }
 
-  .gallery-grid {
-    grid-template-columns: 1fr;
+  .section h3 {
+    font-size: 26px;
   }
 
   .video-container iframe {
-    height: 250px;
+    height: 240px;
   }
 
   .event-card {
@@ -219,6 +318,10 @@
   }
 
   .about-section {
-    padding: 35px 0;
+    padding: 40px 10px;
+  }
+
+  .gallery-grid img {
+    height: 180px;
   }
 }
