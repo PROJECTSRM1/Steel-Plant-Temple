@@ -34,7 +34,7 @@ const Gallery = () => {
   const videos = [
     "../assets/video8.mp4",
      "../assets/video7.mp4",
-      "../assets/video6.mp4",
+      // "../assets/video6.mp4",
       "../assets/video5.mp4",
      "../assets/video4.mp4",
       "../assets/video3.mp4",
@@ -46,7 +46,9 @@ const Gallery = () => {
 
   return (
     <div className="gallery-container">
+      <header className="temple-header">
       <h2>Ayyappa Swamy Temple Gallery</h2>
+      </header>
 
       {/* ---------- Image Gallery ---------- */}
       <div className="gallery-section">

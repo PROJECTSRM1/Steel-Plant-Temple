@@ -4,7 +4,15 @@
   padding: 40px 20px;
   font-family: Arial, sans-serif;
 }
-
+.temple-header {
+  text-align: center;
+  background: linear-gradient(180deg, #5a0000, #3a0000);
+  color: white;
+  width:100%;
+  padding: 15px 0;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
 .gallery-section {
   margin-bottom: 50px;
   position: relative;
