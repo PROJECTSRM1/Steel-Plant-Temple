@@ -1,150 +1,113 @@
-import React from 'react';
-// Import your CSS file
-import './SpecialServices.css'; 
-// Import useNavigate hook from react-router-dom for navigation
-import { useNavigate } from 'react-router-dom'; 
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import "./SpecialServices.css";
 
 const SPECIAL_SEVAS_DATA = [
-    
-    {
-        name: "Padi Pooja",
-        highlight: "Premium Service",
-        purpose: "Worship of the 18 Holy Steps. Honors the spiritual path, bringing protection and fortune.",
-        description: "The Pathinettam Padi (18 sacred steps) are considered the heart of Ayyappa worship. Each step represents a human quality to be transcended on the path to realization. During the Padi Pooja, the steps are adorned with flowers, lamps, and sandal paste while priests chant sacred hymns. Witnessing this ritual fills devotees with humility and divine energy, reminding them of life’s spiritual journey toward liberation. This service requires **advance booking**.",
-        imageSrc: "/assets/download.webp",
-        imageAlt: "Devotees performing Padi Pooja on the 18 Holy Steps",
-        buttonText: "Book Now",
-        buttonClass: "primary",
-        rowClass: "grand",
-        reverse: false
-    },
-    {
-        name: "Udayasthamana Pooja",
-        highlight: "Grand Offering",
-        purpose: "All-inclusive, comprehensive worship performed from Sunrise to Sunset. Highly effective for fulfilling major wishes.",
-        description: "‘Udayasthamaya’ literally means from <b>sunrise to sunset</b>. This is an all-encompassing worship conducted from dawn to dusk (from Nirmalyam to Athazha pooja). It includes **18 separate Poojas**, making it a truly expansive offering for the day. Due to the elaborate arrangements needed, this Pooja is conducted only on certain auspicious days.",
-        imageSrc: "/assets/Udayasthaman-Pooja.png",
-        imageAlt: "Ritual with a thousand pots of sacred water",
-        buttonText: "Book Now",
-        buttonClass: "secondary",
-        rowClass: "grand",
-        reverse: false
-    },
-    {
-        name: "Pushpabhishekam",
-        highlight: "Abhisekham 🔥",
-        purpose: "Ceremonial showering of flowers upon Lord Ayyappa, believed to bring beauty, purity, and divine grace.",
-        description: "Pushpabhishekam involves the ceremonial showering of flowers upon Lord Ayyappa. A variety of flowers and leaves, including jasmine, Tulsi (basil), chrysanthemum, lotus, and bilva leaves, are showered on the idol. This beautiful ritual is a vibrant expression of devotion and is highly sought after by devotees.",
-        imageSrc: "/assets/ppp.jpg",
-        imageAlt: "Ceremonial showering of flowers on the deity",
-        buttonText: "Book Now",
-        buttonClass: "tertiary",
-        rowClass: "homa",
-        reverse: true
-    },
-    {
-        name: "Kalabhabhishekam",
-        highlight: "Aesthetic Focus",
-        purpose: "Consecration of the idol with Sandalwood paste and saffron. Believed to bring **prosperity, health, and cooling energy** to the temple.",
-        description: "Kalabhabhishekam is a very important special pooja performed for the strengthening of the **chaithanya** (radiance) of the deity. As part of this ritual, the Tantri performs the Kalabhakalasa pooja at the Nalambalam in the presence of the Melshanti (chief priest). This offering highlights the beauty and purity of the sandalwood paste.",
-        imageSrc: "/assets/abhisekam.jpg",
-        imageAlt: "Ritual with a thousand pots of sacred water",
-        buttonText: "Book Now",
-        buttonClass: "tertiary",
-        rowClass: "aesthetic",
-        reverse: false
-    },
-    {
-        name: "Vedi Vazhipadu",
-        highlight: "Traditional Feature",
-        purpose: "The Firecracker Offering (sound offering). Believed to ward off evil influences and signify the offering of one's ego to the Lord.",
-        description: "This unique, powerful, and traditional offering involves the ceremonial explosion of firecrackers. The loud spiritual sound is believed to ensure protection and the warding off of negative energies. It symbolizes the devotee's offering of their ego and attachment to the Divine fire.",
-        imageSrc: "/assets/ulsavabali.webp",
-        imageAlt: "Priests performing a grand ritual with firecrackers",
-        buttonText: "Book Now",
-        buttonClass: "tertiary",
-        rowClass: "grand",
-        reverse: true
-    },
-    {
-        name: "Laksharchana",
-        highlight: "Archana",
-        purpose: "A major collective prayer performed for family welfare, removal of obstacles, and overall collective well-being.",
-        description: "'Archana’ refers to the act of chanting and honouring the Divine name. <b>Laksharchana</b> denotes the practice of collectively repeating the Lord's name 100,000 times (one lakh). The Tantri, accompanied by the chief priest and other priests, conducts this powerful ceremony. The special <b>Brahmakalasam</b> used in the ritual is ceremonially carried for the final \"abhishekam\" prior to the Uchapooja.",
-        imageSrc: "/assets/laksharchana.webp",
-        imageAlt: "Priests performing a grand chanting and floral ritual",
-        buttonText: "Book Now",
-        buttonClass: "tertiary",
-        rowClass: "grand",
-        reverse: false
-    },
-    {
-        name: "Annadanam 🙏",
-        highlight: "Charity Link (Highest Daanam)",
-        purpose: "The sacred act of feeding devotees and the needy. Considered the highest form of Daanam (charity), securing boundless Punya (merit).",
-        description: "Your contribution directly sustains life and earns immense spiritual merit. Annadanam is the selfless offering of food, which fulfills the most basic need and brings immediate relief, hence earning the greatest spiritual reward in all Hindu scriptures.",
-        imageSrc: "/assets/OIP (12).webp",
-        imageAlt: "Annadanam Food Offering",
-        buttonText: "Book Now",
-        buttonClass: "annadanam-button",
-        rowClass: "aesthetic annadanam-seva",
-        reverse: true
-    },
+  {
+    name: "Padi Pooja",
+    highlight: "Premium Service",
+    purpose:
+      "Worship of the 18 Holy Steps — honors the spiritual path, bringing protection and fortune.",
+    description:
+      "The Pathinettam Padi (18 sacred steps) are considered the heart of Ayyappa worship. Each step represents a human quality to be transcended. During the Padi Pooja, the steps are adorned with flowers and lamps as priests chant hymns. This sacred service requires advance booking.",
+    imageSrc: "/assets/download.webp",
+    imageAlt: "Devotees performing Padi Pooja",
+  },
+  {
+    name: "Udayasthamana Pooja",
+    highlight: "Grand Offering",
+    purpose:
+      "Comprehensive worship performed from sunrise to sunset for fulfilling major wishes.",
+    description:
+      "‘Udayasthamaya’ literally means from sunrise to sunset. It includes 18 separate Poojas, making it a full-day offering for deep devotion. Conducted only on auspicious days.",
+    imageSrc: "/assets/Udayasthaman-Pooja.png",
+    imageAlt: "Ritual with sacred offerings",
+  },
+  {
+    name: "Pushpabhishekam",
+    highlight: "Abhisekham 🔥",
+    purpose:
+      "Ceremonial showering of flowers upon Lord Ayyappa — brings beauty and divine grace.",
+    description:
+      "This ritual involves showering the deity with flowers like jasmine, Tulsi, and lotus — symbolizing devotion and purity.",
+    imageSrc: "/assets/ppp.jpg",
+    imageAlt: "Flower offering to deity",
+  },
+  {
+    name: "Kalabhabhishekam",
+    highlight: "Aesthetic Focus",
+    purpose:
+      "Consecration of the idol with sandalwood paste — believed to bring prosperity and peace.",
+    description:
+      "Performed by the Tantri for strengthening the deity’s divine radiance. The ritual uses pure sandal paste and sacred chants.",
+    imageSrc: "/assets/abhisekam.jpg",
+    imageAlt: "Sandalwood consecration ritual",
+  },
+  {
+    name: "Vedi Vazhipadu",
+    highlight: "Traditional Feature",
+    purpose:
+      "The Firecracker Offering — symbolizes surrender of ego and drives away evil.",
+    description:
+      "A traditional and powerful ritual involving sacred firecrackers, believed to remove negative energies and obstacles.",
+    imageSrc: "/assets/ulsavabali.webp",
+    imageAlt: "Firecracker ritual offering",
+  },
+  {
+    name: "Laksharchana",
+    highlight: "Archana",
+    purpose:
+      "Collective prayer for family welfare and overall well-being through chanting divine names.",
+    description:
+      "Priests chant the Lord’s name 100,000 times for divine blessings, peace, and prosperity.",
+    imageSrc: "/assets/laksharchana.webp",
+    imageAlt: "Priests performing chanting ritual",
+  },
+  {
+    name: "Annadanam 🙏",
+    highlight: "Highest Daanam",
+    purpose:
+      "The sacred act of feeding devotees and the needy — the highest form of charity.",
+    description:
+      "Annadanam sustains life and grants immense spiritual merit. It represents the truest form of seva and compassion.",
+    imageSrc: "/assets/OIP (12).webp",
+    imageAlt: "Annadanam food offering",
+  },
 ];
 
+const SpecialServices = () => {
+  const navigate = useNavigate();
 
-function SpecialServices() {
-    // 1. Initialize the useNavigate hook
-    const navigate = useNavigate(); 
+  const handleBooking = (sevaName) => {
+    navigate("/booking-form1", { state: { sevaName } });
+  };
 
-    // 2. Updated function to navigate to the booking form
- const handleBooking = (sevaName) => {
-    // Navigates to the correct route defined in App.jsx
-    navigate('/booking-form1', { state: { sevaName } }); // ✅ CORRECT PATH
+  return (
+    <div className="special-services-page">
+      <h1 className="page-title">Special Sevas</h1>
+      <p className="page-subtitle">
+        Participate in sacred temple rituals and offerings with divine blessings.
+      </p>
+
+      <div className="special-sevas-container">
+        {SPECIAL_SEVAS_DATA.map((seva, index) => (
+          <div className="special-seva-card" key={index}>
+            <img src={seva.imageSrc} alt={seva.imageAlt} />
+            <h3>{seva.name}</h3>
+            <p className="highlight">{seva.highlight}</p>
+            <p className="purpose">{seva.purpose}</p>
+            <p className="description">{seva.description}</p>
+            <button
+              className="book-btn"
+              onClick={() => handleBooking(seva.name)}
+            >
+              Book Now
+            </button>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 };
-
-    return (
-        
-        <div className="container">
-            {SPECIAL_SEVAS_DATA.map((seva, index) => {
-                const rowClassName = `seva-detail-row ${seva.rowClass} ${seva.reverse ? 'reverse-layout' : ''}`;
-                
-                return (
-                    <div className={rowClassName} key={index}>
-                        
-                        <div className="seva-media">
-                            <img 
-                                src={seva.imageSrc} 
-                                alt={seva.imageAlt} 
-                                className="detail-image" 
-                            />
-                        </div>
-
-                        
-                        <div className="seva-content">
-                            <div className="content-header">
-                                <h2>{seva.name}</h2>
-                                <span className="highlight">{seva.highlight}</span>
-                            </div>
-                            <p className="purpose">{seva.purpose}</p>
-                            
-                            <div className="content-feature">
-                                <p dangerouslySetInnerHTML={{ __html: seva.description }}></p>
-                                
-                                <button 
-                                    className={`action-button ${seva.buttonClass}`}
-                                    // 3. Attach the new navigation handler
-                                    onClick={() => handleBooking(seva.name)}
-                                >
-                                    {seva.buttonText}
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                );
-            })}
-        </div>
-    );
-}
 
 export default SpecialServices;
