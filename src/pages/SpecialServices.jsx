@@ -4,7 +4,6 @@ import './SpecialServices.css';
 // Import useNavigate hook from react-router-dom for navigation
 import { useNavigate } from 'react-router-dom'; 
 
-
 const SPECIAL_SEVAS_DATA = [
     
     {

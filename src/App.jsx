@@ -30,7 +30,7 @@ import SpecialServices from "./pages/SpecialServices.jsx";
 import BookingForm from "./pages/BookingForm.jsx";
 import BookingForm1 from "./components/BookingForm1.jsx";
 import DonationsPage from "./pages/DonationPage.jsx";
-import DonationSuccess from "./pages/DonationSuccess.jsx";
+import DonationSuccess from "./pages/DonationSuccess.jsx"; // ✅ keep only this one
 import OfflineDonations from "./pages/OfflineDonations.jsx";
 import DayCalendar from "./pages/DayCalendar.jsx";
 import MonthCalendar from "./pages/MonthCalendar.jsx";
@@ -47,6 +47,9 @@ import EventSuccess from "./pages/EventSuccess.jsx";
 
 /* ------------------- Data ----------------------- */
 import DonationSchemes from "./data/DonationSchemes.jsx";
+
+/* ------------------- Other Components ---------------- */
+import DonationPopup from "./components/SpecialDonationPopup.jsx";
 
 import "./App.css";
 
@@ -98,9 +101,24 @@ function App() {
     window.scrollTo(0, 0);
   };
 
+  /* ------------ SPECIAL SEVA (POPUP + SUCCESS) ------------ */
+  const [selectedSeva, setSelectedSeva] = useState(null);
+  const [successDetails, setSuccessDetails] = useState(null);
+
+  const handleBooking = (sevaName) => setSelectedSeva(sevaName);
+
+  const handlePopupClose = (data) => {
+    if (data && data.success) {
+      setSuccessDetails(data);
+    }
+    setSelectedSeva(null);
+  };
+
+  const handleSuccessClose = () => setSuccessDetails(null);
+
   return (
     <>
-      {/* Header and Floating icons visible on all public pages */}
+      {/* Header + Floating Icons visible on all public pages */}
       <Header />
       <FloatingIcons />
 
@@ -113,15 +131,15 @@ function App() {
         <Route path="/special-donations" element={<SpecialDonations />} />
         <Route path="/gallery" element={<Gallery />} />
 
-        {/* Auth Pages */}
+        {/* ---------------- Auth Pages ---------------- */}
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/recover" element={<RecoverPassword />} />
 
-        {/* Staff Login */}
+        {/* ---------------- Staff Login ---------------- */}
         <Route path="/staff-login" element={<StaffLogin />} />
 
-        {/* Pooja Booking */}
+        {/* ---------------- Pooja Booking ---------------- */}
         <Route
           path="/pooja"
           element={<PoojaServices onBookPooja={handlePoojaBooking} />}
@@ -137,7 +155,15 @@ function App() {
         />
         <Route path="/booking-form1" element={<BookingForm1 />} />
 
-        {/* Donation Pages */}
+        {/* ---------------- Donation Popups ---------------- */}
+        {selectedSeva && (
+          <DonationPopup sevaName={selectedSeva} onClose={handlePopupClose} />
+        )}
+        {successDetails && (
+          <DonationSuccess details={successDetails} onClose={handleSuccessClose} />
+        )}
+
+        {/* ---------------- Donation Pages ---------------- */}
         <Route
           path="/donations/online"
           element={
@@ -162,7 +188,7 @@ function App() {
           }
         />
 
-        {/* Event Donation Pages */}
+        {/* ---------------- Event Donation Pages ---------------- */}
         <Route path="/events" element={<EventDonationPage />} />
         <Route
           path="/events/register/:id"
@@ -170,7 +196,7 @@ function App() {
         />
         <Route path="/events/success" element={<EventSuccess />} />
 
-        {/* Event Calendars */}
+        {/* ---------------- Event Calendars ---------------- */}
         <Route path="/events/day" element={<DayCalendar />} />
         <Route path="/events/week" element={<WeekCalendar />} />
         <Route path="/events/month" element={<MonthCalendar />} />
@@ -186,7 +212,7 @@ function App() {
           }
         />
 
-        {/* Redirect if authenticated */}
+        {/* ---------------- Redirect if authenticated ---------------- */}
         <Route
           path="/home"
           element={
@@ -198,7 +224,7 @@ function App() {
           }
         />
 
-        {/* Catch-all route */}
+        {/* ---------------- Catch-all route ---------------- */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
 
@@ -208,7 +234,7 @@ function App() {
   );
 }
 
-/* Wrap App with Router */
+/* ---------------- Wrapper with Router ---------------- */
 export default function AppWrapper() {
   return (
     <Router>
