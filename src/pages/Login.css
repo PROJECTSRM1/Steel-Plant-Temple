@@ -1,98 +1,126 @@
-.login-container {
+/* --------------------------- */
+/* LOGIN PAGE STYLING ONLY     */
+/* --------------------------- */
+
+.login-page {
   display: flex;
-  align-items: center;
   justify-content: center;
-  height: 100vh;
-  /* background: linear-gradient(to bottom right, #fffaf0, #f9e7d4); */
- font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-   background: linear-gradient(
-      rgba(0, 0, 0, 0.5),
-      rgba(0, 0, 0, 0.6)
-    ),
-    url("../assets/images/OIP-21.webp") center/cover no-repeat;
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  align-items: center;
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+  background-color: #1a0000;
   color: #fff;
 
+  /* Ayyappa Swamy background image */
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("C:\Users\Gunashekar Reddy\Desktop\Steel-Plant-Temple\public\assets\OIP-21.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-.login-card {
-  background: #fff;
-  padding: 2rem 3rem;
-  border-radius: 18px;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+/* Login Box */
+.login-page .login-box {
+  background: rgba(0, 0, 0, 0.55);
+  padding: 45px 55px;
+  width: 380px;
+  border-radius: 14px;
+  box-shadow: 0 4px 30px rgba(255, 204, 51, 0.2);
   text-align: center;
-  width: 350px;
+  color: #fff;
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.login-card h2 {
-  color: #6b2a00;
-  margin-bottom: 0.5rem;
+/* Title */
+.login-page .login-box h2 {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 25px;
+  color: #ffcc33;
+  text-transform: uppercase;
+  letter-spacing: 3px;
 }
 
-.subtitle {
-  color: #8b4513;
-  margin-bottom: 1.5rem;
+/* Form Fields */
+.login-page .login-box form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.login-page .login-box input {
+  width: 100%;
+  padding: 12px 15px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+  outline: none;
+  font-size: 15px;
+  color: #fff;
+  transition: border-color 0.4s ease;
+}
+
+.login-page .login-box input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.login-page .login-box input:focus {
+  border-bottom: 1px solid #ffcc33;
+}
+
+/* Button */
+.login-page .login-box button {
+  background: transparent;
+  color: #fff;
+  padding: 14px;
+  border: 1px solid #ffcc33;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: color 0.5s ease, background-color 0.5s ease;
+}
+
+.login-page .login-box button:hover {
+  background-color: #ffcc33;
+  color: #300000;
+}
+
+/* Links */
+.login-page .forgot,
+.login-page .signup-link,
+.login-page .back-to-login {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #fff;
+}
+
+.login-page .forgot a,
+.login-page .signup-link a,
+.login-page .back-to-login a {
+  color: #ffcc33;
+  text-decoration: none;
   font-weight: 500;
 }
 
-.input-group {
-  text-align: left;
-  margin-bottom: 1rem;
-}
-
-.input-group label {
-  font-weight: 600;
-  display: block;
-  margin-bottom: 0.3rem;
-  color: #3b2f2f;
-}
-
-.input-group input {
-  width: 100%;
-  padding: 0.6rem;
-  border: 1px solid #d4b483;
-  border-radius: 8px;
-  outline: none;
-  transition: 0.2s;
-}
-
-.input-group input:focus {
-  border-color: #8b4513;
-  box-shadow: 0 0 5px rgba(139,69,19,0.3);
-}
-
-.login-btn {
-  background-color: #8b4513;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  padding: 0.8rem 1.5rem;
-  font-weight: 600;
-  width: 100%;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-.login-btn:hover {
-  background-color: #c68b22;
-  transform: scale(1.03);
-}
-
-.error-text {
-  color: red;
-  margin-bottom: 1rem;
-  font-size: 0.9rem;
-}
-
-.extra-links {
-  margin-top: 1rem;
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.9rem;
-  color: #8b4513;
-  cursor: pointer;
-}
-
-.extra-links p:hover {
+.login-page .forgot a:hover,
+.login-page .signup-link a:hover,
+.login-page .back-to-login a:hover {
   text-decoration: underline;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 480px) {
+  .login-page .login-box {
+    width: 90%;
+    padding: 35px 25px;
+  }
+
+  .login-page .login-box h2 {
+    font-size: 26px;
+  }
 }
