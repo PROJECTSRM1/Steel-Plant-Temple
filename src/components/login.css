@@ -12,7 +12,7 @@ body {
   align-items: center;
   min-height: 90vh;
   background-color:rgb(184, 57, 57);
-background-image: url("/assets/OIP-21.webp");
+/* background-image: url("../assets/OIP-21.webp"); */
   background-size: cover;
   background-position: center;
    /* Match the body */
