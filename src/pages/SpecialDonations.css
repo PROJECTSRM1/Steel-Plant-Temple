@@ -1,305 +1,288 @@
 /* =======================================================
-   SPECIAL DONATIONS SECTION - Optimized for Horizontal Cards
-========================================================= */
+   💰 SPECIAL DONATIONS PAGE — Sri Ayyappa Swamy Temple
+   Gold & Maroon Theme | 2025 Edition
+======================================================= */
 
 :root {
   --primary-color: #3b0101;
   --secondary-color: #ce8a23;
   --accent-color: #d4a017;
+  --bg-light: #fff8e1;
   --text-color: #2e1b18;
-  --background-color: #fffdf5;
-  --card-bg: #ffffff;
-  --shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-  --transition: all 0.3s ease;
-  --gold-gradient: linear-gradient(135deg, #ce8a23, #d4a017);
+  --card-bg: rgba(255, 255, 255, 0.97);
+  --gold-gradient: linear-gradient(45deg, #d4a017, #ce8a23);
+  --shadow-light: 0 4px 16px rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 8px 22px rgba(0, 0, 0, 0.18);
 }
 
-/* ---------- SECTION WRAPPER ---------- */
-.special-donations {
-  background: var(--background-color);
-  padding: 80px 20px;
-  border-top: 2px solid var(--accent-color);
-  border-bottom: 2px solid var(--accent-color);
+/* ---------- BASE SECTION ---------- */
+.donations-section {
+  background: var(--bg-light);
+  padding: 60px 20px;
   text-align: center;
-  font-family: "Merriweather", serif;
-  color: var(--text-color);
 }
 
-.special-donations .container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* ---------- TITLES ---------- */
-.special-donations .section-title {
+.section-title {
+  color: var(--primary-color);
   font-size: 2.2rem;
-  color: var(--primary-color);
-  font-weight: 800;
-  letter-spacing: 0.5px;
-  margin-bottom: 15px;
-}
-
-.special-donations .section-title::after {
-  content: "";
-  display: block;
-  width: 100px;
-  height: 3px;
-  background: var(--accent-color);
-  margin: 10px auto 30px;
-  border-radius: 2px;
-}
-
-/* ---------- INTRO TEXT ---------- */
-.special-donations .intro-text {
-  font-size: 1rem;
-  color: #4b3d2a;
-  max-width: 750px;
-  margin: 0 auto 50px;
-  line-height: 1.8;
-}
-
-/* ---------- HORIZONTAL DONATION GRID ---------- */
-.special-donations .donations-grid {
-  display: flex !important;
-  flex-direction: row !important;
-  justify-content: center !important;
-  align-items: stretch !important;
-  flex-wrap: nowrap !important; /* Force one row */
-  gap: 25px !important;
-  overflow-x: auto;
-  padding-bottom: 10px;
-  scroll-behavior: smooth;
-}
-
-.special-donations .donations-grid::-webkit-scrollbar {
-  display: none;
-}
-.special-donations .donations-grid {
-  -ms-overflow-style: none; /* IE */
-  scrollbar-width: none; /* Firefox */
-}
-
-/* ---------- DONATION CARD ---------- */
-.special-donations .donation-card {
-  background: var(--card-bg);
-  border: 2px solid var(--secondary-color);
-  border-radius: 14px;
-  padding: 28px 20px;
-  flex: 1 1 250px !important;
-  max-width: 260px !important;
-  min-width: 220px !important;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  text-align: left !important;
-  box-shadow: var(--shadow);
-  transition: var(--transition);
-  min-height: 260px;
-}
-
-.special-donations .donation-card:hover {
-  background: #fff5e0;
-  border-color: var(--secondary-color);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-  transform: translateY(-5px);
-}
-
-.special-donations .donation-card h4 {
-  font-size: 1.2rem;
-  color: var(--primary-color);
   font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
   margin-bottom: 10px;
 }
 
-.special-donations .donation-card p {
+.section-title::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: var(--accent-color);
+  margin: 10px auto 25px;
+  border-radius: 2px;
+}
+
+.intro-text {
+  max-width: 800px;
+  margin: 0 auto 50px;
+  font-size: 1rem;
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+/* ---------- DONATIONS GRID ---------- */
+.donations-grid {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 25px;
+  flex-wrap: nowrap; /* All cards in one row */
+  max-width: 1300px;
+  margin: 0 auto 60px;
+}
+
+.donation-card {
+  background: var(--card-bg);
+  border: 2px solid var(--secondary-color);
+  border-radius: 12px;
+  box-shadow: var(--shadow-light);
+  padding: 25px 20px;
+  transition: all 0.3s ease;
+  flex: 1;
+  min-width: 280px;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.donation-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+}
+
+.donation-card h4 {
+  color: var(--primary-color);
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.donation-card p {
   color: var(--text-color);
   font-size: 0.95rem;
-  line-height: 1.6;
   margin-bottom: 20px;
-  flex-grow: 1;
 }
 
-/* ---------- BUTTONS ---------- */
-.special-donations .donate-btn,
-.special-donations .submit-btn,
-.special-donations .whatsapp-btn {
+.donate-btn {
+  padding: 12px 18px;
   background: var(--gold-gradient);
   color: var(--primary-color);
-  border: none;
-  padding: 12px 28px;
-  border-radius: 12px;
   font-weight: 700;
-  cursor: pointer;
-  font-size: 1rem;
-  text-decoration: none;
-  transition: var(--transition);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-  display: inline-block;
-  width: fit-content;
-  margin: 0 auto;
-}
-
-.special-donations .donate-btn:hover,
-.special-donations .submit-btn:hover,
-.special-donations .whatsapp-btn:hover {
-  background: #fff5e0;
   border: 2px solid var(--secondary-color);
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(212, 160, 23, 0.4);
 }
 
-/* ---------- DIVIDER ---------- */
-.special-donations .decor-divider {
-  border: 0;
-  border-top: 2px dashed var(--accent-color);
-  margin: 50px auto;
-  width: 60%;
+.donate-btn:hover {
+  background: linear-gradient(45deg, #ffd54f, #ce8a23);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(212, 160, 23, 0.55);
 }
 
 /* ---------- BANK DETAILS ---------- */
-.special-donations .bank-details {
-  background: #fff9e6;
-  border: 2px solid var(--secondary-color);
-  border-radius: 14px;
-  padding: 35px 25px;
-  max-width: 650px;
-  margin: 50px auto 0;
-  text-align: center;
-  box-shadow: var(--shadow);
-}
-
-.special-donations .bank-details h3 {
-  color: var(--primary-color);
-  font-weight: 700;
-  margin-bottom: 15px;
-}
-
-.special-donations .bank-details p {
-  color: var(--text-color);
-  line-height: 1.8;
-  font-size: 1rem;
-}
-
-/* ---------- POPUP FORM ---------- */
-.special-donations .donation-form-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-
-.special-donations .donation-form {
+.bank-details {
   background: var(--card-bg);
   border: 2px solid var(--secondary-color);
-  border-radius: 14px;
-  padding: 30px;
-  max-width: 400px;
-  width: 90%;
-  text-align: center;
-  box-shadow: var(--shadow);
-  animation: fadeIn 0.3s ease;
-  position: relative;
+  border-radius: 12px;
+  box-shadow: var(--shadow-light);
+  padding: 30px 20px;
+  max-width: 700px;
+  margin: 0 auto 40px;
 }
 
-.special-donations .donation-form h3 {
+.bank-details h3 {
   color: var(--primary-color);
-  font-weight: 700;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  font-size: 1.3rem;
 }
 
-.special-donations .donation-form label {
-  display: block;
-  text-align: left;
-  margin: 10px 0 5px;
+.bank-details p {
   color: var(--text-color);
-  font-weight: 500;
-}
-
-.special-donations .donation-form input {
-  width: 100%;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1.8px solid #d8b77e;
-  background: #fffef9;
   font-size: 0.95rem;
-  font-family: "Merriweather", serif;
-  transition: var(--transition);
+  line-height: 1.6;
 }
 
-.special-donations .donation-form input:focus {
-  border-color: var(--accent-color);
-  box-shadow: 0 0 6px rgba(212, 160, 23, 0.4);
-  outline: none;
+.whatsapp-btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 25px;
+  background: #25d366;
+  color: #fff;
+  border-radius: 6px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: 0.3s ease;
 }
 
-/* ---------- CLOSE BUTTON ---------- */
-.special-donations .close-btn {
-  position: absolute;
-  top: 8px;
-  right: 12px;
-  background: none;
+.whatsapp-btn:hover {
+  background: #1ebe5d;
+}
+
+/* ---------- DECORATIVE DIVIDER ---------- */
+.decor-divider {
+  width: 120px;
+  height: 3px;
+  background: var(--accent-color);
+  margin: 50px auto;
   border: none;
-  color: var(--primary-color);
-  font-size: 18px;
-  cursor: pointer;
-  transition: transform 0.2s ease;
+  border-radius: 2px;
 }
 
-.special-donations .close-btn:hover {
-  transform: rotate(90deg);
+/* =======================================================
+   🎁 DONATION FORM POPUP
+======================================================= */
+.donation-form-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(59, 1, 1, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
 }
 
-/* ---------- ANIMATION ---------- */
-@keyframes fadeIn {
+.donation-form {
+  background: var(--card-bg);
+  border: 2px solid var(--secondary-color);
+  border-radius: 12px;
+  padding: 30px 40px;
+  width: 400px;
+  max-width: 90%;
+  box-shadow: var(--shadow-hover);
+  position: relative;
+  animation: popupFadeIn 0.3s ease;
+}
+
+@keyframes popupFadeIn {
   from {
     opacity: 0;
-    transform: scale(0.95);
+    transform: translateY(-15px);
   }
   to {
     opacity: 1;
-    transform: scale(1);
+    transform: translateY(0);
   }
 }
 
-/* ---------- RESPONSIVE ---------- */
-@media (max-width: 992px) {
-  .special-donations .donations-grid {
-    justify-content: flex-start;
+.donation-form h3 {
+  color: var(--primary-color);
+  margin-bottom: 20px;
+}
+
+.donation-form label {
+  display: block;
+  color: var(--text-color);
+  font-weight: 600;
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+.donation-form input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--secondary-color);
+  border-radius: 6px;
+  margin-bottom: 15px;
+  outline: none;
+  font-size: 0.95rem;
+}
+
+.donation-form input:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 6px rgba(212, 160, 23, 0.4);
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 12px;
+  background: var(--gold-gradient);
+  border: none;
+  border-radius: 8px;
+  color: var(--primary-color);
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.submit-btn:hover {
+  background: linear-gradient(45deg, #ffd54f, #ce8a23);
+  transform: translateY(-2px);
+}
+
+.close-btn {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 1.3rem;
+  color: var(--primary-color);
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* =======================================================
+   📱 RESPONSIVE DESIGN
+======================================================= */
+@media (max-width: 1024px) {
+  .donations-grid {
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
-  .special-donations .donation-card {
-    min-width: 240px;
-    flex: 0 0 auto;
+  .donation-card {
+    max-width: 45%;
   }
 }
 
 @media (max-width: 768px) {
-  .special-donations .section-title {
-    font-size: 1.8rem;
+  .donations-grid {
+    flex-direction: column;
+    align-items: center;
   }
 
-  .special-donations .intro-text {
-    font-size: 0.95rem;
+  .donation-card {
+    max-width: 500px;
+    margin: 0 auto;
   }
 
-  .special-donations .donation-card {
-    min-height: 230px;
-  }
-}
-
-@media (max-width: 480px) {
-  .special-donations {
-    padding: 50px 15px;
-  }
-
-  .special-donations .bank-details {
+  .donation-form {
     padding: 25px;
-  }
-
-  .special-donations .donate-btn {
-    width: 100%;
   }
 }

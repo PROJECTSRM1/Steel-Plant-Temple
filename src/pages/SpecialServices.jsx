@@ -84,11 +84,13 @@ const SpecialServices = () => {
 
   return (
     <div className="special-services-page">
-      <h1 className="page-title">Special Sevas</h1>
-      <p className="page-subtitle">
+      {/* Page Title */}
+      <h1 className="section-title">Special Sevas</h1>
+      <p className="subtitle">
         Participate in sacred temple rituals and offerings with divine blessings.
       </p>
 
+      {/* Seva Cards */}
       <div className="special-sevas-container">
         {SPECIAL_SEVAS_DATA.map((seva, index) => (
           <div className="special-seva-card" key={index}>
@@ -97,6 +99,7 @@ const SpecialServices = () => {
             <p className="highlight">{seva.highlight}</p>
             <p className="purpose">{seva.purpose}</p>
             <p className="description">{seva.description}</p>
+
             <button
               className="book-btn"
               onClick={() => handleBooking(seva.name)}

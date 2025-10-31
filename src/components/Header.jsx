@@ -19,10 +19,39 @@ const Header = () => {
   }, [location]);
 
   const toggleDropdown = (e) => {
-    if (windowWidth <= 768) {
-      e.currentTarget.classList.toggle('active');
+  if (windowWidth <= 992) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const parent = e.currentTarget;
+
+    // If already open → close it and return
+    if (parent.classList.contains('active')) {
+      parent.classList.remove('active');
+      // Hide dropdown immediately to avoid flicker
+      const content = parent.querySelector('.dropdown-content');
+      if (content) content.style.display = 'none';
+      setTimeout(() => {
+        if (content) content.style.display = '';
+      }, 50);
+      return;
     }
-  };
+
+    // Close all other dropdowns
+    document.querySelectorAll('.dropdown').forEach((drop) => {
+      drop.classList.remove('active');
+      const content = drop.querySelector('.dropdown-content');
+      if (content) content.style.display = 'none';
+      setTimeout(() => {
+        if (content) content.style.display = '';
+      }, 50);
+    });
+
+    // Open the clicked one
+    parent.classList.add('active');
+  }
+};
+
 
   return (
     <header className="main-header">
