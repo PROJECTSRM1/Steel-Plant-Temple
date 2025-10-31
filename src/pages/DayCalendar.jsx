@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./DayCalendar.css";
 
-
 const DayCalendar = () => {
-  const [events, setEvents] = useState(() => JSON.parse(localStorage.getItem("dayEvents")) || {});
+  const [events, setEvents] = useState({});
   const [selectedHour, setSelectedHour] = useState(null);
   const [popupOpen, setPopupOpen] = useState(false);
   const [title, setTitle] = useState("");
@@ -13,10 +12,26 @@ const DayCalendar = () => {
 
   const hours = Array.from({ length: 16 }, (_, i) => i + 6); // 6 AM – 9 PM
 
-  // Store events in localStorage
+  // Fetch all events from backend on component mount
   useEffect(() => {
-    localStorage.setItem("dayEvents", JSON.stringify(events));
-  }, [events]);
+    const fetchEvents = async () => {
+      try {
+        const response = await fetch("http://localhost:5038/api/DayEvent");
+        if (response.ok) {
+          const data = await response.json();
+          const mapped = {};
+          data.forEach(ev => {
+            mapped[ev.key] = ev;
+          });
+          setEvents(mapped);
+        }
+      } catch (err) {
+        console.error("Error fetching events:", err);
+      }
+    };
+
+    fetchEvents();
+  }, []);
 
   const openPopup = (hour) => {
     setSelectedHour(hour);
@@ -30,31 +45,42 @@ const DayCalendar = () => {
     setImage(null);
   };
 
-  const saveEvent = () => {
+  // 🔹 Save event to backend
+  const saveEvent = async () => {
     if (!title.trim() || !desc.trim() || !image) {
       alert("Please fill all fields and upload an image before saving.");
       return;
     }
 
     const key = `${selectedDate}-${selectedHour}`;
-    const updated = { ...events };
-
-    // 🚫 Prevent duplicate event at same time
-    if (updated[key]) {
-      alert("An event is already scheduled at this time!");
-      return;
-    }
-
-    updated[key] = {
+    const eventData = {
+      key,
       title,
       desc,
       image,
       date: selectedDate,
-      time: getTimeLabel(selectedHour),
+      time: getTimeLabel(selectedHour)
     };
 
-    setEvents(updated);
-    closePopup();
+    try {
+      const response = await fetch("http://localhost:5038/api/DayEvent", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(eventData)
+      });
+
+      if (response.ok) {
+        const savedEvent = await response.json();
+        setEvents(prev => ({ ...prev, [key]: savedEvent }));
+        closePopup();
+      } else {
+        const errorText = await response.text();
+        alert("Failed to save event: " + errorText);
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Error connecting to backend.");
+    }
   };
 
   const handleImageChange = (e) => {
@@ -85,12 +111,7 @@ const DayCalendar = () => {
                   <div className="event-card">
                     <strong>{event.title}</strong>
                     <div>{event.desc}</div>
-                    {event.image && (
-                      <img src={event.image} alt="Event" className="event-img" />
-                    )}
-                    <small>
-                      {/* {event.time} | {event.date} */}
-                    </small>
+                    {event.image && <img src={event.image} alt="Event" className="event-img" />}
                   </div>
                 ) : (
                   <span className="no-events">No Events</span>
@@ -101,10 +122,10 @@ const DayCalendar = () => {
         })}
       </div>
 
-      {/* 🔹 Overlay */}
+      {/* Overlay */}
       {popupOpen && <div className="overlay" onClick={closePopup}></div>}
 
-      {/* 🔹 Popup for Adding Event */}
+      {/* Popup for Adding Event */}
       {popupOpen && (
         <div className="popup">
           <h3>Add Event at {getTimeLabel(selectedHour)}</h3>
@@ -120,7 +141,6 @@ const DayCalendar = () => {
             onChange={(e) => setDesc(e.target.value)}
           ></textarea>
 
-          {/* 📸 Image Upload */}
           <input type="file" accept="image/*" onChange={handleImageChange} />
           {image && <img src={image} alt="Preview" className="preview-img" />}
 

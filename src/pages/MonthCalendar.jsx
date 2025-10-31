@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./MonthCalendar.css";
 
-
 const MonthCalendar = () => {
   const today = new Date();
   const [currentMonth] = useState(today.getMonth());
@@ -14,13 +13,29 @@ const MonthCalendar = () => {
   const [password, setPassword] = useState("");
   const [eventTitle, setEventTitle] = useState("");
   const [eventDesc, setEventDesc] = useState("");
-  const [events, setEvents] = useState(
-    JSON.parse(localStorage.getItem("templeEvents")) || {}
-  );
+  const [events, setEvents] = useState({});
 
+  // ✅ Load events from backend
   useEffect(() => {
-    localStorage.setItem("templeEvents", JSON.stringify(events));
-  }, [events]);
+    const fetchEvents = async () => {
+      try {
+        const res = await fetch("http://localhost:5038/api/MonthEvent");
+        if (res.ok) {
+          const data = await res.json();
+          const formatted = {};
+          data.forEach((e) => {
+            formatted[e.date] = { title: e.title, desc: e.desc };
+          });
+          setEvents(formatted);
+        } else {
+          console.error("Failed to fetch events");
+        }
+      } catch (err) {
+        console.error("Error fetching events:", err);
+      }
+    };
+    fetchEvents();
+  }, []);
 
   const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
   const daysArray = Array.from({ length: daysInMonth }, (_, i) => i + 1);
@@ -40,24 +55,65 @@ const MonthCalendar = () => {
     }
   };
 
-  const handleAddOrEditEvent = () => {
+  // ✅ Add or Edit Event (Backend Integration)
+  const handleAddOrEditEvent = async () => {
     if (!eventTitle.trim()) {
       alert("Enter event title!");
       return;
     }
-    const updated = { ...events };
-    updated[selectedDate] = { title: eventTitle, desc: eventDesc };
-    setEvents(updated);
-    setPopupOpen(false);
-    setEventTitle("");
-    setEventDesc("");
+
+    const eventData = {
+      date: selectedDate,
+      title: eventTitle,
+      desc: eventDesc,
+    };
+
+    try {
+      const res = await fetch("http://localhost:5038/api/MonthEvent", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(eventData),
+      });
+
+      if (res.ok) {
+        const saved = await res.json();
+        setEvents((prev) => ({
+          ...prev,
+          [saved.date]: { title: saved.title, desc: saved.desc },
+        }));
+        setPopupOpen(false);
+        setEventTitle("");
+        setEventDesc("");
+      } else {
+        const errorText = await res.text();
+        alert("Failed to save event: " + errorText);
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Error connecting to backend.");
+    }
   };
 
-  const handleDeleteEvent = (date) => {
+  // ✅ Delete Event (Backend Integration)
+  const handleDeleteEvent = async (date) => {
     if (window.confirm(`Delete the event on ${date}?`)) {
-      const updated = { ...events };
-      delete updated[date];
-      setEvents(updated);
+      try {
+        const res = await fetch(`http://localhost:5038/api/MonthEvent/${date}`, {
+          method: "DELETE",
+        });
+        if (res.ok) {
+          setEvents((prev) => {
+            const updated = { ...prev };
+            delete updated[date];
+            return updated;
+          });
+        } else {
+          alert("Failed to delete event.");
+        }
+      } catch (err) {
+        console.error(err);
+        alert("Error connecting to backend.");
+      }
     }
   };
 
@@ -88,11 +144,12 @@ const MonthCalendar = () => {
 
   return (
     <div className="puja-calendar-container">
-     <header className="temple-header">
-      <h2>🪔 Ayyappa Swamy Temple Puja Calendar</h2>
-</header>
+      <header className="temple-header">
+        <h2>🪔 Ayyappa Swamy Temple Puja Calendar</h2>
+      </header>
+
       <div className="main-container">
-        {/* Left side */}
+        {/* Left side - Calendar */}
         <div className="calendar-container">
           <div className="calendar">
             {daysArray.map((day) => {
@@ -141,9 +198,7 @@ const MonthCalendar = () => {
                 .sort((a, b) => {
                   const [da, ma, ya] = a.split("-").map(Number);
                   const [db, mb, yb] = b.split("-").map(Number);
-                  return (
-                    new Date(ya, ma - 1, da) - new Date(yb, mb - 1, db)
-                  );
+                  return new Date(ya, ma - 1, da) - new Date(yb, mb - 1, db);
                 })
                 .map((dateStr) => (
                   <div key={dateStr} className="event-card">
@@ -164,7 +219,7 @@ const MonthCalendar = () => {
           </div>
         </div>
 
-        {/* Right side */}
+        {/* Right side - Event Details */}
         <div className="right-panel">
           <div className="event-display">
             {showEvent ? (
@@ -199,7 +254,7 @@ const MonthCalendar = () => {
         </div>
       </div>
 
-      {/* Popup Overlay */}
+      {/* Popup */}
       {popupOpen && (
         <>
           <div className="overlay" onClick={() => setPopupOpen(false)}></div>

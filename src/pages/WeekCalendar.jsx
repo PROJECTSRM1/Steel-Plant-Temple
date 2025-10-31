@@ -1,9 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./WeekCalendar.css";
 
-
 const WeekCalendar = () => {
-  const weekDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+  const weekDays = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
 
   const [events, setEvents] = useState({});
   const [isStaff, setIsStaff] = useState(false);
@@ -17,125 +24,140 @@ const WeekCalendar = () => {
     date: "",
     time: "",
     image: null,
-    imageUrl: "",
   });
 
-  // Load from localStorage
+  // ✅ Fetch all events from backend
   useEffect(() => {
-    const saved = JSON.parse(localStorage.getItem("weekEvents"));
-    if (saved) setEvents(saved);
-  }, []);
+    const fetchEvents = async () => {
+      try {
+        const res = await fetch("http://localhost:5038/api/WeekEvent");
+        if (res.ok) {
+          const data = await res.json();
+          const grouped = {};
+          data.forEach((ev) => {
+            if (!grouped[ev.day]) grouped[ev.day] = [];
+            grouped[ev.day].push(ev);
+          });
+          setEvents(grouped);
+        }
+      } catch (err) {
+        console.error("Error fetching events:", err);
+      }
+    };
 
-  // Save to localStorage
-  useEffect(() => {
-    localStorage.setItem("weekEvents", JSON.stringify(events));
-  }, [events]);
+    fetchEvents();
+  }, []);
 
   const handleLogin = () => {
     if (password === "ayyappa123") {
       setIsStaff(true);
       setShowLogin(false);
       setPassword("");
-      setLoginError("");
-      alert("Login successful! You can now add or edit events.");
+      alert("Login successful!");
     } else {
       setLoginError("Invalid password!");
     }
   };
 
-  const handleImageUpload = (e) => {
+  // ✅ Image upload same as DayCalendar
+  const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      setNewEvent({ ...newEvent, image: file, imageUrl });
+      const reader = new FileReader();
+      reader.onloadend = () => setNewEvent({ ...newEvent, image: reader.result });
+      reader.readAsDataURL(file);
     }
   };
 
- const handleAddEvent = (e) => {
-  e.preventDefault();
+  // ✅ Save event to backend (base64 image)
+  const handleAddEvent = async (e) => {
+    e.preventDefault();
 
-  if (!newEvent.day || !newEvent.title || !newEvent.date || !newEvent.time) {
-    return alert("Please fill all fields!");
-  }
+    if (!newEvent.day || !newEvent.title || !newEvent.date || !newEvent.time || !newEvent.image) {
+      return alert("Please fill all fields and upload an image!");
+    }
 
-  // Check for duplicate event at same date & time
-  const existingDayEvents = events[newEvent.day] || [];
-  const conflict = existingDayEvents.some(
-    (ev) =>
-      ev.date === newEvent.date &&
-      ev.time === newEvent.time
-  );
-
-  if (conflict) {
-    alert(`⚠️ An event is already scheduled on ${newEvent.date} at ${newEvent.time}.`);
-    return;
-  }
-
-  // If no conflict, add event
-  setEvents((prev) => {
-    const updated = { ...prev };
-    if (!updated[newEvent.day]) updated[newEvent.day] = [];
-    updated[newEvent.day].push({
+    const eventData = {
+      day: newEvent.day,
       title: newEvent.title,
       date: newEvent.date,
       time: newEvent.time,
-      imageUrl: newEvent.imageUrl,
-    });
-    return updated;
-  });
+      image: newEvent.image, // base64 image
+    };
 
-  setNewEvent({ day: "", title: "", date: "", time: "", image: null, imageUrl: "" });
-  setShowAddEvent(false);
-};
+    try {
+      const res = await fetch("http://localhost:5038/api/WeekEvent", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(eventData),
+      });
 
+      if (res.ok) {
+        const savedEvent = await res.json();
+        setEvents((prev) => {
+          const updated = { ...prev };
+          if (!updated[savedEvent.day]) updated[savedEvent.day] = [];
+          updated[savedEvent.day].push(savedEvent);
+          return updated;
+        });
+        setShowAddEvent(false);
+        setNewEvent({ day: "", title: "", date: "", time: "", image: null });
+      } else {
+        const error = await res.text();
+        alert("Failed to save event: " + error);
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Error connecting to backend.");
+    }
+  };
 
-  const handleClearAll = () => {
-    if (window.confirm("Are you sure you want to clear all events?")) {
+  const handleClearAll = async () => {
+    if (!window.confirm("Are you sure you want to clear all events?")) return;
+    try {
+      await fetch("http://localhost:5038/api/WeekEvent/clear", { method: "DELETE" });
       setEvents({});
-      localStorage.removeItem("weekEvents");
+    } catch (err) {
+      console.error(err);
     }
   };
 
   return (
     <div className="week-calendar-container">
       <header className="temple-header">
-        <h2>Weekly Pooja Schedule</h2>
+        <h2>🪔 Ayyappa Swamy Temple Week Calendar</h2>
       </header>
 
       <div className="week-calendar">
         {weekDays.map((day) => (
           <div className="day-card" key={day}>
             <h3>{day}</h3>
-           {events[day] && events[day].length > 0 ? (
-  events[day].map((ev, i) => (
-    <li key={i} className="event-item">
-      <div className="event-content">
-        <div className="event-image">
-          {ev.imageUrl && <img src={ev.imageUrl} alt={ev.title} />}
-        </div>
-        <div className="event-details">
-          <strong>🪔 {ev.title}</strong><br />
-          📅 {ev.date} | ⏰ {ev.time}
-        </div>
-      </div>
-    </li>
-  ))
-) : (
-  <li>No Events</li>
-)}
-
-
+            {events[day] && events[day].length > 0 ? (
+              events[day].map((ev, i) => (
+                <div key={i} className="event-card">
+                  <strong>{ev.title}</strong>
+                  <div>{ev.date} | {ev.time}</div>
+                  {ev.image && (
+                    <img src={ev.image} alt="Event" className="event-img" />
+                  )}
+                </div>
+              ))
+            ) : (
+              <p className="no-events">No Events</p>
+            )}
           </div>
         ))}
       </div>
 
       <div className="update-section">
-        <button onClick={() => (!isStaff ? setShowLogin(true) : null)}>Update Schedule</button>
+        <button onClick={() => (!isStaff ? setShowLogin(true) : null)}>
+          Update Schedule
+        </button>
 
         {isStaff && (
           <div className="staff-actions">
             <button onClick={() => setShowAddEvent(true)}>Add Event</button>
-            <button onClick={handleClearAll}>Clear All Events</button>
+            <button onClick={handleClearAll}>Clear All</button>
           </div>
         )}
       </div>
@@ -206,15 +228,9 @@ const WeekCalendar = () => {
               onChange={(e) => setNewEvent({ ...newEvent, time: e.target.value })}
             />
 
-            <label>Event Image:</label>
-            <input type="file" accept="image/*" onChange={handleImageUpload} />
-            {newEvent.imageUrl && (
-              <img
-                src={newEvent.imageUrl}
-                alt="Preview"
-                className="preview-img"
-              />
-            )}
+            <label>Upload Image:</label>
+            <input type="file" accept="image/*" onChange={handleImageChange} />
+            {newEvent.image && <img src={newEvent.image} alt="Preview" className="preview-img" />}
 
             <div className="popup-buttons">
               <button type="submit">Add Event</button>

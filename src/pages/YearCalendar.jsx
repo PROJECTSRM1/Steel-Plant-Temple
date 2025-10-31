@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import "./YearCalendar.css";
-
 
 const YearCalendar = () => {
   const monthNames = [
@@ -8,9 +8,7 @@ const YearCalendar = () => {
     "July","August","September","October","November","December"
   ];
 
-  const [schedule, setSchedule] = useState(
-    JSON.parse(localStorage.getItem("yearSchedule")) || {}
-  );
+  const [schedule, setSchedule] = useState({});
   const [isStaff, setIsStaff] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [showManager, setShowManager] = useState(false);
@@ -23,12 +21,30 @@ const YearCalendar = () => {
     time: "",
     title: "",
   });
-  const [editIndex, setEditIndex] = useState(null);
+  const [editEventId, setEditEventId] = useState(null);
   const [popupMsg, setPopupMsg] = useState("");
 
+  // ✅ Load all events from backend on page load
   useEffect(() => {
-    localStorage.setItem("yearSchedule", JSON.stringify(schedule));
-  }, [schedule]);
+    fetchEvents();
+  }, []);
+
+  const fetchEvents = async () => {
+    try {
+      const res = await axios.get("https://localhost:5038/api/YearCalendar");
+      const data = res.data;
+      const grouped = {};
+
+      data.forEach((ev) => {
+        if (!grouped[ev.month]) grouped[ev.month] = [];
+        grouped[ev.month].push(ev);
+      });
+
+      setSchedule(grouped);
+    } catch (err) {
+      console.error("Error fetching events:", err);
+    }
+  };
 
   const handleUpdateClick = () => {
     if (!isStaff) setShowLogin(true);
@@ -47,109 +63,118 @@ const YearCalendar = () => {
     }
   };
 
-  const handleSaveEvent = (e) => {
+  // ✅ Save or Update event to backend
+  const handleSaveEvent = async (e) => {
     e.preventDefault();
     const { month, date, day, time, title } = formData;
 
     if (!month || !date || !day || !time || !title)
       return alert("All fields are required");
 
-    const updated = { ...schedule };
-    if (!updated[month]) updated[month] = [];
+    try {
+      if (editEventId) {
+        // Update existing event
+        await axios.put(`https://localhost:5038/api/YearCalendar/${editEventId}`, {
+          id: editEventId,
+          month,
+          date,
+          day,
+          time,
+          title,
+        });
+        setPopupMsg("✅ Event updated successfully!");
+      } else {
+        // Add new event
+        await axios.post("https://localhost:5038/api/YearCalendar", {
+          month,
+          date,
+          day,
+          time,
+          title,
+        });
+        setPopupMsg("✅ Event saved successfully!");
+      }
 
-    // 🔎 Duplicate check (same day & time in same month)
-  const duplicate = updated[month].some((ev, idx) => {
-  const existingDay = ev?.day?.toLowerCase?.() || "";
-  const existingTime = ev?.time?.trim?.() || "";
-  return (
-    idx !== editIndex &&
-    existingDay === day.toLowerCase() &&
-    existingTime === time.trim()
-  );
-});
-
-
-    if (duplicate) {
-      setPopupMsg("⚠️ Event already scheduled at that particular time!");
-      setTimeout(() => setPopupMsg(""), 3000);
-      return;
+      setTimeout(() => setPopupMsg(""), 2000);
+      setFormData({ month: "", date: "", day: "", time: "", title: "" });
+      setEditEventId(null);
+      fetchEvents(); // Refresh events from backend
+    } catch (err) {
+      console.error("Error saving event:", err);
+      alert("Error saving event. Please check the backend connection.");
     }
-
-    if (editIndex !== null) {
-      updated[month][editIndex] = { date, day, time, title };
-    } else {
-      updated[month].push({ date, day, time, title });
-    }
-
-    setSchedule(updated);
-    setFormData({ month: "", date: "", day: "", time: "", title: "" });
-    setEditIndex(null);
-    setPopupMsg("✅ Event saved successfully!");
-    setTimeout(() => setPopupMsg(""), 2000);
   };
 
-  const handleEditEvent = (month, index) => {
-    const event = schedule[month][index];
-    setFormData({ month, ...event });
-    setEditIndex(index);
+  const handleEditEvent = (month, event) => {
+    setFormData({
+      month,
+      date: event.date,
+      day: event.day,
+      time: event.time,
+      title: event.title,
+    });
+    setEditEventId(event.id);
     setShowManager(true);
   };
 
-  const handleDeleteEvent = (month, index) => {
+  const handleDeleteEvent = async (id) => {
     if (window.confirm("Are you sure you want to delete this event?")) {
-      const updated = { ...schedule };
-      updated[month].splice(index, 1);
-      setSchedule(updated);
+      try {
+        await axios.delete(`https://localhost:5038/api/YearCalendar/${id}`);
+        fetchEvents();
+      } catch (err) {
+        console.error("Error deleting event:", err);
+      }
     }
   };
 
- const renderEvents = () =>
-  monthNames.map((m, i) => (
-    <div key={i} className="month-block">
-      <h3>{m}</h3>
-      <ul className="events-list">
-        {schedule[i + 1] && schedule[i + 1].length > 0 ? (
-          schedule[i + 1].map((ev, j) => (
-            <li key={j} className="event-item">
-              <div className="event-info">
-                <strong>{ev.date}</strong> ({ev.day}) — {ev.title}
-                <br />
-                <span className="event-time">🕒 {ev.time}</span>
-              </div>
-
-              {/* Show edit + delete only for staff */}
-              {isStaff && (
-                <div className="event-actions">
-                  <button
-                    className="edit-btn"
-                    onClick={() => handleEditEvent(i + 1, j)}
-                  >
-                    ✏️ Edit
-                  </button>
-                  <button
-                    className="delete-btn"
-                    onClick={() => handleDeleteEvent(i + 1, j)}
-                  >
-                    🗑️ Delete
-                  </button>
+  const renderEvents = () =>
+    monthNames.map((m, i) => (
+      <div key={i} className="month-block">
+        <h3>{m}</h3>
+        <ul className="events-list">
+          {schedule[i + 1] && schedule[i + 1].length > 0 ? (
+            schedule[i + 1].map((ev) => (
+              <li key={ev.id} className="event-item">
+                <div className="event-info">
+                  <strong>{ev.date}</strong> ({ev.day}) — {ev.title}
+                  <br />
+                  <span className="event-time">🕒 {ev.time}</span>
                 </div>
-              )}
-            </li>
-          ))
-        ) : (
-          <li>No events scheduled.</li>
-        )}
-      </ul>
-    </div>
-  ));
 
+                {isStaff && (
+                  <div className="event-actions">
+                    <button
+                      className="edit-btn"
+                      onClick={() => handleEditEvent(i + 1, ev)}
+                    >
+                      ✏️ Edit
+                    </button>
+                    <button
+                      className="delete-btn"
+                      onClick={() => handleDeleteEvent(ev.id)}
+                    >
+                      🗑️ Delete
+                    </button>
+                  </div>
+                )}
+              </li>
+            ))
+          ) : (
+            <li>No events scheduled.</li>
+          )}
+        </ul>
+      </div>
+    ));
 
   return (
     <div className="calendar-container">
-       <header className="temple-header">
-      <h2>🪔 Temple Year Schedule</h2>
-</header>
-      <div className="year-schedule">{renderEvents()}</div>
+      <header className="temple-header">
+        <h2>🪔 Temple Year Schedule</h2>
+      </header>
+
+      {/* Scrollable events container */}
+      <div className="year-schedule scrollable">{renderEvents()}</div>
 
       <button className="update-btn" onClick={handleUpdateClick}>
         Update Schedule
@@ -181,7 +206,7 @@ const YearCalendar = () => {
         <>
           <div className="overlay" onClick={() => setShowManager(false)}></div>
           <div className="popup wide-popup">
-            <h3>{editIndex !== null ? "Edit Event" : "Add New Event"}</h3>
+            <h3>{editEventId ? "Edit Event" : "Add New Event"}</h3>
 
             {popupMsg && <p className="info-msg">{popupMsg}</p>}
 
@@ -244,7 +269,7 @@ const YearCalendar = () => {
 
               <div className="popup-buttons">
                 <button type="submit">
-                  {editIndex !== null ? "Update" : "Add"}
+                  {editEventId ? "Update" : "Add"}
                 </button>
                 <button
                   type="button"
@@ -256,7 +281,7 @@ const YearCalendar = () => {
                       time: "",
                       title: "",
                     });
-                    setEditIndex(null);
+                    setEditEventId(null);
                     setShowManager(false);
                   }}
                 >

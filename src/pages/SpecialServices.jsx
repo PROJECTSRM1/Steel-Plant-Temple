@@ -1,10 +1,7 @@
 import React from 'react';
-// Import your CSS file
 import './SpecialServices.css'; 
 
-
 const SPECIAL_SEVAS_DATA = [
-   
     {
         name: "Padi Pooja",
         highlight: "Premium Service",
@@ -91,25 +88,46 @@ const SPECIAL_SEVAS_DATA = [
     },
 ];
 
-// Helper function for button clicks (Remains the same)
-const handleBooking = (sevaName) => {
-    alert(`Initiating booking/contribution for ${sevaName}...`);
+// Updated handleBooking to call backend
+const handleBooking = async (sevaName) => {
+    const donorName = prompt("Enter your full name:");
+    if (!donorName) return;
+    const phone = prompt("Enter your phone number:");
+    const email = prompt("Enter your email (optional):");
+
+    try {
+        const response = await fetch("https://localhost:7029/api/SpecialSeva", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                SevaName: sevaName,
+                DonorName: donorName,
+                Phone: phone,
+                Email: email
+            }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            alert(data.message); // keep same response as before
+        } else {
+            alert("Error: " + data.message);
+        }
+    } catch (err) {
+        console.error(err);
+        alert("Error connecting to backend.");
+    }
 };
-
-
-
-
 
 function SpecialServices() {
     return (
-        
         <div className="container">
             {SPECIAL_SEVAS_DATA.map((seva, index) => {
                 const rowClassName = `seva-detail-row ${seva.rowClass} ${seva.reverse ? 'reverse-layout' : ''}`;
                 
                 return (
                     <div className={rowClassName} key={index}>
-                        
                         <div className="seva-media">
                             <img 
                                 src={seva.imageSrc} 
@@ -118,7 +136,6 @@ function SpecialServices() {
                             />
                         </div>
 
-                        
                         <div className="seva-content">
                             <div className="content-header">
                                 <h2>{seva.name}</h2>

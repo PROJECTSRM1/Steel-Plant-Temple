@@ -1,12 +1,35 @@
 import React, { useEffect } from 'react';
 import './Dharshan.css';
 
-
 const Dharshan = () => {
   useEffect(() => {
-    // set year in footer (footer component already sets this) — any other dynamic logic can go here
+    // Scroll to top on load
     window.scrollTo(0, 0);
   }, []);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const fullName = e.target[0].value;
+    const email = e.target[1].value;
+    const date = e.target[2].value;
+    const darshanType = e.target[3].value;
+
+    try {
+      
+      const res = await fetch("https://localhost:7029/api/DharshanBooking", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ FullName: fullName, Email: email, Date: date, DarshanType: darshanType })
+      });
+
+      const data = await res.json();
+      if (res.ok) alert(data.message);
+      else alert("Error: " + data.message);
+    } catch (err) {
+      console.error(err);
+      alert("Error connecting to backend.");
+    }
+  };
 
   return (
     <main className="content">
@@ -53,7 +76,7 @@ const Dharshan = () => {
         <h2>Online Darshan Booking</h2>
         <p>To ensure a comfortable experience and manage crowd flow, devotees are encouraged to book Darshan tickets online.</p>
 
-        <form className="booking-form" onSubmit={(e) => { e.preventDefault(); alert('Booking received (demo).'); }}>
+        <form className="booking-form" onSubmit={handleSubmit}>
           <div className="form-row">
             <input type="text" placeholder="Full name" required />
             <input type="email" placeholder="Email" required />
