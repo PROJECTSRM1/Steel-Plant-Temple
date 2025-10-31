@@ -3,6 +3,7 @@ import Hero from "../components/Hero";
 import "./Home.css";
 import { useLocation } from "react-router-dom";
 
+
 const Home = () => {
   const videoRef = useRef(null);
   const location = useLocation();
@@ -165,12 +166,13 @@ const Home = () => {
             ref={videoRef}
             width="100%"
             height="400"
-            src="https://www.youtube.com/embed/BOjJGALm2kQ?enablejsapi=1&autoplay=1&mute=1&rel=0&modestbranding=1&showinfo=0"
+            src="https://www.youtube.com/embed/EQt4SA6Gr-s?enablejsapi=1&autoplay=1&mute=1&rel=0&modestbranding=1&showinfo=0"
             title="Live Darshan"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           ></iframe>
+
         </div>
       </section>
 

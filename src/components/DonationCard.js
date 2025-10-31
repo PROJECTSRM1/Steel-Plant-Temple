@@ -1,6 +1,7 @@
 // src/components/DonationCard.js
 import React from 'react';
 
+
 // Card component to display individual donation schemes
 const DonationCard = ({ id, title, amount, description, isSelected, onSelect }) => {
   const handleClick = () => {

@@ -1,40 +1,64 @@
+// src/App.jsx
 import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useNavigate,
+} from "react-router-dom";
+
+/* ---------------- Core Components ---------------- */
 import Header from "./components/Header";
 import FloatingIcons from "./components/FloatingIcons";
 import Footer from "./components/Footer";
+
+/* --------------- Auth Components ----------------- */
+import Login from "./components/login.jsx";
+import Signup from "./components/Signup";
+import RecoverPassword from "./components/RecoverPassword.jsx";
+
+/* -------------------- Pages ---------------------- */
 import Home from "./pages/Home";
 import Dharshan from "./pages/Dharshan";
 import Yagnas from "./pages/Yagnas";
 import PoojaServices from "./pages/PoojaServices.jsx";
-import SpecialServices from "./pages/SpecialServices.jsx"; // ✅ Special Services Page
+import SpecialServices from "./pages/SpecialServices.jsx";
 import BookingForm from "./pages/BookingForm.jsx";
+import BookingForm1 from "./components/BookingForm1.jsx";
 import DonationsPage from "./pages/DonationPage.jsx";
 import DonationSuccess from "./pages/DonationSuccess.jsx";
 import OfflineDonations from "./pages/OfflineDonations.jsx";
-import DonationSchemes from "./data/DonationSchemes.jsx";
 import DayCalendar from "./pages/DayCalendar.jsx";
 import MonthCalendar from "./pages/MonthCalendar.jsx";
 import WeekCalendar from "./pages/WeekCalendar.jsx";
 import YearCalendar from "./pages/YearCalendar.jsx";
 import StaffLogin from "./pages/StaffLogin.jsx";
-import SpecialDonations from "./pages/SpecialDonations.jsx"; // ✅ Firebase donation page
-import "./App.css";
+import SpecialDonations from "./pages/SpecialDonations.jsx";
+import Gallery from "./pages/Gallery";
 
+/* ------------- Event Donation Pages ------------- */
+import EventDonationPage from "./pages/EventDonationPage.jsx";
+import EventRegistrationForm from "./pages/EventRegistrationForm.jsx";
+import EventSuccess from "./pages/EventSuccess.jsx";
+
+/* ------------------- Data ----------------------- */
+import DonationSchemes from "./data/DonationSchemes.jsx";
+
+import "./App.css";
 
 function App() {
   const navigate = useNavigate();
 
-  // --- POOJA BOOKING ---
+  /* ------------ POOJA BOOKING ------------ */
   const [poojaToBook, setPoojaToBook] = useState(null);
 
-  // --- DONATIONS ---
+  /* ------------ DONATIONS ---------------- */
   const initialSchemeId = DonationSchemes[0]?.id || null;
   const [selectedScheme, setSelectedScheme] = useState(initialSchemeId);
   const [donationAmount, setDonationAmount] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // --- HANDLERS ---
+  /* ------------ HANDLERS ----------------- */
   const handleDonationSubmit = (donorDetails) => {
     setIsSubmitting(true);
     console.log("Donation Data Sent to API:", {
@@ -63,20 +87,18 @@ function App() {
     window.scrollTo(0, 0);
   };
 
-  // -----------------------
-
   return (
     <>
       <Header />
       <FloatingIcons />
 
       <Routes>
-        {/* 🔹 Main Pages */}
+        {/* Main Pages */}
         <Route path="/" element={<Home />} />
         <Route path="/dharshan" element={<Dharshan />} />
         <Route path="/yagnas" element={<Yagnas />} />
 
-        {/* 🔹 Pooja Services and Booking */}
+        {/* Pooja Services */}
         <Route
           path="/pooja"
           element={<PoojaServices onBookPooja={handlePoojaBooking} />}
@@ -90,23 +112,15 @@ function App() {
             />
           }
         />
+        <Route path="/booking-form1" element={<BookingForm1 />} />
 
-        {/* 🔹 Special Services */}
+        {/* Special Services */}
         <Route path="/special" element={<SpecialServices />} />
 
-        {/* 🔹 Special Donations (Firebase-integrated) */}
-        <Route path="/special-donations" element={<SpecialDonations />} />  {/* ✅ NEW */}
+        {/* Special Donations */}
+        <Route path="/special-donations" element={<SpecialDonations />} />
 
-        {/* 🔹 Event Calendars */}
-        <Route path="/events/day" element={<DayCalendar />} />
-        <Route path="/events/week" element={<WeekCalendar />} />
-        <Route path="/events/month" element={<MonthCalendar />} />
-        <Route path="/events/year" element={<YearCalendar />} />
-
-        {/* 🔹 Staff Login */}
-        <Route path="/staff-login" element={<StaffLogin />} />
-
-        {/* 🔹 Online Donations */}
+        {/* Online Donations */}
         <Route
           path="/donations/online"
           element={
@@ -121,10 +135,10 @@ function App() {
           }
         />
 
-        {/* 🔹 Offline Donations */}
+        {/* Offline Donations */}
         <Route path="/donations/offline" element={<OfflineDonations />} />
 
-        {/* 🔹 Donation Success */}
+        {/* Donation Success */}
         <Route
           path="/donations/success"
           element={
@@ -134,6 +148,31 @@ function App() {
             />
           }
         />
+
+        {/* Event Donations */}
+        <Route path="/events" element={<EventDonationPage />} />
+        <Route
+          path="/events/register/:id"
+          element={<EventRegistrationForm />}
+        />
+        <Route path="/events/success" element={<EventSuccess />} />
+
+        {/* Event Calendars */}
+        <Route path="/events/day" element={<DayCalendar />} />
+        <Route path="/events/week" element={<WeekCalendar />} />
+        <Route path="/events/month" element={<MonthCalendar />} />
+        <Route path="/events/year" element={<YearCalendar />} />
+
+        {/* Staff Login */}
+        <Route path="/staff-login" element={<StaffLogin />} />
+
+        {/* Authentication */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/recover" element={<RecoverPassword />} />
+
+        {/* Gallery */}
+        <Route path="/gallery" element={<Gallery />} />
       </Routes>
 
       <Footer />
@@ -141,7 +180,7 @@ function App() {
   );
 }
 
-// ✅ Wrap App with Router
+/* Wrap App with Router */
 export default function AppWrapper() {
   return (
     <Router>

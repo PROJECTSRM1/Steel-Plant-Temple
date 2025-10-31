@@ -1,46 +1,83 @@
+/* =========================================
+   DHARSHAN PAGE — THEME MATCHED & RESPONSIVE
+========================================= */
+
 .content {
   max-width: 1100px;
-  margin: 40px auto;
+  margin: 60px auto;
   padding: 0 20px;
-  color: #222;
-  line-height: 1.7;
+  color: #2e1b18;
+  line-height: 1.8;
+  font-size: 17px;
+  background: #fdf7ec;
+  border-top: 2px solid #d4a017;
+  border-bottom: 2px solid #d4a017;
+  border-radius: 10px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
 }
 
+/* ---------- HEADINGS ---------- */
 .content h2 {
   color: #3b0101;
-  font-size: 26px;
-  margin-bottom: 16px;
-  font-family: 'Merriweather', serif;
+  font-size: 32px;
+  margin: 25px 0 20px;
+  text-align: center;
+  letter-spacing: 0.5px;
+  font-weight: 700;
+  font-family: 'Playfair Display', serif;
+  position: relative;
 }
 
+.content h2::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: #d4a017;
+  margin: 10px auto 25px;
+  border-radius: 2px;
+}
+
+/* ---------- TEXT ---------- */
 .content p,
 .content ul,
-.content ol,
-.content table {
-  margin-bottom: 20px;
-  font-size: 16px;
+.content ol {
+  margin-bottom: 18px;
+  text-align: justify;
 }
 
+.content ul {
+  list-style: disc;
+  margin-left: 25px;
+}
+
+/* ---------- BLOCKQUOTE ---------- */
 blockquote {
-  background: #fff7e6;
+  background: #fff9e6;
   border-left: 5px solid #ce8a23;
-  padding: 16px 20px;
-  margin: 20px 0;
+  padding: 18px 24px;
+  margin: 25px 0;
   font-style: italic;
   color: #3b0101;
+  border-radius: 6px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
 }
 
-/* TABLE */
+/* ---------- TABLES ---------- */
 table {
   width: 100%;
   border-collapse: collapse;
-  margin: 20px 0;
+  margin: 25px 0;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
 }
 
 table th,
 table td {
   border: 1px solid #ddd;
-  padding: 12px 24px;
+  padding: 12px 20px;
   text-align: left;
   white-space: nowrap;
 }
@@ -53,27 +90,36 @@ table th {
 }
 
 table tr:nth-child(even) {
-  background-color: #f8f8f8;
+  background-color: #fff8e1;
 }
 
 table tr:hover {
   background-color: #fff4da;
 }
 
-/* NOTES */
+/* ---------- NOTE ---------- */
 .note {
   color: #b30000;
   font-size: 15px;
   font-style: italic;
-  margin-top: -10px;
+  margin-top: -5px;
 }
 
-/* FORM */
+/* ---------- FORM ---------- */
 .booking-form {
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
+  background: #fff8e1;
+  padding: 25px;
+  border-radius: 10px;
   border-left: 6px solid #ce8a23;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  margin-top: 30px;
+}
+
+.booking-form h3 {
+  color: #3b0101;
+  margin-bottom: 15px;
+  font-family: 'Playfair Display', serif;
+  text-align: center;
 }
 
 .form-row {
@@ -88,25 +134,46 @@ table tr:hover {
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 6px;
+  font-size: 15px;
 }
 
+/* ---------- BUTTON ---------- */
 .btn {
+  background: #d4a017;
+  color: #3b0101;
   border: none;
+  padding: 10px 25px;
+  border-radius: 6px;
+  font-weight: 600;
   cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 200px;
 }
 
+.btn:hover {
+  background: #ce8a23;
+  color: #fff;
+}
+
+/* ---------- CONTACT INFO ---------- */
 .contact-info {
   list-style: none;
-  margin-top: 10px;
+  margin-top: 20px;
+  padding: 0;
 }
 
 .contact-info li {
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   background: #fff9e6;
-  padding: 10px;
+  padding: 12px;
   border-left: 4px solid #ce8a23;
+  border-radius: 6px;
+  color: #3b0101;
 }
 
+/* ---------- CENTER QUOTES ---------- */
 .center {
   text-align: center;
   margin: 40px 0;
@@ -114,15 +181,16 @@ table tr:hover {
 
 .center blockquote {
   display: inline-block;
-  text-align: center;
-  background: #fff7e0;
+  background: #fff8e1;
   border-left: none;
   border-top: 4px solid #ce8a23;
   border-bottom: 4px solid #ce8a23;
-  padding: 20px 40px;
+  padding: 25px 40px;
   font-family: 'Merriweather', serif;
   font-size: 18px;
   color: #3b0101;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
 .center blockquote span {
@@ -132,9 +200,88 @@ table tr:hover {
   margin-top: 10px;
 }
 
-/* Responsive form */
-@media (max-width: 768px) {
+/* ---------- RESPONSIVE ---------- */
+
+/* Medium screens (tablets) */
+@media (max-width: 992px) {
+  .content {
+    margin: 40px auto;
+    padding: 20px 15px;
+  }
+
+  .content h2 {
+    font-size: 28px;
+  }
+
   .form-row {
     flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  table {
+    font-size: 15px;
+  }
+}
+
+/* Small screens (phones) */
+@media (max-width: 600px) {
+  .content {
+    padding: 15px 12px;
+  }
+
+  .content h2 {
+    font-size: 24px;
+    margin: 20px 0 15px;
+  }
+
+  p, li, td, th {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  blockquote {
+    padding: 14px 18px;
+    font-size: 15px;
+  }
+
+  .center blockquote {
+    font-size: 16px;
+    padding: 20px;
+  }
+
+  /* Make tables scrollable on mobile */
+  table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .form-row input,
+  .form-row select {
+    width: 100%;
+  }
+}
+
+/* Extra small (very small phones) */
+@media (max-width: 420px) {
+  .content {
+    padding: 10px;
+  }
+
+  .content h2 {
+    font-size: 22px;
+  }
+
+  .btn {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+
+  blockquote {
+    padding: 12px;
   }
 }
