@@ -1,14 +1,9 @@
-/* ----------------------------------------------------
-   GLOBAL RESPONSIVE TEMPLATE
-   Author: ChatGPT | For Sri Ayyappa Swamy Temple Website
-   ---------------------------------------------------- */
-
-/* ---------- RESET & BASE ---------- */
-/* * {
+/* ---------- GLOBAL STYLES ---------- */
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-} */
+}
 
 html {
   scroll-behavior: smooth;

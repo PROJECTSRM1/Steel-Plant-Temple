@@ -105,7 +105,7 @@ function App() {
   const [selectedSeva, setSelectedSeva] = useState(null);
   const [successDetails, setSuccessDetails] = useState(null);
 
-  const handleBooking = (sevaName) => setSelectedSeva(sevaName);
+  // const handleBooking = (sevaName) => setSelectedSeva(sevaName);
 
   const handlePopupClose = (data) => {
     if (data && data.success) {
