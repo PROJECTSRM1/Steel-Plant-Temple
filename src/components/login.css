@@ -1,31 +1,28 @@
 /* --------------------------- */
-/* GLOBAL LOGIN PAGE STYLING   */
+/* LOGIN PAGE STYLING ONLY     */
 /* --------------------------- */
 
-body {
-  margin: 0;
-  font-family: "Poppins", sans-serif;
-  background-color: #1a0000; /* fallback background */
-  color: #fff;
-}
-
-/* Background with Ayyappa Swamy image */
-.login-container {
+.login-page {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-image: 
+  font-family: "Poppins", sans-serif;
+  background-color: #1a0000;
+  color: #fff;
+
+  /* Ayyappa Swamy background image */
+  background-image:
     linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-    url("C:\Users\Gunashekar Reddy\Desktop\RM1\ayyappa-temple\public\assets\bg.jpg"); /* 👈 Replace with your actual image path */
+    url("C:\Users\Gunashekar Reddy\Desktop\Steel-Plant-Temple\public\assets\OIP-21.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
 /* Login Box */
-.login-box {
-  background: rgba(0, 0, 0, 0.55); /* subtle glass effect */
+.login-page .login-box {
+  background: rgba(0, 0, 0, 0.55);
   padding: 45px 55px;
   width: 380px;
   border-radius: 14px;
@@ -37,7 +34,7 @@ body {
 }
 
 /* Title */
-.login-box h2 {
+.login-page .login-box h2 {
   font-size: 32px;
   font-weight: 600;
   margin-bottom: 25px;
@@ -47,13 +44,13 @@ body {
 }
 
 /* Form Fields */
-.login-box form {
+.login-page .login-box form {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.login-box input {
+.login-page .login-box input {
   width: 100%;
   padding: 12px 15px;
   background: transparent;
@@ -65,16 +62,16 @@ body {
   transition: border-color 0.4s ease;
 }
 
-.login-box input::placeholder {
+.login-page .login-box input::placeholder {
   color: rgba(255, 255, 255, 0.7);
 }
 
-.login-box input:focus {
+.login-page .login-box input:focus {
   border-bottom: 1px solid #ffcc33;
 }
 
 /* Button */
-.login-box button {
+.login-page .login-box button {
   background: transparent;
   color: #fff;
   padding: 14px;
@@ -85,47 +82,45 @@ body {
   text-transform: uppercase;
   letter-spacing: 2px;
   cursor: pointer;
-  position: relative;
-  overflow: hidden;
   transition: color 0.5s ease, background-color 0.5s ease;
 }
 
-.login-box button:hover {
+.login-page .login-box button:hover {
   background-color: #ffcc33;
   color: #300000;
 }
 
 /* Links */
-.forgot,
-.signup-link,
-.back-to-login {
+.login-page .forgot,
+.login-page .signup-link,
+.login-page .back-to-login {
   margin-top: 15px;
   font-size: 14px;
   color: #fff;
 }
 
-.forgot a,
-.signup-link a,
-.back-to-login a {
+.login-page .forgot a,
+.login-page .signup-link a,
+.login-page .back-to-login a {
   color: #ffcc33;
   text-decoration: none;
   font-weight: 500;
 }
 
-.forgot a:hover,
-.signup-link a:hover,
-.back-to-login a:hover {
+.login-page .forgot a:hover,
+.login-page .signup-link a:hover,
+.login-page .back-to-login a:hover {
   text-decoration: underline;
 }
 
 /* Mobile Responsiveness */
 @media (max-width: 480px) {
-  .login-box {
+  .login-page .login-box {
     width: 90%;
     padding: 35px 25px;
   }
 
-  .login-box h2 {
+  .login-page .login-box h2 {
     font-size: 26px;
   }
 }
