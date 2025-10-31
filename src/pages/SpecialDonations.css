@@ -1,6 +1,5 @@
 /* =======================================================
-   SPECIAL DONATIONS SECTION - Isolated Styles
-   Cleaned & Optimized for Donations Page Only
+   SPECIAL DONATIONS SECTION - Optimized for Horizontal Cards
 ========================================================= */
 
 :root {
@@ -59,25 +58,25 @@
   line-height: 1.8;
 }
 
-/* ---------- DONATION GRID ---------- */
+/* ---------- HORIZONTAL DONATION GRID ---------- */
 .special-donations .donations-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 30px;
-  justify-items: center;
-  align-items: stretch;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  align-items: stretch !important;
+  flex-wrap: nowrap !important; /* Force one row */
+  gap: 25px !important;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  scroll-behavior: smooth;
 }
 
-@media (max-width: 992px) {
-  .special-donations .donations-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.special-donations .donations-grid::-webkit-scrollbar {
+  display: none;
 }
-
-@media (max-width: 600px) {
-  .special-donations .donations-grid {
-    grid-template-columns: 1fr;
-  }
+.special-donations .donations-grid {
+  -ms-overflow-style: none; /* IE */
+  scrollbar-width: none; /* Firefox */
 }
 
 /* ---------- DONATION CARD ---------- */
@@ -86,15 +85,16 @@
   border: 2px solid var(--secondary-color);
   border-radius: 14px;
   padding: 28px 20px;
+  flex: 1 1 250px !important;
+  max-width: 260px !important;
+  min-width: 220px !important;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  text-align: left !important;
   box-shadow: var(--shadow);
   transition: var(--transition);
   min-height: 260px;
-  width: 100%;
-  max-width: 350px;
-  text-align: center;
 }
 
 .special-donations .donation-card:hover {
@@ -265,6 +265,17 @@
 }
 
 /* ---------- RESPONSIVE ---------- */
+@media (max-width: 992px) {
+  .special-donations .donations-grid {
+    justify-content: flex-start;
+  }
+
+  .special-donations .donation-card {
+    min-width: 240px;
+    flex: 0 0 auto;
+  }
+}
+
 @media (max-width: 768px) {
   .special-donations .section-title {
     font-size: 1.8rem;
