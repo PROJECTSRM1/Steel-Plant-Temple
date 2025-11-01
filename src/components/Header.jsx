@@ -63,7 +63,15 @@ const Header = () => {
       <nav className="navbar">
         <div className="navbar-container container">
           <ul className={`nav-menu ${mobileOpen ? 'active' : ''}`}>
-            <li><Link to="/">Home</Link></li>
+             <li>
+              <Link
+                to="/"
+                state={{ scrollTo: "/" }}
+                onClick={() => setMobileOpen(true)}
+              >
+                home
+              </Link>
+            </li>
 
             <li className="dropdown" onClick={toggleDropdown}>
               <a href="#!">Seva Services</a>
@@ -88,7 +96,15 @@ const Header = () => {
             <li className="dropdown" onClick={toggleDropdown}>
               <a href="#!">Live Darshan</a>
               <ul className="dropdown-content">
-                <li><a href="#live">Live Telecast</a></li>
+                <li>
+              <Link
+                to="/"
+                state={{ scrollTo: "live" }}
+                onClick={() => setMobileOpen(true)}
+              >
+                Live Telecast
+              </Link>
+            </li>
                 <li><a href="#live">Telecast Old</a></li>
               </ul>
             </li>

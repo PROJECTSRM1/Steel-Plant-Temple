@@ -35,16 +35,20 @@
 }
 
 .donate-btn {
-  background-color: #a0522d;
-  color: white;
+ background-color: #ce8a23;
+  color: #2b0000;
   border: none;
-  padding: 10px 18px;
-  border-radius: 8px;
+  padding: 10px 20px;
+  border-radius: 6px;
   cursor: pointer;
-  font-size: 0.95rem;
-  transition: background 0.2s ease;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  margin: 0 auto 18px;
+  width: 80%;
 }
 
 .donate-btn:hover {
-  background-color: #8b4513;
+  background-color: #2b0000;
+  color: #ce8a23;
 }

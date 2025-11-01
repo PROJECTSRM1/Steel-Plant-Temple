@@ -26,15 +26,20 @@
 }
 
 .event-registration-form button {
-  background: #8b4513;
-  color: #fff;
+ background-color: #ce8a23;
+  color: #2b0000;
   border: none;
-  padding: 12px;
-  border-radius: 8px;
+  padding: 10px 20px;
+  border-radius: 6px;
   cursor: pointer;
-  transition: background 0.3s ease;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  margin: 0 auto 18px;
+  width: 80%;
 }
 
 .event-registration-form button:hover {
-  background: #a0522d;
+  background-color: #2b0000;
+  color: #ce8a23;
 }
