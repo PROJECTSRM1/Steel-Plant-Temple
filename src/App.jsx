@@ -34,7 +34,8 @@ import WeekCalendar from "./pages/WeekCalendar.jsx";
 import YearCalendar from "./pages/YearCalendar.jsx";
 import StaffLogin from "./pages/StaffLogin.jsx";
 import SpecialDonations from "./pages/SpecialDonations.jsx";
-import Gallery from "./pages/Gallery";
+import Gallery from "./pages/Gallery.jsx";
+import ContactUs from "./pages/ContactUs.jsx"
 
 /* ------------- Event Donation Pages ------------- */
 import EventDonationPage from "./pages/EventDonationPage.jsx";
@@ -124,7 +125,7 @@ function App() {
         <Route
           path="/donations/online"
           element={
-            <DonationsPage.apply
+            <DonationsPage
               selectedScheme={selectedScheme}
               setSelectedScheme={setSelectedScheme}
               amount={donationAmount}
@@ -173,6 +174,8 @@ function App() {
 
         {/* Gallery */}
         <Route path="/gallery" element={<Gallery />} />
+        {/*ContactUS*/}
+        <Route path="/contactus" element={<ContactUs />} />
       </Routes>
 
       <Footer />

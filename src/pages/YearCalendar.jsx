@@ -31,7 +31,7 @@ const YearCalendar = () => {
 
   const fetchEvents = async () => {
     try {
-      const res = await axios.get("https://localhost:5038/api/YearCalendar");
+      const res = await axios.get("https://localhost:7029/api/YearCalendar");
       const data = res.data;
       const grouped = {};
 
@@ -83,7 +83,7 @@ const YearCalendar = () => {
         });
         setPopupMsg("✅ Event updated successfully!");
       } else {
-        await axios.post("https://localhost:5038/api/YearCalendar", {
+        await axios.post("https://localhost:7029/api/YearCalendar", {
           month,
           date,
           day,

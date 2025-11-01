@@ -1,10 +1,8 @@
 // src/pages/DonationPage.jsx
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import DonationForm from '../components/DonationForm';
 import './DonationPage.css';
 
-
-// Static list of available donation schemes
 const donationSchemes = [
   { id: 'annadanam', name: 'Annadanam Seva (Food Donation)', description: 'Support the daily feeding of devotees.' },
   { id: 'temple-maintenance', name: 'Temple Maintenance Fund', description: 'Contribute to the upkeep and repair of the temple.' },
@@ -13,22 +11,52 @@ const donationSchemes = [
   {
     id: 'pooja_samagri',
     name: 'Pooja Samagri (Ritual Items)',
-    description: 'Donate for essential daily ritual supplies like ghee (neyy), camphor, incense, sandalwood, and fresh produce.',
+    description: 'Donate for essential daily ritual supplies like ghee, camphor, incense, sandalwood, and fresh produce.',
   },
   {
     id: 'mala_alankaram',
     name: 'Garland & Ornamentation Fund (Mala Alankaram)',
     description: 'Sponsor fresh flower garlands, silks, and ornaments for the daily decoration of Lord Ayyappa.',
-  }
+  },
 ];
 
-const DonationsPage = ({ selectedScheme, setSelectedScheme, amount, setAmount, handleDonationSubmit, isSubmitting }) => {
-  // If no scheme is selected, default to the first one
-  if (!selectedScheme) {
-    setSelectedScheme(donationSchemes[0].id);
-  }
+const DonationPage = () => {
+  const [selectedScheme, setSelectedScheme] = useState(donationSchemes[0].id);
+  const [amount, setAmount] = useState(100);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Find the currently selected scheme object
+  // ✅ Function to handle form submission
+  const handleDonationSubmit = async ({ name, email, phone }) => {
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch('https://localhost:7029/api/donations', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name,
+          email,
+          phone,
+          selectedScheme,
+          amount
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        alert(data.message); // ✅ show backend success message (same as before)
+      } else {
+        alert(data.message || 'Something went wrong. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error submitting donation:', error);
+      alert('Unable to connect to server. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   const currentScheme = donationSchemes.find(s => s.id === selectedScheme);
 
   return (
@@ -39,7 +67,7 @@ const DonationsPage = ({ selectedScheme, setSelectedScheme, amount, setAmount, h
       </p>
 
       <div className="donation-grid">
-        {/* 1. Scheme Selection Card */}
+        {/* Scheme Selection */}
         <div className="scheme-selection-card card">
           <h3>Select a Sacred Seva</h3>
           <ul className="scheme-list">
@@ -56,7 +84,7 @@ const DonationsPage = ({ selectedScheme, setSelectedScheme, amount, setAmount, h
           </ul>
         </div>
 
-        {/* 2. Donation Form Card */}
+        {/* Donation Form */}
         <div className="donation-form-container">
           <DonationForm
             selectedScheme={currentScheme ? currentScheme.id : 'general-fund'}
@@ -71,4 +99,4 @@ const DonationsPage = ({ selectedScheme, setSelectedScheme, amount, setAmount, h
   );
 };
 
-export default DonationsPage;
+export default DonationPage;
