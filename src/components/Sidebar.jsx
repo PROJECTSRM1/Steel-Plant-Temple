@@ -20,7 +20,7 @@ export default function Sidebar({ isOpen = false, onClose = () => {} }) {
     <aside className={`sidebar-glass ${isOpen ? "open" : ""}`} aria-label="Sidebar">
       <div className="sidebar-top">
         <div className="thumb">
-          <img src="/images/OIP-20.webp" alt="temple" />
+          <img src="./assets/OIP-20.webp" alt="temple" />
         </div>
         {/* <div className="meta">
           <div className="name">Swamiye Saranam Ayyappa</div>

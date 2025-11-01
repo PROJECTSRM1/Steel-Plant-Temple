@@ -94,21 +94,23 @@
 }
 
 .donate-btn {
-  padding: 12px 18px;
-  background: var(--gold-gradient);
-  color: var(--primary-color);
-  font-weight: 700;
-  border: 2px solid var(--secondary-color);
-  border-radius: 8px;
+  background-color: #ce8a23;
+  color: #2b0000;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
   cursor: pointer;
+  font-weight: 600;
+  text-transform: uppercase;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(212, 160, 23, 0.4);
+  margin: 0 auto 18px;
+  width: 80%;
 }
 
 .donate-btn:hover {
-  background: linear-gradient(45deg, #ffd54f, #ce8a23);
-  transform: translateY(-3px);
-  box-shadow: 0 6px 18px rgba(212, 160, 23, 0.55);
+ background-color: #2b0000;
+  color: #ce8a23;
+
 }
 
 /* ---------- BANK DETAILS ---------- */
@@ -229,20 +231,23 @@
 }
 
 .submit-btn {
-  width: 100%;
-  padding: 12px;
-  background: var(--gold-gradient);
+  background-color: #ce8a23;
+  color: #2b0000;
   border: none;
-  border-radius: 8px;
-  color: var(--primary-color);
-  font-weight: 700;
+  padding: 10px 20px;
+  border-radius: 6px;
   cursor: pointer;
-  transition: 0.3s ease;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  margin: 0 auto 18px;
+  width: 80%;
 }
 
 .submit-btn:hover {
-  background: linear-gradient(45deg, #ffd54f, #ce8a23);
-  transform: translateY(-2px);
+  background-color: #2b0000;
+  color: #ce8a23;
+
 }
 
 .close-btn {

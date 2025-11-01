@@ -1,21 +1,24 @@
-
 body {
   margin: 0;
   font-family: "Poppins", sans-serif;
   background-color: #AD321A; /* Burnt red background */
   color: #fff; /* White text */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
+/* ✅ Fixed: Removed extra .login-container nesting */
 .login-container {
- display: flex;
+  flex: 1; /* Takes up available height between header and footer */
+  display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 90vh;
-  background-color:rgb(184, 57, 57);
-/* background-image: url("../assets/OIP-21.webp"); */
+  background: rgb(184, 57, 57);
   background-size: cover;
   background-position: center;
-   /* Match the body */
+  padding: 60px 20px; /* Adds gap between image & footer/header */
+  box-sizing: border-box;
 }
 
 .login-box {
@@ -31,7 +34,7 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-
+/* HEADINGS */
 .login-box h2 {
   font-size: 32px;
   font-weight: 300;
@@ -41,6 +44,7 @@ body {
   letter-spacing: 4px;
 }
 
+/* FORM STYLING */
 .login-box form {
   display: flex;
   flex-direction: column;
@@ -66,10 +70,8 @@ body {
 .login-box input:focus {
   border-bottom: 1px solid #fff;
 }
-/* ---------------------------------------------------- */
-/* NEW KEYFRAMES ANIMATION */
-/* ---------------------------------------------------- */
 
+/* BUTTON STYLES */
 .login-box button {
   background-color: transparent;
   color: #fff;
@@ -81,13 +83,12 @@ body {
   text-transform: uppercase;
   letter-spacing: 2px;
   cursor: pointer;
-  transition: all 0.5s ease;
+  transition: all 0.2s ease;
   position: relative; 
   overflow: hidden;  
   z-index: 1;   
-  
-  transition: color 0.5s ease, border-color 0.5s ease;
 }
+
 .login-box button::before {
   content: "";
   position: absolute;
@@ -97,62 +98,46 @@ body {
   width: 0; 
   background-color: #fff;
   z-index: -1;
-  
- 
   transition: width 2s cubic-bezier(.785,.135,.15,.86); 
 }
 
 .login-box button:hover {
- 
   color: #AD321A;
   border-color: #fff;
 }
 
 .login-box button:hover::before {
- 
   width: 100%;
 }
 
-.login-box .forgot {
-  margin-top: 10px;
+/* LINK STYLES */
+.login-box .forgot,
+.signup-link,
+.login-box .back-to-login {
+  margin-top: 20px;
   font-size: 14px;
   color: #fff;
 }
 
-.login-box .forgot a {
+.login-box .forgot a,
+.signup-link a,
+.login-box .back-to-login a {
   color: #fff;
   text-decoration: none;
   font-weight: 500;
 }
 
-.login-box .forgot a:hover {
+.login-box .forgot a:hover,
+.signup-link a:hover,
+.login-box .back-to-login a:hover {
   text-decoration: underline;
   color: #ddd;
 }
 
-.signup-link {
-  margin-top: 25px;
-  font-size: 14px;
-  color: #fff;
-}
-
-.signup-link a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.signup-link a:hover {
-  text-decoration: underline;
-  color: #ddd;
-}
-.login-box .back-to-login {
-  margin-top: 25px; /* Adds space above the text */
-  font-size: 14px;
-  color: #fff;
-}
-.v-stack {
-  grid-template-columns: minmax(0,1fr);
-  align-content: start;
-  display:grid;
+/* Responsive tweak */
+@media (max-width: 480px) {
+  .login-box {
+    width: 90%;
+    padding: 30px 25px;
+  }
 }

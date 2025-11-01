@@ -4,7 +4,12 @@ import "./login.css";
 
 const Login = () => {
   return (
-    <div className="login-page">
+    <div
+      className="login-container"
+      style={{
+        backgroundImage: `url(${process.env.PUBLIC_URL}/assets/login.jpg)`,
+      }}
+    >
       <div className="login-box">
         <h2>Login</h2>
 
